@@ -1,0 +1,6 @@
+version: "1.0.0"
+project_types:
+  - backend
+  - data
+  - infra
+description: Infrastructure as Code standards using Terraform and tagging.

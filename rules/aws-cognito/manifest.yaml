@@ -1,0 +1,6 @@
+version: "1.0.0"
+project_types:
+  - backend
+  - data
+  - infra
+description: AWS Cognito usage standards for user pool operations and token handling.

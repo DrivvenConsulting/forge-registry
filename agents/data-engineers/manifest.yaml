@@ -1,0 +1,4 @@
+version: "1.0.0"
+project_types:
+  - data
+description: Implements data ingestion, transformations, and models required by an approved user story.

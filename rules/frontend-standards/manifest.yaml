@@ -1,0 +1,4 @@
+version: "1.0.0"
+project_types:
+  - frontend
+description: Frontend standards using React and TypeScript. Maintainable, performant, accessible UIs.

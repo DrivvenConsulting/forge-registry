@@ -1,0 +1,6 @@
+version: "1.0.0"
+project_types:
+  - backend
+  - data
+  - infra
+description: AWS DynamoDB usage standards including capacity mode, TTL, and query patterns.

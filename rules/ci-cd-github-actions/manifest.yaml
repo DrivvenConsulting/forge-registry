@@ -1,0 +1,6 @@
+version: "1.0.0"
+project_types:
+  - backend
+  - data
+  - infra
+description: CI/CD standards using GitHub Actions for automated deployments.

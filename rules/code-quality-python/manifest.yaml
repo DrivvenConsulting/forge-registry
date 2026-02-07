@@ -1,0 +1,5 @@
+version: "1.0.0"
+project_types:
+  - backend
+  - data
+description: Python code quality, testing, and documentation standards.

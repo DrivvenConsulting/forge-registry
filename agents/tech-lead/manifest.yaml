@@ -1,0 +1,5 @@
+version: "1.0.0"
+project_types:
+  - backend
+  - infra
+description: Tech lead for GitHub issues in Todo. Analyzes the issue, creates prefixed sub-issues for backend-engineer, devops-engineer, and qa-tester; moves root issue to Ready when refinement completes.
