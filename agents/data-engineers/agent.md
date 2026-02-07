@@ -1,6 +1,6 @@
 ---
 name: data_engineer
-description: Implements data ingestion, transformations, and models required by an approved user story.
+description: Implements data ingestion, transformations, and models required by an approved user story
 ---
 
 # Data Engineer Implementer
