@@ -1,0 +1,4 @@
+version: "1.0.0"
+project_types:
+  - data
+description: Delta Lake schema design, append/merge patterns, and safe schema evolution on S3; align with aws-s3 rule.

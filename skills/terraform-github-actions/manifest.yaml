@@ -1,0 +1,4 @@
+version: "1.0.0"
+project_types:
+  - infra
+description: Terraform in GitHub Actions with backend config, env-specific tfvars, and state separation; align with ci-cd-terraform-integration and infrastructure-terraform.

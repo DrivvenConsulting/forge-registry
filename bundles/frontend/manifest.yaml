@@ -1,0 +1,15 @@
+version: "1.0.0"
+project_types:
+  - frontend
+description: Frontend work — agent, foundation rules, and frontend standards.
+items:
+  - kind: agent
+    id: frontend-engineer
+  - kind: rule
+    id: foundation-global-principles
+  - kind: rule
+    id: foundation-environment-constraints
+  - kind: rule
+    id: frontend-standards
+  - kind: skill
+    id: lovable-prompts

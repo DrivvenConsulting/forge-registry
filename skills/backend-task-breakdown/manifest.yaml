@@ -1,0 +1,4 @@
+version: "1.0.0"
+project_types:
+  - backend
+description: Break user stories and acceptance criteria into backend tasks (APIs, services, tests) aligned with architecture-decoupling and framework-fastapi.

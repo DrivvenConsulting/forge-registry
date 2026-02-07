@@ -1,0 +1,17 @@
+version: "1.0.0"
+project_types:
+  - data
+description: Data pipelines and lakehouse — data-engineers agent, foundation, S3 (Delta), and DynamoDB.
+items:
+  - kind: agent
+    id: data-engineers
+  - kind: rule
+    id: foundation-global-principles
+  - kind: rule
+    id: foundation-environment-constraints
+  - kind: rule
+    id: aws-s3
+  - kind: rule
+    id: aws-dynamodb
+  - kind: skill
+    id: delta-lake-patterns

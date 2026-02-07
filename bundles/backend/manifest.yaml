@@ -1,0 +1,35 @@
+version: "1.0.0"
+project_types:
+  - backend
+description: Backend API and service work — agent, foundation, architecture, FastAPI, auth, Python quality, AWS, and CI/CD.
+items:
+  - kind: agent
+    id: backend-engineer
+  - kind: rule
+    id: foundation-global-principles
+  - kind: rule
+    id: foundation-environment-constraints
+  - kind: rule
+    id: architecture-decoupling
+  - kind: rule
+    id: framework-fastapi
+  - kind: rule
+    id: security-authentication
+  - kind: rule
+    id: code-quality-python
+  - kind: rule
+    id: aws-cognito
+  - kind: rule
+    id: aws-dynamodb
+  - kind: rule
+    id: aws-lambda
+  - kind: rule
+    id: aws-s3
+  - kind: rule
+    id: aws-secrets-manager
+  - kind: rule
+    id: aws-sns
+  - kind: rule
+    id: ci-cd-github-actions
+  - kind: skill
+    id: backend-task-breakdown

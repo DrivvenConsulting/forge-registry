@@ -1,0 +1,4 @@
+version: "1.0.0"
+project_types:
+  - frontend
+description: Write clear, deterministic Lovable prompts from specs and acceptance criteria; avoid ambiguity and scope creep.

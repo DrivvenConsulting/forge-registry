@@ -1,6 +1,7 @@
 version: "1.0.0"
 project_types:
   - backend
+  - frontend
   - data
   - infra
 description: Global engineering principles for all code and architecture.
