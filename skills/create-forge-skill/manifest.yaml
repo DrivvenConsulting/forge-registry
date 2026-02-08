@@ -1,0 +1,7 @@
+version: "1.0.0"
+project_types:
+  - data
+  - backend
+  - frontend
+  - infra
+description: Guides creation of new skills in Forge registry format (manifest.yaml + SKILL.md). Use when creating skills for the registry or scaffolding skill content for forge install skill.

@@ -1,0 +1,7 @@
+version: "1.0.0"
+project_types:
+  - data
+  - backend
+  - frontend
+  - infra
+description: Guides creation of new agents in Forge registry format (manifest.yaml + agent.md). Use when creating agents for the registry or scaffolding agent content for forge install agent.

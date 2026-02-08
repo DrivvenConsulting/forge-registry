@@ -1,0 +1,7 @@
+version: "1.0.0"
+project_types:
+  - data
+  - backend
+  - frontend
+  - infra
+description: Guides creation of new rules in Forge registry format (manifest.yaml + RULE.md). Use when creating rules for the registry or scaffolding rule content for forge install rule.
