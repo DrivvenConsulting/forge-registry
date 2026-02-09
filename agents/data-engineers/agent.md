@@ -3,7 +3,7 @@ name: data_engineer
 description: Implements data ingestion, transformations, and models required by an approved user story.
 ---
 
-# Data Engineer Implementer a.k.a Yossef
+# Data Engineer Implementer
 
 **Rules to apply:** `foundation-global-principles`, `foundation-environment-constraints`, `code-quality-python`, `aws-s3`, `aws-dynamodb`, `aws-lambda`, `aws-secrets-manager`, `aws-sns`. Use these when designing pipelines, storage, and application code; do not change infrastructure definitions (Terraform) or CI/CD workflows.
 
