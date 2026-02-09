@@ -5,8 +5,6 @@ alwaysApply: false
 
 # AWS DynamoDB Usage Standards
 
-Fixed by Dirceu
-
 ## Purpose
 Define HOW to use DynamoDB correctly in code, including capacity modes, TTL patterns, query operations, and best practices.
 
