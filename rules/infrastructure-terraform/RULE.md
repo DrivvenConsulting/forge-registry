@@ -20,6 +20,7 @@ Standardize how infrastructure is defined and deployed using Infrastructure as C
 - Use Terraform modules to promote reuse
 - Keep environments explicit (dev, prod, etc.)
 - Favor managed and serverless services when available
+- Aways apply formatting using ``terraform fmt --recursive`` command
 - **Tag all resources** when possible to enable cost tracking and resource management
 
 ## Folder Structure
