@@ -41,6 +41,10 @@ If owner, repo, or issue number are not provided, ask the parent agent before pr
    Use AWS MCP `aws___call_aws` with **read-only** CLI commands for resources implied by the issue (e.g. `aws cognito-idp list-user-pools`, `aws dynamodb list-tables`, `aws lambda list-functions`, `aws s3 ls`, `aws sns list-topics`). Do **not** create or modify any resources.  
    Document which resources **exist** and how they **relate** to the issue. If the issue mentions infra not yet present, note that the resource does not exist and whether that blocks implementation or can be assumed to be created elsewhere (e.g. Terraform).
 
+   **Environment and endpoints:** After documenting existing/missing resources, record explicitly (for your summary and for the [qa] sub-issue):
+   - **Environment:** Which environment the issue targets (e.g. `dev`, `prod`), from repo/project convention or issue context.
+   - **Endpoints (if applicable):** For API/workflows: base URL or endpoint pattern (e.g. `https://api-{env}.example.com` or "API Gateway REST API base URL"). If resources **exist**, list the actual endpoints from AWS discovery. If resources do **not** exist yet, state that explicitly: "Endpoints to be discovered by QA after implementation via AWS exploration." If no API/infra is in scope, set "Endpoints: N/A".
+
 3. **Check related GitHub repos**  
    Use GitHub MCP `search_repositories` (and optionally `search_issues` or `search_code`) with queries derived from the issue (e.g. org + topic or name). Summarize which repos exist, what is relevant in them, and how the current repo/issue relates.
 
@@ -49,7 +53,12 @@ If owner, repo, or issue number are not provided, ask the parent agent before pr
 
    - **[dev] sub-issues** (backend-engineer): One or more issues, each title starting with `[dev]`. Scope: API endpoints, services, repositories, unit/integration tests. Body: scope and acceptance criteria for that slice.
    - **[ops] sub-issues** (devops-engineer): **Only if** the parent issue requires **new or changed infrastructure or CI/CD**. One or more issues, titles starting with `[ops]`. Scope: Terraform, GitHub Actions, env vars, secrets, observability. Omit [ops] sub-issues when no infra work is needed.
-   - **[qa] sub-issue** (qa-tester): **Exactly one** sub-issue per parent. Title e.g. `[qa] Verify implementation and acceptance criteria for parent #<N>`. Body: "Verify that all [dev] and [ops] sub-issues under parent #<N> are implemented; all linked PRs are merged; and each acceptance criterion of the parent issue is met. Report AC verification JSON."
+   - **[qa] sub-issue** (qa-tester): **Exactly one** sub-issue per parent. Title e.g. `[qa] Verify implementation and acceptance criteria for parent #<N>`. Body must be structured as follows (fill Environment and Endpoints from step 2):
+     - **Verification:** Verify that all [dev] and [ops] sub-issues under parent #<N> are implemented; all linked PRs are merged; and each acceptance criterion of the parent issue is met. Report AC verification JSON.
+     - **Environment and endpoints:**  
+       - `Environment:` <dev|prod|…>  
+       - `Endpoints (if any):` <list actual endpoints from AWS discovery, or "To be discovered by QA after implementation" if resources do not exist yet>  
+     - If endpoints/resources are marked as **to be discovered**, QA must explore AWS (read-only), list the resources/endpoints, and update this issue body (or add a comment) with the discovered values **before** running AC verification.
 
    For each new issue: call `issue_write` (method `create`) with the same owner and repo, then `sub_issue_write` (method `add`) with the parent `issue_number` and `sub_issue_id` from the create response (use the ID returned by `issue_write`, not the issue number).
 
@@ -58,7 +67,7 @@ If owner, repo, or issue number are not provided, ask the parent agent before pr
 
 ## Output
 
-- **Summary comment** on the parent issue: findings (AWS resources, related repos), list of sub-issues created (with prefixes), and whether the story was moved to Ready or left in Backlog with reason.
+- **Summary comment** on the parent issue: findings (AWS resources, related repos), **environment and endpoints** (or "Endpoints to be discovered by QA" when resources do not exist yet), list of sub-issues created (with prefixes), and whether the story was moved to Ready or left in Backlog with reason.
 - **Root issue moved to Ready** when refinement is complete (or left in Backlog with comment if blocked).
 - **Sub-issues** created and linked with correct title prefixes. No code or infra changes; read-only on AWS.
 
