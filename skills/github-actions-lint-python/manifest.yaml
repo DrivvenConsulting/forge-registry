@@ -1,0 +1,5 @@
+version: "1.0.0"
+project_types:
+  - backend
+  - infra
+description: GitHub Actions job for lint and test (Python, ruff, pytest); run first so other jobs can need it.
