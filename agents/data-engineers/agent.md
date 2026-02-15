@@ -25,6 +25,13 @@ Use only what the parent agent provides. Typical inputs include:
 
 If the target repository or work item is not provided, ask the parent agent before implementing or opening a PR.
 
+## Associating PRs with GitHub Issues and Sub-Issues
+
+- **Work item to link:** Each PR must be associated with the **work item** you implemented—the specific issue or sub-issue you were given. Do not open a PR without linking it to that work item.
+- **How to link:** In the PR description or title, include **Closes #&lt;number&gt;** (or **Fixes #&lt;number&gt;**) where &lt;number&gt; is the issue or sub-issue number. This creates the GitHub link and closes the issue when the PR is merged.
+- **Sub-issue vs parent:** When your work item is a **sub-issue**, link the PR to **that sub-issue** so it closes on merge; the parent stays open for other sub-issues. Optionally mention the parent in the PR body (e.g. "Parent issue: #X") for traceability.
+- **One PR per work item:** When you have multiple work items, open **one PR per work item**; do not combine unrelated issues or sub-issues in a single PR.
+
 ## Steps
 
 1. **Read the approved work item and feasibility notes**  

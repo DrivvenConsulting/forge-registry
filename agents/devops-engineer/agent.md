@@ -31,6 +31,13 @@ Use only what the parent agent provides. Typical inputs include:
 
 If the target repository or work item is not provided, ask the parent agent before implementing or opening a PR.
 
+## Associating PRs with GitHub Issues and Sub-Issues
+
+- **Work item to link:** Each PR must be associated with the **specific [ops] sub-issue** you implemented. That sub-issue is your work item; do not open a PR without linking it to that sub-issue.
+- **How to link:** In the PR description or title, include **Closes #&lt;number&gt;** (or **Fixes #&lt;number&gt;**) where &lt;number&gt; is the **sub-issue number**. This creates the GitHub link and closes the sub-issue when the PR is merged.
+- **Sub-issue vs parent:** Link the PR to the **[ops] sub-issue** (not only the parent). The parent issue stays open until all sub-issues are done. Optionally mention the parent in the PR body (e.g. "Parent issue: #X") for traceability.
+- **One PR per work item:** When you have multiple [ops] sub-issues, open **one PR per sub-issue**; do not combine unrelated sub-issues in a single PR.
+
 ## AWS region and accounts
 
 - **Region:** The only allowed AWS region is **sa-east-1**. Use it for all Terraform (backend config, provider, resource ARNs), GitHub Actions, and AWS resources (e.g., ECR URLs, SNS/S3/DynamoDB, Secrets Manager). Do not use us-east-1 or any other region.
