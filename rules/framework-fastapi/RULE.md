@@ -17,6 +17,7 @@ Define standards for backend APIs and services using FastAPI, ensuring clean sep
 - All endpoints must validate inputs using Pydantic models
 - Business logic must be delegated to service layers
 - **All routes must be versioned**, starting with `/v1/` prefix
+- All error responses must return **human-readable messages** suitable for API consumers; no raw stack traces, internal exception names, or unformatted validation payloads in response bodies
 
 ## Deployment Preference
 - Prefer serverless deployments
@@ -31,6 +32,9 @@ Define standards for backend APIs and services using FastAPI, ensuring clean sep
 - Return appropriate HTTP status codes
 - Use response models for all endpoints
 - **Version all API routes** using `/v1/` prefix (e.g., `/v1/users`, `/v1/orders`)
+- Use short, clear, actionable messages in `HTTPException(detail=...)` and in exception handlers
+- Format validation errors (e.g. from `RequestValidationError`) into readable strings or a list of readable strings before returning
+- Map internal exceptions (e.g. `ValueError`, repository errors) to stable, non-technical messages; log technical details server-side only
 
 ## Do Not
 - Do not embed business logic directly in endpoints
@@ -39,6 +43,17 @@ Define standards for backend APIs and services using FastAPI, ensuring clean sep
 - Do not return raw database objects (use response models)
 - Do not handle exceptions in endpoints (use exception handlers)
 - Do not create routes without versioning (all routes must include `/v1/` prefix)
+- Do not expose raw `RequestValidationError.errors()` in response bodies (format into human-readable messages)
+- Do not return technical exception types, stack traces, or internal jargon in `detail` without a readable explanation
+- Do not include internal details (e.g. DB names, file paths, stack traces) in production error messages; keep messages helpful but safe from information leakage
+
+## Exception messages and error responses
+
+Every `detail` (or equivalent) in error responses must be a string or list of strings that a human can understand (e.g. "User not found", "Invalid email format", "Name cannot be empty").
+
+- **Validation errors**: Format Pydantic's `exc.errors()` into readable text—e.g. extract `msg` and optionally `loc` per error, or build a single summary like "Validation failed: invalid email, name is required"—instead of returning the raw list of dicts.
+- **Service and external errors**: Map internal or third-party exceptions to stable, non-technical messages before returning; log the full exception or stack trace server-side only.
+- **Production**: Do not include internal details (database names, file paths, stack traces) in `detail`; keep messages generic enough to avoid information leakage while still being actionable for the client.
 
 ## Examples
 
@@ -323,6 +338,40 @@ async def get_user(user_id: str):
     return response['Item']  # Returns raw database object
 ```
 
+### ✅ Good: Human-readable exception messages
+
+```python
+from fastapi import HTTPException, status
+
+# Service raises human-readable ValueError; endpoint maps to HTTPException
+raise HTTPException(
+    status_code=status.HTTP_404_NOT_FOUND,
+    detail="User not found"
+)
+
+# Business rule violation: use clear, actionable message
+raise HTTPException(
+    status_code=status.HTTP_400_BAD_REQUEST,
+    detail="A user with this email already exists."
+)
+```
+
+### ❌ Bad: Technical or raw exception messages
+
+```python
+# ❌ BAD: Exposing internal exception in response
+except IntegrityError as e:
+    raise HTTPException(status_code=400, detail=str(e))
+# Client receives e.g. "duplicate key value violates unique constraint..."
+
+# ❌ BAD: Returning raw validation payload (not human-readable)
+return JSONResponse(
+    status_code=422,
+    content={"detail": exc.errors()}
+)
+# Client receives [{"loc": ["body","email"], "msg": "value is not a valid email address", "type": "value_error.email"}, ...]
+```
+
 ### ✅ Good: Error Handling with Exception Handlers
 
 ```python
@@ -330,11 +379,18 @@ from fastapi import FastAPI, Request, status
 from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
 
+def format_validation_errors(exc: RequestValidationError) -> list[str]:
+    """Turn Pydantic validation errors into human-readable messages."""
+    return [
+        f"{'.'.join(str(loc) for loc in err['loc'])}: {err['msg']}"
+        for err in exc.errors()
+    ]
+
 app = FastAPI()
 
 @app.exception_handler(ValueError)
 async def value_error_handler(request: Request, exc: ValueError):
-    """Handle ValueError exceptions."""
+    """Handle ValueError exceptions with human-readable detail."""
     return JSONResponse(
         status_code=status.HTTP_400_BAD_REQUEST,
         content={"detail": str(exc)}
@@ -342,7 +398,20 @@ async def value_error_handler(request: Request, exc: ValueError):
 
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
-    """Handle Pydantic validation errors."""
+    """Handle Pydantic validation errors with readable messages."""
+    readable = format_validation_errors(exc)
+    return JSONResponse(
+        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+        content={"detail": readable}
+    )
+```
+
+### ❌ Bad: Raw validation errors in exception handler
+
+```python
+# ❌ BAD: Returning raw Pydantic errors (not human-readable for API consumers)
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
     return JSONResponse(
         status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
         content={"detail": exc.errors()}
