@@ -1,0 +1,15 @@
+version: "1.0.0"
+plan_mode_first: true
+prompt_for_inputs_before_run: true
+project_types:
+  - data
+description: Implement data work for a refined issue; coordinate with backend/devops when same parent has [dev]/[ops].
+required_inputs:
+  - work_item_or_parent_issue
+  - target_repo
+inputs:
+  - work_item_or_parent_issue
+  - target_repo
+outputs:
+  - prs_linked_to_data_work_item
+  - optional_dev_ops_prs

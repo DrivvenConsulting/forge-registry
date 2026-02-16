@@ -1,0 +1,24 @@
+version: "1.0.0"
+plan_mode_first: true
+prompt_for_inputs_before_run: true
+project_types:
+  - backend
+description: End-to-end from parent issue in Todo to refined sub-issues, implementation, QA, and optional integration test.
+required_inputs:
+  - owner
+  - repo
+  - issue_number
+  - target_repo
+optional_inputs:
+  - run_integration_test
+inputs:
+  - owner
+  - repo
+  - issue_number
+  - target_repo
+  - run_integration_test
+outputs:
+  - sub_issues_created_and_linked
+  - prs_for_dev_and_ops
+  - ac_verification_json
+  - integration_test_report

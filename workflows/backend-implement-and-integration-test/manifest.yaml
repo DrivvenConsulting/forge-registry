@@ -1,0 +1,28 @@
+version: "1.0.0"
+plan_mode_first: true
+prompt_for_inputs_before_run: true
+project_types:
+  - backend
+description: Implement backend (and infra if needed), then validate deployed AWS services via integration-tester.
+required_inputs:
+  - owner
+  - repo
+  - parent_issue_number
+  - target_repo
+  - region
+  - environment
+optional_inputs:
+  - ops_first
+  - base_url
+inputs:
+  - owner
+  - repo
+  - parent_issue_number
+  - target_repo
+  - ops_first
+  - region
+  - environment
+  - base_url
+outputs:
+  - prs_for_dev_and_ops
+  - integration_test_report

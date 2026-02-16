@@ -1,0 +1,22 @@
+version: "1.0.0"
+plan_mode_first: true
+prompt_for_inputs_before_run: true
+project_types:
+  - backend
+description: Implement all [dev] (and optionally [ops]) work for a refined issue and run QA verification.
+required_inputs:
+  - owner
+  - repo
+  - parent_issue_number
+  - target_repo
+optional_inputs:
+  - ops_first
+inputs:
+  - owner
+  - repo
+  - parent_issue_number
+  - target_repo
+  - ops_first
+outputs:
+  - prs_for_dev_and_ops
+  - ac_verification_json

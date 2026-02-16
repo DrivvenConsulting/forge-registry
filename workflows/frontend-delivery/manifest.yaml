@@ -1,0 +1,19 @@
+version: "1.0.0"
+plan_mode_first: true
+prompt_for_inputs_before_run: true
+project_types:
+  - frontend
+description: Single-step workflow; run frontend-engineer with issue and frontend spec to produce a PR via Lovable.
+required_inputs:
+  - issue_reference
+  - frontend_specification
+  - api_contracts
+optional_inputs:
+  - target_repo
+inputs:
+  - issue_reference
+  - frontend_specification
+  - api_contracts
+  - target_repo
+outputs:
+  - pr_with_generated_frontend
