@@ -1,0 +1,5 @@
+version: "1.0.0"
+project_types:
+  - backend
+  - infra
+description: Validates Cognito User Pool, App Client, and auth flow readiness.

@@ -1,0 +1,5 @@
+version: "1.0.0"
+project_types:
+  - backend
+  - infra
+description: Validates API Gateway deployment, routes, auth integration, and real endpoint behavior.
