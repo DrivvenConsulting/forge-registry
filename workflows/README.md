@@ -13,6 +13,7 @@ Workflows are multi-step, multi-agent sequences that standardize common processe
 - **Install path:** If your tooling supports it (e.g. `forge install workflow <id>`), workflows can be installed to `.cursor/workflows/<id>/` in consuming projects. A runner or orchestrator can then discover and execute steps from the workflow definition.
 - **Documentation:** Use each workflow's `WORKFLOW.md` as the source of truth: run the listed agents in order, passing the documented inputs and using the outputs as context for the next step.
 - **Orchestrator agent:** An agent can read `.cursor/workflows/<id>/WORKFLOW.md` (after install) and guide the user through each step or output the exact context for the next agent run.
+- **Ready-to-use prompts:** For copy-paste prompts that run a workflow with plan mode and required inputs, see the **prompts** folder (e.g. `prompts/run-workflow.md`, `prompts/workflows/<workflow-id>.md`).
 
 ### Execution policy (plan mode and required inputs)
 
