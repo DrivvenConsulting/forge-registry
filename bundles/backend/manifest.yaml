@@ -5,6 +5,10 @@ description: Backend API and service work — agent, foundation, architecture, F
 items:
   - kind: agent
     id: backend-engineer
+  - kind: agent
+    id: devops-engineer
+  - kind: agent
+    id: qa-tester
   - kind: rule
     id: foundation-global-principles
   - kind: rule
@@ -31,5 +35,13 @@ items:
     id: aws-sns
   - kind: rule
     id: ci-cd-github-actions
+  - kind: rule
+    id: ci-cd-terraform-integration
+  - kind: rule
+    id: infrastructure-terraform
+  - kind: rule
+    id: aws-ecs
   - kind: skill
     id: backend-task-breakdown
+  - kind: skill
+    id: terraform-github-actions

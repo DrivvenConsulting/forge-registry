@@ -5,13 +5,41 @@ description: Data pipelines and lakehouse — data-engineers agent, foundation, 
 items:
   - kind: agent
     id: data-engineers
+  - kind: agent
+    id: devops-engineer
+  - kind: agent
+    id: qa-tester
   - kind: rule
     id: foundation-global-principles
   - kind: rule
     id: foundation-environment-constraints
   - kind: rule
+    id: architecture-decoupling
+  - kind: rule
+    id: framework-fastapi
+  - kind: rule
+    id: security-authentication
+  - kind: rule
+    id: code-quality-python
+  - kind: rule
+    id: aws-cognito
+  - kind: rule
     id: aws-s3
   - kind: rule
     id: aws-dynamodb
+  - kind: rule
+    id: ci-cd-github-actions
+  - kind: rule
+    id: ci-cd-terraform-integration
+  - kind: rule
+    id: infrastructure-terraform
+  - kind: rule
+    id: aws-ecs
+  - kind: rule
+    id: aws-lambda
+  - kind: rule
+    id: aws-secrets-manager
   - kind: skill
     id: delta-lake-patterns
+  - kind: skill
+    id: terraform-github-actions
