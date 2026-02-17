@@ -47,7 +47,7 @@ Single-role definitions: tech-lead, backend-engineer, devops-engineer, qa-tester
 
 ### Bundles ([bundles/](bundles/))
 
-Project-type presets: **backend**, **frontend**, **data-engineering**, **devops**. Each bundle’s `manifest.yaml` lists agents, rules, and skills by id. Installing a bundle gives a project the right agents, rules, and skills for that type; workflows then use those agents when run in that project.
+Project-type presets: **backend**, **frontend**, **data-engineering**, **devops**. Each bundle’s `manifest.yaml` lists agents, rules, skills, workflows, and prompts by id. Installing a bundle gives a project the right agents, rules, and skills for that type; workflows then use those agents when run in that project.
 
 ### Prompts ([prompts/](prompts/))
 

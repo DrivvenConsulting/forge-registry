@@ -13,3 +13,13 @@ items:
     id: frontend-standards
   - kind: skill
     id: lovable-prompts
+  - kind: workflow
+    id: frontend-delivery
+  - kind: workflow
+    id: issue-refinement
+  - kind: prompt
+    id: run-workflow
+  - kind: prompt
+    id: workflows/frontend-delivery
+  - kind: prompt
+    id: workflows/issue-refinement
