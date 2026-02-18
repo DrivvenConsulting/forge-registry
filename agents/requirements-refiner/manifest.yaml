@@ -1,0 +1,7 @@
+version: "1.0.0"
+project_types:
+  - backend
+  - data
+  - infra
+  - frontend
+description: Converts a validated problem statement into a well-defined work item with user stories and acceptance criteria.

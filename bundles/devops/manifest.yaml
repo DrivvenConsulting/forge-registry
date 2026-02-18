@@ -27,9 +27,13 @@ items:
     id: issue-refinement
   - kind: workflow
     id: issue-refinement-with-feasibility
+  - kind: workflow
+    id: feature-definition-to-delivery
   - kind: prompt
     id: run-workflow
   - kind: prompt
     id: workflows/issue-refinement
   - kind: prompt
     id: workflows/issue-refinement-with-feasibility
+  - kind: prompt
+    id: workflows/feature-definition-to-delivery

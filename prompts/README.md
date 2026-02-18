@@ -28,3 +28,4 @@ Running a workflow means:
 | [workflows/full-story-delivery.md](workflows/full-story-delivery.md) | `full-story-delivery` | Run full-story-delivery workflow with plan mode and required inputs. |
 | [workflows/data-engineering-delivery.md](workflows/data-engineering-delivery.md) | `data-engineering-delivery` | Run data-engineering-delivery workflow with plan mode and required inputs. |
 | [workflows/frontend-delivery.md](workflows/frontend-delivery.md) | `frontend-delivery` | Run frontend-delivery workflow with plan mode and required inputs. |
+| [workflows/feature-definition-to-delivery.md](workflows/feature-definition-to-delivery.md) | `feature-definition-to-delivery` | Run feature-definition-to-delivery pipeline (idea → requirements → channel → feasibility → implementation → QA) with plan mode and required inputs. |

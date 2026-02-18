@@ -47,9 +47,13 @@ items:
     id: data-engineering-delivery
   - kind: workflow
     id: issue-refinement
+  - kind: workflow
+    id: feature-definition-to-delivery
   - kind: prompt
     id: run-workflow
   - kind: prompt
     id: workflows/data-engineering-delivery
   - kind: prompt
     id: workflows/issue-refinement
+  - kind: prompt
+    id: workflows/feature-definition-to-delivery

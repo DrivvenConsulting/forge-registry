@@ -40,14 +40,14 @@ flowchart LR
 
 ### Agents ([agents/](agents/))
 
-Single-role definitions: tech-lead, backend-engineer, devops-engineer, qa-tester, frontend-engineer, data-engineers, integration-tester. Each agent has `agent.md` (instructions and steps) and `manifest.yaml` (version, project types, description).
+Single-role definitions: tech-lead, backend-engineer, devops-engineer, qa-tester, frontend-engineer, data-engineers, integration-tester, idea-shaper, requirements-refiner, channel-specialist-google-ads, feasibility-guide, qa-ac-reviewer. Each agent has `agent.md` (instructions and steps) and `manifest.yaml` (version, project types, description).
 
 - **Invoked by workflows** in sequence (see [workflows/README.md](workflows/README.md)).
 - **Grouped by bundles** by project type (backend, frontend, data-engineering, devops).
 
 ### Bundles ([bundles/](bundles/))
 
-Project-type presets: **backend**, **frontend**, **data-engineering**, **devops**. Each bundle’s `manifest.yaml` lists agents, rules, skills, workflows, and prompts by id. Installing a bundle gives a project the right agents, rules, and skills for that type; workflows then use those agents when run in that project.
+Project-type presets: **backend**, **frontend**, **data-engineering**, **devops**, **project-team**. Each bundle’s `manifest.yaml` lists agents, rules, skills, workflows, and prompts by id. Installing a bundle gives a project the right agents, rules, and skills for that type; workflows then use those agents when run in that project. The **project-team** bundle provides discovery and feasibility agents (idea-shaper, requirements-refiner, channel-specialist-google-ads, feasibility-guide, qa-ac-reviewer) and the feature-definition-to-delivery workflow.
 
 ### Prompts ([prompts/](prompts/))
 
@@ -275,6 +275,40 @@ flowchart LR
 
 ---
 
+### 8. `feature-definition-to-delivery`
+
+Pipeline from problem framing through requirements, channel validation (optional), technical feasibility, implementation (backend/data/devops), and QA. Work items live in DrivvenConsulting/projects/6; artifacts under `artifacts/feature-definitions/<feature_name>/`.
+
+**Assets:** idea-shaper, requirements-refiner, channel-specialist-google-ads, feasibility-guide, backend-engineer, data-engineer, devops-engineer, qa-ac-reviewer.
+
+**Inputs:** feature_name (required); optional: raw_idea, owner, repo, target_repo.
+
+**Conditionals:** Skip idea_shaper if starting from a problem statement; skip channel_specialist_google_ads if the feature does not touch an external channel.
+
+```mermaid
+flowchart LR
+  Idea[idea_shaper]
+  Refiner[requirements_refiner]
+  Channel[channel_specialist_google_ads]
+  Feasibility[feasibility_guide]
+  Backend[backend_engineer]
+  Data[data_engineer]
+  DevOps[devops_engineer]
+  QA[qa_ac_reviewer]
+
+  Idea --> Refiner
+  Refiner --> Channel
+  Channel --> Feasibility
+  Feasibility -->|approved| Backend
+  Feasibility -->|approved| Data
+  Feasibility -->|approved| DevOps
+  Backend --> QA
+  Data --> QA
+  DevOps --> QA
+```
+
+---
+
 ## Quick reference – workflows
 
 | Id | Description |
@@ -286,5 +320,6 @@ flowchart LR
 | `full-story-delivery` | End-to-end: refine → implement [ops] then [dev] → QA → optional integration test. |
 | `data-engineering-delivery` | Implement data work; coordinate with backend/devops when same parent has [dev]/[ops]. |
 | `frontend-delivery` | Single-step: run frontend-engineer with issue and frontend spec to produce a PR via Lovable. |
+| `feature-definition-to-delivery` | Pipeline from problem framing (idea_shaper) through requirements, channel validation, feasibility, implementation (backend/data/devops), and QA; work tracking via DrivvenConsulting/projects/6. |
 
 For full workflow list, execution policy, and how to reference workflows in Cursor, see [workflows/README.md](workflows/README.md). For prompts that run each workflow, see [prompts/README.md](prompts/README.md).

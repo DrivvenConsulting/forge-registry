@@ -1,0 +1,7 @@
+version: "1.0.0"
+project_types:
+  - backend
+  - data
+  - infra
+  - frontend
+description: Turns a raw, vague feature idea into a clear, user-focused problem statement aligned with the product vision.

@@ -1,0 +1,6 @@
+version: "1.0.0"
+project_types:
+  - backend
+  - data
+  - infra
+description: Validates that a user story is technically and data-wise feasible within the current architecture.

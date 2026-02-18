@@ -37,3 +37,4 @@ No runner implementation lives in this registry; only declarative workflow defin
 | `full-story-delivery` | End-to-end: refine → implement [ops] then [dev] → QA → optional integration test. |
 | `data-engineering-delivery` | Implement data work; coordinate with backend/devops when same parent has [dev]/[ops]. |
 | `frontend-delivery` | Single-step: run frontend-engineer with issue and frontend spec to produce a PR via Lovable. |
+| `feature-definition-to-delivery` | Pipeline from problem framing (idea_shaper) through requirements, channel validation, feasibility, implementation (backend/data/devops), and QA; work tracking via DrivvenConsulting/projects/6. |

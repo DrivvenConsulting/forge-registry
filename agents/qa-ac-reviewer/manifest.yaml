@@ -1,0 +1,5 @@
+version: "1.0.0"
+project_types:
+  - backend
+  - data
+description: Verifies that each acceptance criterion on a GitHub issue is met by the implementation in linked PR(s) and reports pass/fail with evidence.

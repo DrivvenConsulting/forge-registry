@@ -1,0 +1,5 @@
+version: "1.0.0"
+project_types:
+  - backend
+  - data
+description: Validates feature requirements against Google Ads capabilities, APIs, and data availability.

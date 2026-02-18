@@ -1,0 +1,26 @@
+version: "1.0.0"
+plan_mode_first: true
+prompt_for_inputs_before_run: true
+project_types:
+  - backend
+  - data
+  - infra
+  - frontend
+description: Pipeline from problem framing (idea_shaper) through requirements, channel validation, feasibility, implementation (backend/data/devops), and QA; work tracking via DrivvenConsulting/projects/6.
+required_inputs:
+  - feature_name
+optional_inputs:
+  - raw_idea
+  - owner
+  - repo
+  - target_repo
+inputs:
+  - feature_name
+  - raw_idea
+  - owner
+  - repo
+  - target_repo
+outputs:
+  - artifacts_feature_definitions
+  - work_item_project_columns
+  - pull_requests_linked_to_work_item

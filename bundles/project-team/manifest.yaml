@@ -1,0 +1,28 @@
+version: "1.0.0"
+project_types:
+  - backend
+  - data
+  - infra
+  - frontend
+description: Project team — discovery, requirements, channel validation, feasibility, and AC verification. Idea shaper, requirements refiner, channel specialist (Google Ads), feasibility guide, qa-ac-reviewer; feature-definition-to-delivery workflow.
+items:
+  - kind: agent
+    id: idea-shaper
+  - kind: agent
+    id: requirements-refiner
+  - kind: agent
+    id: channel-specialist-google-ads
+  - kind: agent
+    id: feasibility-guide
+  - kind: agent
+    id: qa-ac-reviewer
+  - kind: rule
+    id: foundation-global-principles
+  - kind: rule
+    id: foundation-environment-constraints
+  - kind: workflow
+    id: feature-definition-to-delivery
+  - kind: prompt
+    id: run-workflow
+  - kind: prompt
+    id: workflows/feature-definition-to-delivery
