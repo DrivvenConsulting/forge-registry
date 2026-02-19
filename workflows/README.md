@@ -30,11 +30,9 @@ No runner implementation lives in this registry; only declarative workflow defin
 
 | Id | Description |
 |----|-------------|
-| `issue-refinement` | Turn a parent GitHub issue in Todo into [dev]/[ops]/[qa] sub-issues and move root to Ready. |
-| `issue-refinement-with-feasibility` | Refine an issue, then backend and devops validate [dev]/[ops] sub-issues for feasibility before implementation. |
 | `backend-full-cycle` | Implement [dev] (and [ops] if any) work and run QA verification. |
 | `backend-implement-and-integration-test` | Implement backend/infra, then run integration-tester on deployed AWS services. |
 | `full-story-delivery` | End-to-end: refine → implement [ops] then [dev] → QA → optional integration test. |
 | `data-engineering-delivery` | Implement data work; coordinate with backend/devops when same parent has [dev]/[ops]. |
 | `frontend-delivery` | Single-step: run frontend-engineer with issue and frontend spec to produce a PR via Lovable. |
-| `feature-definition-to-delivery` | Pipeline from problem framing (idea_shaper) through requirements, channel validation, feasibility, implementation (backend/data/devops), and QA; work tracking via DrivvenConsulting/projects/6. |
+| `idea-to-backlog` | Pipeline from problem framing (idea_shaper) through requirements, channel validation, feasibility, implementation (backend/data/devops), and QA; work tracking via DrivvenConsulting/projects/6. |

@@ -47,7 +47,7 @@ Single-role definitions: tech-lead, backend-engineer, devops-engineer, qa-tester
 
 ### Bundles ([bundles/](bundles/))
 
-Project-type presets: **backend**, **frontend**, **data-engineering**, **devops**, **project-team**. Each bundle’s `manifest.yaml` lists agents, rules, skills, workflows, and prompts by id. Installing a bundle gives a project the right agents, rules, and skills for that type; workflows then use those agents when run in that project. The **project-team** bundle provides discovery and feasibility agents (idea-shaper, requirements-refiner, channel-specialist-google-ads, feasibility-guide, qa-ac-reviewer) and the feature-definition-to-delivery workflow.
+Project-type presets: **backend**, **frontend**, **data-engineering**, **devops**, **project-team**. Each bundle’s `manifest.yaml` lists agents, rules, skills, workflows, and prompts by id. Installing a bundle gives a project the right agents, rules, and skills for that type; workflows then use those agents when run in that project. The **project-team** bundle provides discovery and feasibility agents (idea-shaper, requirements-refiner, channel-specialist-google-ads, feasibility-guide, qa-ac-reviewer) and the idea-to-backlog workflow.
 
 ### Prompts ([prompts/](prompts/))
 
@@ -91,54 +91,7 @@ Multi-step definitions: each workflow has a `manifest.yaml` (inputs, outputs, pl
 
 For each workflow in [workflows/](workflows/), the diagram below shows the steps, agents, and conditionals. All workflows use **plan mode first** and **required inputs before run**.
 
-### 1. `issue-refinement`
-
-Turn a parent GitHub issue in **Todo** into [dev]/[ops]/[qa] sub-issues and move the root to **Ready** (or Backlog if blocked).
-
-**Assets:** tech-lead.
-
-**Inputs:** owner, repo, issue_number; optional: target_repo.
-
-```mermaid
-flowchart LR
-  Start([User: owner, repo, issue_number])
-  TechLead[tech-lead]
-  Out([Sub-issues, root in Ready or Backlog, summary comment])
-
-  Start --> TechLead
-  TechLead --> Out
-```
-
----
-
-### 2. `issue-refinement-with-feasibility`
-
-Refine the parent issue, then backend-engineer and devops-engineer validate [dev] and [ops] sub-issues for feasibility (review-only; no code or infra changes).
-
-**Assets:** tech-lead, backend-engineer (review-only), devops-engineer (review-only).
-
-**Inputs:** owner, repo, issue_number; optional: target_repo.
-
-**Conditional:** Skip devops-engineer if no [ops] sub-issues exist.
-
-```mermaid
-flowchart LR
-  Start([User: owner, repo, issue_number])
-  TechLead[tech-lead]
-  BackendReview[backend-engineer review-only]
-  DevopsReview[devops-engineer review-only]
-  Out([Sub-issues, feasibility comments, root in Ready or Backlog])
-
-  Start --> TechLead
-  TechLead --> BackendReview
-  BackendReview -->|"[ops] exist"| DevopsReview
-  BackendReview -->|"no [ops]"| Out
-  DevopsReview --> Out
-```
-
----
-
-### 3. `backend-full-cycle`
+### 1. `backend-full-cycle`
 
 Implement all [dev] (and [ops] if any) work for an already-refined parent issue and run QA verification.
 
@@ -165,7 +118,7 @@ flowchart LR
 
 ---
 
-### 4. `backend-implement-and-integration-test`
+### 2. `backend-implement-and-integration-test`
 
 Implement backend (and infra if [ops]), then after deploy run integration-tester against deployed AWS services (Cognito, API Gateway, Lambda).
 
@@ -194,7 +147,7 @@ flowchart LR
 
 ---
 
-### 5. `full-story-delivery`
+### 3. `full-story-delivery`
 
 End-to-end: parent issue in Todo → refine → implement [ops] then [dev] → QA → optional post-deploy integration test.
 
@@ -226,7 +179,7 @@ flowchart LR
 
 ---
 
-### 6. `data-engineering-delivery`
+### 4. `data-engineering-delivery`
 
 Implement data work (pipelines, models, Delta Lake in S3); if the same parent has [dev] or [ops] sub-issues, coordinate with backend-engineer and/or devops-engineer per parent order.
 
@@ -255,7 +208,7 @@ flowchart LR
 
 ---
 
-### 7. `frontend-delivery`
+### 5. `frontend-delivery`
 
 Single step: run frontend-engineer with an approved issue and frontend spec to generate frontend via Lovable MCP and open a PR.
 
@@ -275,7 +228,7 @@ flowchart LR
 
 ---
 
-### 8. `feature-definition-to-delivery`
+### 6. `idea-to-backlog`
 
 Pipeline from problem framing through requirements, channel validation (optional), technical feasibility, implementation (backend/data/devops), and QA. Work items live in DrivvenConsulting/projects/6; artifacts under `artifacts/feature-definitions/<feature_name>/`.
 
@@ -313,13 +266,11 @@ flowchart LR
 
 | Id | Description |
 |----|-------------|
-| `issue-refinement` | Turn a parent GitHub issue in Todo into [dev]/[ops]/[qa] sub-issues and move root to Ready. |
-| `issue-refinement-with-feasibility` | Refine an issue, then backend and devops validate [dev]/[ops] sub-issues for feasibility before implementation. |
 | `backend-full-cycle` | Implement [dev] (and [ops] if any) work and run QA verification. |
 | `backend-implement-and-integration-test` | Implement backend/infra, then run integration-tester on deployed AWS services. |
 | `full-story-delivery` | End-to-end: refine → implement [ops] then [dev] → QA → optional integration test. |
 | `data-engineering-delivery` | Implement data work; coordinate with backend/devops when same parent has [dev]/[ops]. |
 | `frontend-delivery` | Single-step: run frontend-engineer with issue and frontend spec to produce a PR via Lovable. |
-| `feature-definition-to-delivery` | Pipeline from problem framing (idea_shaper) through requirements, channel validation, feasibility, implementation (backend/data/devops), and QA; work tracking via DrivvenConsulting/projects/6. |
+| `idea-to-backlog` | Pipeline from problem framing (idea_shaper) through requirements, channel validation, feasibility, implementation (backend/data/devops), and QA; work tracking via DrivvenConsulting/projects/6. |
 
 For full workflow list, execution policy, and how to reference workflows in Cursor, see [workflows/README.md](workflows/README.md). For prompts that run each workflow, see [prompts/README.md](prompts/README.md).

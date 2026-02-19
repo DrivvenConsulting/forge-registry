@@ -21,11 +21,9 @@ Running a workflow means:
 | Prompt | Workflow id | Description |
 |--------|-------------|-------------|
 | [run-workflow.md](run-workflow.md) | (template) | Generic: run any workflow by id; substitute WORKFLOW_ID. Plan mode + required inputs first. |
-| [workflows/issue-refinement.md](workflows/issue-refinement.md) | `issue-refinement` | Run issue-refinement workflow with plan mode and required inputs. |
-| [workflows/issue-refinement-with-feasibility.md](workflows/issue-refinement-with-feasibility.md) | `issue-refinement-with-feasibility` | Run issue-refinement-with-feasibility workflow with plan mode and required inputs. |
 | [workflows/backend-full-cycle.md](workflows/backend-full-cycle.md) | `backend-full-cycle` | Run backend-full-cycle workflow with plan mode and required inputs. |
 | [workflows/backend-implement-and-integration-test.md](workflows/backend-implement-and-integration-test.md) | `backend-implement-and-integration-test` | Run backend-implement-and-integration-test workflow with plan mode and required inputs. |
 | [workflows/full-story-delivery.md](workflows/full-story-delivery.md) | `full-story-delivery` | Run full-story-delivery workflow with plan mode and required inputs. |
 | [workflows/data-engineering-delivery.md](workflows/data-engineering-delivery.md) | `data-engineering-delivery` | Run data-engineering-delivery workflow with plan mode and required inputs. |
 | [workflows/frontend-delivery.md](workflows/frontend-delivery.md) | `frontend-delivery` | Run frontend-delivery workflow with plan mode and required inputs. |
-| [workflows/feature-definition-to-delivery.md](workflows/feature-definition-to-delivery.md) | `feature-definition-to-delivery` | Run feature-definition-to-delivery pipeline (idea → requirements → channel → feasibility → implementation → QA) with plan mode and required inputs. |
+| [workflows/idea-to-backlog.md](workflows/idea-to-backlog.md) | `idea-to-backlog` | Run idea-to-backlog pipeline (idea → requirements → channel → feasibility → implementation → QA) with plan mode and required inputs. |
