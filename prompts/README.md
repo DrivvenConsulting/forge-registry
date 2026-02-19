@@ -27,3 +27,4 @@ Running a workflow means:
 | [workflows/data-engineering-delivery.md](workflows/data-engineering-delivery.md) | `data-engineering-delivery` | Run data-engineering-delivery workflow with plan mode and required inputs. |
 | [workflows/frontend-delivery.md](workflows/frontend-delivery.md) | `frontend-delivery` | Run frontend-delivery workflow with plan mode and required inputs. |
 | [workflows/idea-to-backlog.md](workflows/idea-to-backlog.md) | `idea-to-backlog` | Run idea-to-backlog pipeline (idea → requirements → channel → feasibility → implementation → QA) with plan mode and required inputs. |
+| [workflows/backlog-to-ready.md](workflows/backlog-to-ready.md) | `backlog-to-ready` | Run backlog-to-ready: refine Backlog issue with tech-lead and specialists, then move to Ready. Plan mode + required inputs first. |

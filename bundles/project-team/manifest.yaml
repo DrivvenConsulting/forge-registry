@@ -4,7 +4,7 @@ project_types:
   - data
   - infra
   - frontend
-description: Project team — discovery, requirements, channel validation, feasibility, and AC verification. Idea shaper, requirements refiner, channel specialist (Google Ads), feasibility guide, qa-ac-reviewer; idea-to-backlog workflow.
+description: Project team — discovery, requirements, channel validation, feasibility, and AC verification. Idea shaper, requirements refiner, channel specialist (Google Ads), feasibility guide, qa-ac-reviewer; idea-to-backlog and backlog-to-ready workflows.
 items:
   - kind: agent
     id: idea-shaper
@@ -16,13 +16,79 @@ items:
     id: feasibility-guide
   - kind: agent
     id: qa-ac-reviewer
+  - kind: agent
+    id: tech-lead
+  - kind: agent
+    id: backend-engineer
+  - kind: agent
+    id: devops-engineer
+  - kind: agent
+    id: qa-tester
+  - kind: agent
+    id: integration-tester
+  - kind: agent
+    id: data-engineers
+  - kind: agent
+    id: frontend-engineer
   - kind: rule
     id: foundation-global-principles
   - kind: rule
     id: foundation-environment-constraints
+  - kind: rule
+    id: architecture-decoupling
+  - kind: rule
+    id: framework-fastapi
+  - kind: rule
+    id: security-authentication
+  - kind: rule
+    id: code-quality-python
+  - kind: rule
+    id: ci-cd-github-actions
+  - kind: rule
+    id: ci-cd-terraform-integration
+  - kind: rule
+    id: infrastructure-terraform
+  - kind: rule
+    id: aws-cognito
+  - kind: rule
+    id: aws-dynamodb
+  - kind: rule
+    id: aws-lambda
+  - kind: rule
+    id: aws-s3
+  - kind: rule
+    id: aws-secrets-manager
+  - kind: rule
+    id: aws-sns
+  - kind: rule
+    id: aws-ecs
+  - kind: rule
+    id: frontend-standards
+  - kind: skill
+    id: backend-task-breakdown
+  - kind: skill
+    id: terraform-github-actions
+  - kind: skill
+    id: github-actions-lint-python
+  - kind: skill
+    id: github-actions-lambda-deploy
+  - kind: skill
+    id: aws-cognito-integration-check
+  - kind: skill
+    id: aws-api-gateway-integration-check
+  - kind: skill
+    id: aws-lambda-integration-check
+  - kind: skill
+    id: lovable-prompts
+  - kind: skill
+    id: delta-lake-patterns
   - kind: workflow
     id: idea-to-backlog
+  - kind: workflow
+    id: backlog-to-ready
   - kind: prompt
     id: run-workflow
   - kind: prompt
     id: workflows/idea-to-backlog
+  - kind: prompt
+    id: workflows/backlog-to-ready
