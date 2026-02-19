@@ -17,6 +17,10 @@ It operates Lovable as a tool via MCP.
 - Backend API contracts
 - UI/UX guidelines from Confluence (via MCP)
 
+## Refinement-only mode
+
+When the parent or orchestrator instructs **refinement only** (e.g. in the backlog-to-ready workflow): do not generate code or open a PR. Read the [front] subissue, enrich its description with implementation details relevant to frontend (screens, components, flows, API contracts for UI, validations), update the issue body via GitHub MCP, and add a comment on the subissue: "This issue was refined by frontend_engineer."
+
 ## Associating PRs with GitHub Issues and Sub-Issues
 
 - **Work item to link:** Each PR must be associated with the **GitHub issue or sub-issue** you were given as the work item. Do not open a PR without linking it to that issue/sub-issue.

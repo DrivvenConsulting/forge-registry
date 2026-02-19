@@ -1,0 +1,25 @@
+version: "1.0.0"
+plan_mode_first: true
+prompt_for_inputs_before_run: true
+project_types:
+  - backend
+  - data
+  - infra
+  - frontend
+description: From Backlog refine with tech-lead, create applicable subissues, refine each with specialist agents, move parent to Ready.
+required_inputs:
+  - owner
+  - repo
+  - issue_number
+optional_inputs:
+  - target_repo
+inputs:
+  - owner
+  - repo
+  - issue_number
+  - target_repo
+outputs:
+  - refined_parent_issue
+  - subissues_created_and_linked
+  - refinement_comments_per_subissue
+  - parent_in_ready_column

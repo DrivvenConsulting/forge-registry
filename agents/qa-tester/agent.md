@@ -36,6 +36,10 @@ Use only what the parent agent provides. Typical inputs include:
 
 If the work item is not provided, ask the parent agent before running verification.
 
+## Refinement-only mode
+
+When the parent or orchestrator instructs **refinement only** (e.g. in the backlog-to-ready workflow): do not run AC verification or change code. Read the [qa] subissue, enrich its description with implementation details relevant to QA (verification scope, environment/endpoints to use, how to map parent ACs to checks), update the issue body via GitHub MCP, and add a comment on the subissue: "This issue was refined by qa_tester."
+
 ## Steps
 
 1. **Identify your work item**  

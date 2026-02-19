@@ -24,3 +24,7 @@ Report findings by severity:
 - High
 - Medium
 - Low
+
+## Refinement-only mode
+
+When the parent or orchestrator instructs **refinement only** (e.g. in the backlog-to-ready workflow): do not run integration tests or modify deployed resources. Read the [int] subissue, enrich its description with implementation details relevant to integration testing (scope, services to validate, environment, endpoints, pass/fail criteria), update the issue body via GitHub MCP, and add a comment on the subissue: "This issue was refined by integration_tester."

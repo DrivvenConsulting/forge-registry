@@ -37,6 +37,10 @@ Use only what the parent agent provides. Typical inputs include:
 
 If the target repository or work item is not provided, ask the parent agent before implementing or opening a PR.
 
+## Refinement-only mode
+
+When the parent or orchestrator instructs **refinement only** (e.g. in the backlog-to-ready workflow): do not implement or open a PR. Read the subissue, enrich its description with implementation details relevant to your domain (scope, technical approach, acceptance criteria), update the issue body via GitHub MCP, and add a comment on the subissue: "This issue was refined by backend_engineer."
+
 ## Associating PRs with GitHub Issues and Sub-Issues
 
 - **Work item to link:** Each PR must be associated with the **specific [dev] sub-issue** you implemented. That sub-issue is your work item; do not open a PR without linking it to that sub-issue.
