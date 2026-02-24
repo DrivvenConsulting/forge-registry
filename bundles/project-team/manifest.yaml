@@ -108,9 +108,17 @@ items:
     id: idea-to-backlog
   - kind: workflow
     id: backlog-to-ready
+  - kind: workflow
+    id: idea-to-backlog-linear
+  - kind: workflow
+    id: backlog-to-ready-linear
   - kind: prompt
     id: run-workflow
   - kind: prompt
     id: workflows/idea-to-backlog
   - kind: prompt
     id: workflows/backlog-to-ready
+  - kind: prompt
+    id: workflows/idea-to-backlog-linear
+  - kind: prompt
+    id: workflows/backlog-to-ready-linear
