@@ -12,12 +12,12 @@ When a pull request is opened or merged for a work item, attach the PR as a link
 - You have opened (or merged) a PR that implements a specific work item (sub-issue) and need to record that link on the Linear issue.
 - You need to add a link attachment to an issue with the PR URL and a descriptive title (e.g. "PR #123").
 
-Equip this skill whenever your task involves associating a PR with a Linear work item after opening or merging the PR.
+Equip this skill whenever your task involves associating a PR with a Linear work item after opening or merging the PR, **using the Linear MCP configured in Cursor**.
 
 ## Steps
 
 1. **Identify the work item and PR** – The work item is the Linear sub-issue you implemented (e.g. the [dev] or [ops] sub-issue). The PR is the GitHub pull request URL and number.
-2. **Add the link** – Use the available Linear integration to add a link attachment to the issue: URL = the PR URL, title = a short label (e.g. "PR #123" or "Backend implementation"). If the integration replaces existing links, include any existing links when updating so they are not removed.
+2. **Add the link** – Use the **Linear MCP configured in Cursor** to add a link attachment to the issue: URL = the PR URL, title = a short label (e.g. "PR #123" or "Backend implementation"). If the MCP replaces existing links, include any existing links when updating so they are not removed.
 3. **Confirm** – State in your output that the PR was linked to the issue so the parent or QA can see the association.
 
 ## Do

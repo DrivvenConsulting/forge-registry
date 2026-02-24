@@ -13,7 +13,7 @@ Move an issue to a specified workflow state in Linear. This is the Linear equiva
 - You need to move a work item to **In Progress** when starting work on it.
 - You need to move a work item to **In Review** or **Done** as required by the team workflow.
 
-Equip this skill when your role includes updating the workflow state of an issue; do not hardcode tool names in agent logic.
+Equip this skill when your role includes updating the workflow state of an issue **using the Linear MCP configured in Cursor**; do not hardcode HTTP endpoints or ad-hoc integrations in agent logic.
 
 ## Status names (Drivven team)
 
@@ -32,7 +32,7 @@ Other states (Canceled, Duplicate) are for exceptional cases; normal flow uses t
 ## Steps
 
 1. **Identify issue and target state** – Know the issue identifier (e.g. LIN-123) or ID and the target state name (e.g. Todo, In Progress, In Review, Done) for the team.
-2. **Update the state** – Use the available Linear integration to set the issue's state to the target status. If the integration cannot update the state, add a prominent comment on the issue (e.g. "Refinement complete – **move this issue to Todo (Ready)**") and note in your summary that the issue must be moved manually.
+2. **Update the state** – Use the **Linear MCP configured in Cursor** to set the issue's state to the target status. If the MCP cannot update the state, add a prominent comment on the issue (e.g. "Refinement complete – **move this issue to Todo (Ready)**") and note in your summary that the issue must be moved manually.
 3. **Confirm or document** – If the update succeeded, state so in your output; if not, document that a human or parent agent should move the issue and include the requested state.
 
 ## Do

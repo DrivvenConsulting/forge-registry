@@ -14,15 +14,15 @@ Perform read and write operations on Linear issues: fetch an issue, list or filt
 - You need to create a new issue in a team/project.
 - You need to update an issue's description or add a comment to an issue.
 
-Equip this skill whenever your task involves reading or updating Linear issue content; do not hardcode tool names in agent logic.
+Equip this skill whenever your task involves reading or updating Linear issue content **using the Linear MCP configured in Cursor**; do not hardcode HTTP endpoints or ad-hoc integrations in agent logic.
 
 ## Steps
 
-1. **Fetch an issue** – Use the available Linear integration to get issue details by identifier (e.g. LIN-123) or issue ID. Extract user story, acceptance criteria, labels, and state as needed.
-2. **Get sub-issues / list issues** – When given a parent issue, use the integration to retrieve its sub-issues (e.g. via parent relation or list filtered by parent). Filter by **label** (e.g. Agents label "Backend Engineer", "Quality Assurance") and optionally by state (Todo, In Progress). To **list tasks available to an agent**, list issues (team Drivven, project Adlyze if applicable) with that agent's **Agents label** and state **Todo** or **In Progress**.
-3. **Create an issue** – When creating a new issue, use the integration to create it in the specified team and optional project with the given title, description, and optional labels. Return the new issue identifier and ID for linking.
-4. **Update issue description** – When enriching or refining an issue description, use the integration to update the issue description with the new content.
-5. **Add a comment** – When you need to add a summary, refinement note, or blocker comment, use the integration to add a comment to the specified issue.
+1. **Fetch an issue** – Use the **Linear MCP configured in Cursor** to get issue details by identifier (e.g. LIN-123) or issue ID. Extract user story, acceptance criteria, labels, and state as needed.
+2. **Get sub-issues / list issues** – When given a parent issue, use the MCP to retrieve its sub-issues (e.g. via parent relation or list filtered by parent). Filter by **label** (e.g. Agents label "Backend Engineer", "Quality Assurance") and optionally by state (Todo, In Progress). To **list tasks available to an agent**, list issues (team Drivven, project Adlyze if applicable) with that agent's **Agents label** and state **Todo** or **In Progress**.
+3. **Create an issue** – When creating a new issue, use the MCP to create it in the specified team and optional project with the given title, description, and optional labels. Return the new issue identifier and ID for linking.
+4. **Update issue description** – When enriching or refining an issue description, use the MCP to update the issue description with the new content.
+5. **Add a comment** – When you need to add a summary, refinement note, or blocker comment, use the MCP to add a comment to the specified issue.
 
 ## Do
 
