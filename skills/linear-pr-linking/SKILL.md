@@ -12,6 +12,8 @@ When a pull request is opened or merged for a work item, attach the PR as a link
 - You have opened (or merged) a PR that implements a specific work item (sub-issue) and need to record that link on the Linear issue.
 - You need to add a link attachment to an issue with the PR URL and a descriptive title (e.g. "PR #123").
 
+Work items (sub-issues) are in **project Adlyze**, **milestone MVP**.
+
 Equip this skill whenever your task involves associating a PR with a Linear work item after opening or merging the PR, **using the Linear MCP configured in Cursor**.
 
 ## Steps

@@ -13,6 +13,8 @@ Move an issue to a specified workflow state in Linear. This is the Linear equiva
 - You need to move a work item to **Available** when starting implementation work on it.
 - You need to move a work item to **Reviewed**, **Approved**, or **Released** as required by the team workflow.
 
+Workflow state updates apply to issues in **project Adlyze**, **milestone MVP**.
+
 Equip this skill when your role includes updating the workflow state of an issue **using the Linear MCP configured in Cursor**; do not hardcode HTTP endpoints or ad-hoc integrations in agent logic.
 
 ## Status names (Drivven team)

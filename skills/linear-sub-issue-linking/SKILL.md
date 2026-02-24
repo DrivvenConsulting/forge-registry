@@ -5,7 +5,7 @@ description: Create sub-issues with Agents labels and link them to a parent. Use
 
 # Linear Sub-Issue Linking
 
-Create new sub-issues in Linear **with the appropriate Agents label** (not title prefix) and link each one to a parent issue so they appear as child issues. Titles are descriptive; no prefix required.
+Create new sub-issues in Linear **with the appropriate Agents label** (not title prefix) and link each one to a parent issue so they appear as child issues. Sub-issues are created in **project Adlyze** and **milestone MVP** (same as parent). Titles are descriptive; no prefix required.
 
 ## When to Use
 
@@ -16,7 +16,7 @@ Equip this skill when your role includes breaking a parent issue into work items
 
 ## Steps
 
-1. **Create each sub-issue** – Use the **Linear MCP configured in Cursor** to create an issue in the same team (and project if applicable) with a **descriptive title** (no prefix), **description**, and **labels** including the correct **Agents** label. Obtain the created issue's **ID** from the response—use the ID (not the identifier like LIN-123) when linking to the parent.
+1. **Create each sub-issue** – Use the **Linear MCP configured in Cursor** to create an issue in the same team, **project Adlyze**, and **milestone MVP**, with a **descriptive title** (no prefix), **description**, and **labels** including the correct **Agents** label. Obtain the created issue's **ID** from the response—use the ID (not the identifier like LIN-123) when linking to the parent.
 2. **Link to parent** – For each created sub-issue, use the MCP to add it as a sub-issue of the parent (parent issue ID and sub-issue ID). This establishes the parent-child relationship.
 3. **Confirm** – After all sub-issues are created and linked, you can list sub-issues via **linear-issue-operations** if you need to verify or pass references to downstream steps.
 
@@ -36,7 +36,7 @@ Note: "DevOps Enginner" is the exact label name in Linear. For **integration-tes
 
 ## Do
 
-- Use the same team (and project) for parent and sub-issues.
+- Use the same team, **project Adlyze**, and **milestone MVP** for parent and sub-issues.
 - Use the **issue ID** from the create response when linking to the parent, not the identifier.
 - Set the **Agents label** on each sub-issue so agents can find their work by label.
 

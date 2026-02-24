@@ -9,27 +9,32 @@ Perform read and write operations on Linear issues: fetch an issue, list or filt
 
 ## When to Use
 
-- You need to fetch a single issue by identifier (e.g. LIN-123) or issue ID; team and project can be name or ID (e.g. Drivven, Adlyze).
+- You need to fetch a single issue by identifier (e.g. LIN-123) or issue ID. All operations use **project Adlyze** and **milestone MVP**.
 - You need to list or filter issues (or sub-issues of a parent) by **label** (e.g. Agents label "Backend Engineer", "Quality Assurance") and optionally state, to find work items or **list tasks available to an agent**.
-- You need to create a new issue in a team/project.
+- You need to create a new issue in the Adlyze project and MVP milestone.
 - You need to update an issue's description or add a comment to an issue.
 
 Equip this skill whenever your task involves reading or updating Linear issue content **using the Linear MCP configured in Cursor**; do not hardcode HTTP endpoints or ad-hoc integrations in agent logic.
 
+## Project and milestone
+
+All fetch, list, and create operations use **project Adlyze** and **milestone MVP**. Specify or filter by this project and milestone when using the MCP.
+
 ## Steps
 
-1. **Fetch an issue** – Use the **Linear MCP configured in Cursor** to get issue details by identifier (e.g. LIN-123) or issue ID. Extract user story, acceptance criteria, labels, and state as needed.
-2. **Get sub-issues / list issues** – When given a parent issue, use the MCP to retrieve its sub-issues (e.g. via parent relation or list filtered by parent). Filter by **label** (e.g. Agents label "Backend Engineer", "Quality Assurance") and optionally by state (Todo, In Progress). To **list tasks available to an agent**, list issues (team Drivven, project Adlyze if applicable) with that agent's **Agents label** and state **Todo** or **In Progress**.
-3. **Create an issue** – When creating a new issue, use the MCP to create it in the specified team and optional project with the given title, description, and optional labels. Return the new issue identifier and ID for linking.
+1. **Fetch an issue** – Use the **Linear MCP configured in Cursor** to get issue details by identifier (e.g. LIN-123) or issue ID, in **project Adlyze**, **milestone MVP**. Extract user story, acceptance criteria, labels, and state as needed.
+2. **Get sub-issues / list issues** – When given a parent issue, use the MCP to retrieve its sub-issues (e.g. via parent relation or list filtered by parent). Filter by **label** (e.g. Agents label "Backend Engineer", "Quality Assurance") and optionally by state (Todo, In Progress). To **list tasks available to an agent**, list issues in **project Adlyze**, **milestone MVP**, with that agent's **Agents label** and state **Todo** or **In Progress**.
+3. **Create an issue** – When creating a new issue, use the MCP to create it in the specified team, **project Adlyze**, and **milestone MVP**, with the given title, description, and optional labels. Return the new issue identifier and ID for linking.
 4. **Update issue description** – When enriching or refining an issue description, use the MCP to update the issue description with the new content.
 5. **Add a comment** – When you need to add a summary, refinement note, or blocker comment, use the MCP to add a comment to the specified issue.
 
 ## Do
 
+- Use **project Adlyze** and **milestone MVP** for all fetch, list, and create operations.
 - Use the appropriate operation for the current step (fetch, list, create, update, comment).
 - Preserve issue structure and formatting when updating descriptions.
 - Include clear, actionable text in comments (e.g. "Refinement complete – move this issue to Ready" or "This issue was refined by [agent name]").
-- Use issue identifier (e.g. LIN-123) or issue ID as required by the integration; team and project can be name or ID.
+- Use issue identifier (e.g. LIN-123) or issue ID as required by the integration.
 
 ## Do Not
 
