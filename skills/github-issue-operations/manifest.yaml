@@ -1,0 +1,7 @@
+version: "1.0.0"
+project_types:
+  - backend
+  - data
+  - infra
+  - frontend
+description: Read issue(s), get sub-issues, create issue, update issue body, add comment. Use when you need to fetch an issue, list or link sub-issues, create or update an issue, or add a comment.

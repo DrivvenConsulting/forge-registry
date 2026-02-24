@@ -1,0 +1,7 @@
+version: "1.0.0"
+project_types:
+  - backend
+  - data
+  - infra
+  - frontend
+description: Move issue to a workflow state (Backlog, Todo, In Progress, In Review, Done). Use when you need to move a work item or parent issue to a different state in Linear.

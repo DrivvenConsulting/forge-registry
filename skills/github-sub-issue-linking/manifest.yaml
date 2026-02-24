@@ -1,0 +1,7 @@
+version: "1.0.0"
+project_types:
+  - backend
+  - data
+  - infra
+  - frontend
+description: Create sub-issues and link them to a parent. Use when you need to create prefixed sub-issues (e.g. [dev], [ops], [qa]) under a parent and attach them.

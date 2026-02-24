@@ -22,7 +22,7 @@ Single-step workflow: run the frontend-engineer agent with an approved GitHub is
 
 ## Steps
 
-1. **Run frontend-engineer** with: issue_reference, frontend_specification, api_contracts, and optionally target_repo. The agent reads the issue and spec, fetches UI/UX guidelines from Confluence if available, builds a deterministic Lovable prompt, executes it via Lovable MCP, reviews the output, commits, and opens a PR. The agent does not manually write or refactor frontend code; it relies exclusively on Lovable MCP.
+1. **Run frontend-engineer** with: issue_reference, frontend_specification, api_contracts, and optionally target_repo. The agent reads the issue and spec, uses **confluence-fetch** for UI/UX guidelines when needed, uses **lovable-prompts** to build a deterministic Lovable prompt, executes it via the available Lovable capability, reviews the output, commits, and uses **github-pr-operations** to open a PR. The agent does not manually write or refactor frontend code; it relies exclusively on the Lovable capability and skills for all interactions.
 
 ## Conditionals
 

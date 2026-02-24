@@ -12,6 +12,12 @@ items:
   - kind: rule
     id: frontend-standards
   - kind: skill
+    id: github-issue-operations
+  - kind: skill
+    id: github-pr-operations
+  - kind: skill
+    id: confluence-fetch
+  - kind: skill
     id: lovable-prompts
   - kind: workflow
     id: frontend-delivery

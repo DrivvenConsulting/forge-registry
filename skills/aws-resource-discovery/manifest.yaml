@@ -1,0 +1,7 @@
+version: "1.0.0"
+project_types:
+  - backend
+  - data
+  - infra
+  - frontend
+description: Read-only AWS CLI exploration (Cognito, DynamoDB, Lambda, S3, SNS, API Gateway, etc.). Use when you need to list or describe existing AWS resources for feasibility or QA discovery.

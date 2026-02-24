@@ -4,9 +4,9 @@ Workflows are multi-step, multi-agent sequences that standardize common processe
 
 ## Relation to agents and bundles
 
-- **Agents** define a single role (e.g. tech-lead, backend-engineer). Workflows **invoke** agents in sequence.
+- **Agents** define a single role (e.g. tech-lead, backend-engineer). Workflows **invoke** agents in sequence. Agents are role-only and use **skills** for all GitHub, Confluence, and AWS interactions (issues, PRs, project board, discovery); ensure the interaction skills used by each agent are available (e.g. via bundle or install).
 - **Bundles** group agents, rules, and skills by project type (backend, data-engineering, devops, frontend). Workflows **use** those agents; they do not replace bundles.
-- **Rules** and **skills** are applied when an agent runs (per agent definition); workflows only specify which agent runs at each step.
+- **Rules** and **skills** are applied when an agent runs (per agent definition); workflows only specify which agent runs at each step. Do not hardcode tool or MCP names in workflow docs.
 
 ## How to reference workflows in Cursor
 

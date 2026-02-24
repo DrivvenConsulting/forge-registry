@@ -22,6 +22,14 @@ items:
   - kind: rule
     id: aws-secrets-manager
   - kind: skill
+    id: github-issue-operations
+  - kind: skill
+    id: github-pr-operations
+  - kind: skill
+    id: github-project-board
+  - kind: skill
+    id: confluence-fetch
+  - kind: skill
     id: terraform-github-actions
   - kind: workflow
     id: idea-to-backlog

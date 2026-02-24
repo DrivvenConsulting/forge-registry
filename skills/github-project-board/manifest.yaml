@@ -1,0 +1,7 @@
+version: "1.0.0"
+project_types:
+  - backend
+  - data
+  - infra
+  - frontend
+description: Move issue or card to a project column (e.g. Backlog to Ready, In Progress). Use when you need to move a work item or parent issue to a project column.

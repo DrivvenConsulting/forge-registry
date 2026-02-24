@@ -58,6 +58,8 @@ Before creating the agent, collect:
 3. **description** (optional): One line for the manifest.
 4. **Content**: What the agent does—instructions, tone, constraints, and any examples. This becomes the body of `agent.md`.
 
+**Important:** New agents must **not** hardcode MCP or tool names (e.g. GitHub MCP, AWS MCP, Confluence). All issue/PR/board/Confluence/AWS operations must be performed **via skills** (e.g. github-issue-operations, github-pr-operations, github-project-board, confluence-fetch, aws-resource-discovery). Include a **"Skills to equip by context"** section that maps situations to skill ids (guidance only; keep it flexible).
+
 Infer from conversation context when possible. Use AskQuestion when available if id, project_types, or purpose are unclear.
 
 ---
@@ -71,6 +73,22 @@ Infer from conversation context when possible. Use AskQuestion when available if
 
 If the user is not in a registry root, create the structure under a clear path (e.g. `agents/<id>/` relative to current directory or a path the user specifies) so they can copy it into their registry.
 
+### Example: Skills to equip by context
+
+In `agent.md`, include a short section like this (adapt to the agent’s role):
+
+```markdown
+## Skills to equip by context
+
+Equip skills as needed for the current step; the list below is guidance, not exhaustive.
+
+- **When your input is a parent issue:** Equip **github-issue-operations** to fetch the issue and list sub-issues.
+- **When creating or linking sub-issues:** Equip **github-sub-issue-linking**.
+- **When opening a PR:** Equip **github-pr-operations** to open a PR and link it (Closes #N).
+- **When moving an issue to a column:** Equip **github-project-board**.
+- **When fetching standards or context:** Equip **confluence-fetch** or **aws-resource-discovery** as needed.
+```
+
 ---
 
 ## Checklist
@@ -81,4 +99,5 @@ Before finishing, verify:
 - [ ] `manifest.yaml` has `version` (non-empty string) and `project_types` (non-empty list).
 - [ ] Every `project_types` value is one of: `data`, `backend`, `frontend`, `infra`.
 - [ ] `agent.md` exists in the same directory and contains the agent instructions.
+- [ ] Agent does not hardcode MCP or tool names; it references skills for issue/PR/board/Confluence/AWS operations and includes a "Skills to equip by context" section.
 - [ ] After install via Forge, this agent will appear as `.cursor/agents/<id>.md` in consuming projects.
