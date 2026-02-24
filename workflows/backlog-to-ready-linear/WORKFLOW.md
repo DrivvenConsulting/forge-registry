@@ -9,18 +9,18 @@ Flow from a parent Linear issue in **Backlog** through tech-lead refinement, tec
 
 ## Work tracking
 
-- **Tracker:** Linear. All issues and sub-issues are created/updated in the designated **team** and **project** (e.g. Drivven, Adlyze).
+- **Tracker:** Linear. All issues and sub-issues are created/updated in **project Adlyze** and **milestone MVP** (as defined by the Linear skills). Team is supplied as input (e.g. Drivven).
 - **Source status:** Backlog
 - **Target status:** Ready (after refinement completes)
 
-Use **linear-issue-operations**, **linear-sub-issue-linking**, and **linear-issue-status** for all work-item operations. Use the exact status name **Ready** (not Todo) when moving the parent after refinement.
+Use **linear-issue-operations**, **linear-sub-issue-linking**, and **linear-issue-status** for all work-item operations; those skills use **project Adlyze** and **milestone MVP**. Use the exact status name **Ready** (not Todo) when moving the parent after refinement.
 
 ## Inputs
 
 | Name             | Source          | Description                                                    |
 | ---------------- | --------------- | -------------------------------------------------------------- |
-| team             | User            | Linear team (e.g. Drivven).                                     |
-| project          | User            | Linear project (e.g. Adlyze).                                  |
+| team             | User            | Linear team (e.g. Drivven).                                    |
+| project          | User            | Linear project; use **Adlyze** (skills use Adlyze + MVP).      |
 | issue_identifier | User            | Parent issue in Backlog (e.g. LIN-123 or Linear issue ID).     |
 | target_repo      | User (optional) | Target repository for implementation; for context if needed.  |
 

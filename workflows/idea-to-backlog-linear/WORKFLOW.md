@@ -28,8 +28,8 @@ flowchart LR
 
 **All work items (issues) are created and updated in Linear only:**
 
-- **Team and project:** Designated Linear **team** and **project** (e.g. Drivven, Adlyze). Supplied as inputs or derived from context.
-- When creating issues: use **linear-issue-operations** to create the issue in the designated team/project; use **linear-issue-status** to set the new issue state to **Backlog** (or document in the work item body if the integration cannot update the state).
+- **Project and milestone:** Use **project Adlyze** and **milestone MVP** for all issue operations (as defined by the Linear skills). **Team** is supplied as input or from context (e.g. Drivven).
+- When creating issues: use **linear-issue-operations** to create the issue in the designated team, **project Adlyze**, and **milestone MVP**; use **linear-issue-status** to set the new issue state to **Backlog** (or document in the work item body if the integration cannot update the state).
 
 Linear statuses (use these exact names):
 
@@ -69,7 +69,7 @@ The parent agent or inputs must supply `<feature_name>` so each agent can write 
 | feature_name | Yes | Snake_case slug for the feature (e.g. `google_sso`). |
 | raw_idea | No | Raw idea or problem statement for idea_shaper. |
 | team | No | Linear team (e.g. Drivven). Default or context if omitted. |
-| project | No | Linear project (e.g. Adlyze). Default or context if omitted. |
+| project | No | Linear project; use **Adlyze** (skills use Adlyze + milestone MVP). Default or context if omitted. |
 
 ## Stages
 
@@ -85,7 +85,7 @@ The parent agent or inputs must supply `<feature_name>` so each agent can write 
 
 | Agent | Inputs | Output | Next step |
 |-------|--------|--------|-----------|
-| **requirements_refiner** | **Entire** idea_shaper JSON output (full `feature-definition.json`); target **team** and **project** in Linear. | **JSON artifact** (issue definition: title, description, user_stories, acceptance_criteria, assumptions, references). Writes to `artifacts/feature-definitions/<feature_name>/linear_issue.json`. Creates work item in Linear via **linear-issue-operations**; sets state to **Backlog** via **linear-issue-status**. | Run **channel_specialist_google_ads** (mandatory), then **feasibility_guide**. |
+| **requirements_refiner** | **Entire** idea_shaper JSON output (full `feature-definition.json`); target **team** in Linear and **project Adlyze**, **milestone MVP** (per Linear skills). | **JSON artifact** (issue definition: title, description, user_stories, acceptance_criteria, assumptions, references). Writes to `artifacts/feature-definitions/<feature_name>/linear_issue.json`. Creates work item in Linear via **linear-issue-operations**; sets state to **Backlog** via **linear-issue-status**. | Run **channel_specialist_google_ads** (mandatory), then **feasibility_guide**. |
 
 - **requirements_refiner** receives the **entire** JSON output from idea_shaper (the full `feature-definition.json`), not only the problem statement. It uses all provided fields (e.g. user_journeys, context_alignment) to derive user stories and acceptance criteria.
 - After creating the work item in Linear, the next step is channel validation, then technical feasibility.
@@ -118,5 +118,5 @@ The parent agent or inputs must supply `<feature_name>` so each agent can write 
 3. **Work item touches multiple channels**  
    Run each relevant channel specialist (e.g. channel_specialist_google_ads) and ensure all Channel Feasibility sections are on the work item before running feasibility_guide.
 
-4. **Linear team and project**  
-   All work-item creation and state updates target the designated Linear team and project only. Use **linear-issue-status** to set state to **Ready** when feasibility is approved; use the exact status name **Ready**.
+4. **Linear team, project, and milestone**  
+   All work-item creation and state updates use the designated team with **project Adlyze** and **milestone MVP** (per Linear skills). Use **linear-issue-status** to set state to **Ready** when feasibility is approved; use the exact status name **Ready**.
