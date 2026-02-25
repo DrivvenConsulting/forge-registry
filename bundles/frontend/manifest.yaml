@@ -23,5 +23,3 @@ items:
     id: frontend-delivery
   - kind: prompt
     id: run-workflow
-  - kind: prompt
-    id: workflows/frontend-delivery
