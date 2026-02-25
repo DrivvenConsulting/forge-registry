@@ -1,4 +1,5 @@
 version: "1.0.0"
 project_types:
   - backend
+  - product
 description: Architectural rules focused on decoupling and clean architecture.

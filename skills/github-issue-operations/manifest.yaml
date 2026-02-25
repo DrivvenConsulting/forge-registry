@@ -4,4 +4,5 @@ project_types:
   - data
   - infra
   - frontend
+  - product
 description: Read issue(s), get sub-issues, create issue, update issue body, add comment. Use when you need to fetch an issue, list or link sub-issues, create or update an issue, or add a comment.

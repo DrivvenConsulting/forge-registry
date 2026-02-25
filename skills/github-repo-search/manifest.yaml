@@ -4,4 +4,5 @@ project_types:
   - data
   - infra
   - frontend
+  - product
 description: Search repos, issues, or code. Use when you need to discover related repositories or issues for context.

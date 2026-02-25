@@ -45,11 +45,11 @@ Single-role definitions: tech-lead, backend-engineer, devops-engineer, qa-tester
 
 - **Role-only, no hardcoded tools:** Agents never reference MCP or tool names directly. All issue/PR/board/Confluence/AWS operations are done via **skills** (e.g. github-issue-operations, github-pr-operations, confluence-fetch, aws-resource-discovery).
 - **Invoked by workflows** in sequence (see [workflows/README.md](workflows/README.md)).
-- **Grouped by bundles** by project type (backend, frontend, data-engineering, devops). Bundles include the interaction and domain skills agents need.
+- **Grouped by bundles** by project type (backend, frontend, data, infra, product). Bundles include the interaction and domain skills agents need.
 
 ### Bundles ([bundles/](bundles/))
 
-Project-type presets: **backend**, **frontend**, **data-engineering**, **devops**, **project-team**. Each bundle’s `manifest.yaml` lists agents, rules, skills, workflows, and prompts by id. Installing a bundle gives a project the right agents, rules, and skills for that type; workflows then use those agents when run in that project. The **project-team** bundle provides discovery and feasibility agents (idea-shaper, requirements-refiner, channel-specialist-google-ads, feasibility-guide, qa-ac-reviewer) and the idea-to-backlog workflow.
+Project-type presets: **backend**, **frontend**, **data-engineering**, **devops**, **product**, **project-team**. Each bundle’s `manifest.yaml` lists agents, rules, skills, workflows, and prompts by id. Installing a bundle gives a project the right agents, rules, and skills for that type; workflows then use those agents when run in that project. The **product** bundle is the single entry point for product-type projects: generate docs, refine issues, craft issues, and improve raw ideas (idea-shaper, requirements-refiner, feasibility-guide, qa-ac-reviewer, tech-lead, channel-specialist-google-ads, and supporting skills/workflows). The **project-team** bundle provides discovery and feasibility agents (idea-shaper, requirements-refiner, channel-specialist-google-ads, feasibility-guide, qa-ac-reviewer) and the idea-to-backlog workflow.
 
 ### Prompts ([prompts/](prompts/))
 

@@ -4,4 +4,5 @@ project_types:
   - backend
   - frontend
   - infra
+  - product
 description: Guides creation of new skills in Forge registry format (manifest.yaml + SKILL.md). Use when creating skills for the registry or scaffolding skill content for forge install skill.

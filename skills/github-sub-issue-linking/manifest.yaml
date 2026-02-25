@@ -4,4 +4,5 @@ project_types:
   - data
   - infra
   - frontend
+  - product
 description: Create sub-issues and link them to a parent. Use when you need to create prefixed sub-issues (e.g. [dev], [ops], [qa]) under a parent and attach them.

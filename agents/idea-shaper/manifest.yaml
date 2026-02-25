@@ -4,4 +4,5 @@ project_types:
   - data
   - infra
   - frontend
+  - product
 description: Turns a raw, vague feature idea into a clear, user-focused problem statement aligned with the product vision.

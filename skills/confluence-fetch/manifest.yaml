@@ -4,4 +4,5 @@ project_types:
   - data
   - infra
   - frontend
+  - product
 description: Retrieve product vision, standards, and guidelines from Confluence. Use when you need backend, infra, data, or UI standards or product context.

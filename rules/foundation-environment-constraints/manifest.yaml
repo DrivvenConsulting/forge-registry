@@ -4,4 +4,5 @@ project_types:
   - frontend
   - data
   - infra
+  - product
 description: Environment-proof code standards for dev and prod.

@@ -6,6 +6,7 @@ project_types:
   - data
   - infra
   - frontend
+  - product
 description: Pipeline from problem framing (idea_shaper) through requirements, channel validation, feasibility, implementation (backend/data/devops), and QA; work tracking via DrivvenConsulting/projects/6.
 required_inputs:
   - feature_name

@@ -3,4 +3,5 @@ project_types:
   - backend
   - data
   - infra
+  - product
 description: Validates that a user story is technically and data-wise feasible within the current architecture.

@@ -6,6 +6,7 @@ project_types:
   - data
   - infra
   - frontend
+  - product
 description: From Backlog refine with tech-lead, create applicable subissues, refine each with specialist agents, move parent to Ready.
 required_inputs:
   - owner
