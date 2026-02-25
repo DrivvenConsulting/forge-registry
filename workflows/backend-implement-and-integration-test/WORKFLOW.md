@@ -29,7 +29,7 @@ Implement backend (and infra if needed) for a refined issue, then validate deplo
 
 1. **Run devops-engineer** (if [ops] sub-issues exist) with parent issue and target_repo. Then **run backend-engineer** with parent issue and target_repo. Assume PRs are merged and deployment is done (by CI/CD or manual deploy).
 
-2. **Run integration-tester** with: region, environment, and endpoints. Endpoints can come from the [qa] sub-issue body (after QA discovery), from the tech-lead summary comment, or from user input (base_url / resource identifiers). The integration-tester uses skills: aws-cognito-integration-check, aws-api-gateway-integration-check, aws-lambda-integration-check.
+2. **Run integration-tester** with: region, environment, and endpoints. Endpoints can come from the [qa] sub-issue body (after QA discovery), from the tech-lead summary comment, or from user input (base_url / resource identifiers). The integration-tester equips skills for AWS validation (aws-cognito-integration-check, aws-api-gateway-integration-check, aws-lambda-integration-check); ensure these and any interaction skills are available via bundle or install.
 
 ## Conditionals
 

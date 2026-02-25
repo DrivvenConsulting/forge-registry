@@ -40,6 +40,22 @@ items:
   - kind: rule
     id: aws-secrets-manager
   - kind: skill
+    id: github-issue-operations
+  - kind: skill
+    id: github-pr-operations
+  - kind: skill
+    id: github-project-board
+  - kind: skill
+    id: linear-issue-operations
+  - kind: skill
+    id: linear-issue-status
+  - kind: skill
+    id: linear-sub-issue-linking
+  - kind: skill
+    id: linear-pr-linking
+  - kind: skill
+    id: confluence-fetch
+  - kind: skill
     id: delta-lake-patterns
   - kind: skill
     id: terraform-github-actions

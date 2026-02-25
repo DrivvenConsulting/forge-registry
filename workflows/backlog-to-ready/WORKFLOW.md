@@ -30,7 +30,7 @@ Flow from a parent GitHub issue in **Backlog** ([https://github.com/orgs/Drivven
 - **Refined parent issue** – Body updated by tech-lead with technical feasibility notes if needed.
 - **Subissues created and linked** – Prefixed [dev], [ops], [qa], [int], [data], [front] only where applicable.
 - **Refinement comments** – Each created subissue has its description improved by the corresponding specialist agent and a comment "This issue was refined by [agent name]."
-- **Parent in Ready** – Parent issue moved to Ready column (or comment added asking to move if MCP cannot update board).
+- **Parent in Ready** – Parent issue moved to Ready column (or comment added asking to move if the integration cannot update the board).
 
 ## Pipeline overview
 
@@ -83,7 +83,7 @@ In practice: tech-lead runs once (refine + create subissues). Then **for each** 
 3. **Refine each subissue with the corresponding specialist (refinement-only)**
   For each **prefix** for which tech-lead created at least one subissue, invoke the **corresponding specialist agent** once per subissue with the **refinement-only instruction** below. The agent must **not** implement or open a PR; it only improves the subissue description and adds a comment.
    **Refinement-only instruction** (pass this to each specialist):  
-   *"Do not implement or open a PR. Your only task is to read this subissue, improve its description with implementation details relevant to your domain (scope, technical approach, acceptance criteria), update the issue body via GitHub MCP, and add a comment on the subissue: 'This issue was refined by [agent name].'"*
+   *"Do not implement or open a PR. Your only task is to read this subissue, improve its description with implementation details relevant to your domain (scope, technical approach, acceptance criteria), use the github-issue-operations skill to update the issue body and add a comment on the subissue: 'This issue was refined by [agent name].'"*
    **Agent → prefix mapping:**
 
   | Prefix  | Agent (id)         |
@@ -97,7 +97,7 @@ In practice: tech-lead runs once (refine + create subissues). Then **for each** 
 
    Invoke only agents for which at least one subissue exists. For multiple subissues with the same prefix (e.g. two [dev] issues), invoke the specialist once per subissue, passing the specific subissue number.
 4. **Move parent issue to Ready**
-  Orchestrator or tech-lead: Move the **parent issue** to the **Ready** column on the project board. If the GitHub MCP does not support moving the issue, try use gh cli. If none works, add a prominent comment on the parent: "Refinement complete – **move this issue to Ready**" and note in the workflow summary that the issue must be moved manually.
+  Orchestrator or tech-lead: Use the **github-project-board** skill to move the **parent issue** to the **Ready** column on the project board. If the integration does not support moving the issue, add a prominent comment on the parent (e.g. via **github-issue-operations**): "Refinement complete – **move this issue to Ready**" and note in the workflow summary that the issue must be moved manually.
 
 ## Conditionals
 
@@ -105,9 +105,20 @@ In practice: tech-lead runs once (refine + create subissues). Then **for each** 
 - **No subissues created:** If tech-lead creates zero subissues, skip step 3. Move parent to Ready in step 4 only if tech-lead indicated refinement complete.
 - **Project board APIs unavailable:** Add comment "Refinement complete – **move this issue to Ready**" on the parent so a human or parent agent can move the card.
 
+## Using Linear instead of GitHub
+
+When the work tracker is **Linear**, use the same step order but with Linear inputs and skills:
+
+- **Inputs:** Pass **team** (e.g. Drivven), **project** (e.g. Adlyze), and **issue identifier** (e.g. LIN-123 or issue ID) instead of owner, repo, issue_number. Ensure the parent issue is in **Backlog** state.
+- **Tech-lead:** Creates sub-issues with **Agents labels** (Backend Engineer, DevOps Enginner, Quality Assurance, Data Engineer, Frontend Engineer, Tech Lead)—not title prefixes. Use **linear-sub-issue-linking**, **linear-issue-operations**, and **linear-issue-status**; move parent to **Todo** (Ready) when refinement is complete.
+- **Specialists:** Match by **Agents label** to agent: Backend Engineer → backend-engineer, DevOps Enginner → devops-engineer, Quality Assurance → qa-tester (and integration-tester when applicable), Data Engineer → data-engineers, Frontend Engineer → frontend-engineer. Invoke each specialist in refinement-only mode for each sub-issue that has the corresponding label. Use **linear-issue-operations** to update the issue and add the refinement comment.
+- **Move parent to Ready:** Use **linear-issue-status** to set the parent issue state to **Todo** (Ready).
+
+For the full agent ↔ label mapping and how agents list tasks available to them, see [docs/linear-issue-templates.md](docs/linear-issue-templates.md).
+
 ## How to reference in Cursor
 
 - Install to `.cursor/workflows/backlog-to-ready/`.
-- Run steps 1 through 4 in order. Step 3 runs only for each prefix that has at least one created subissue.
+- Run steps 1 through 4 in order. Step 3 runs only for each prefix (GitHub) or Agents label (Linear) that has at least one created subissue.
 - An orchestrator agent can read this file and invoke tech-lead, then each specialist (backend-engineer, devops-engineer, qa-tester, integration-tester, data-engineers, frontend-engineer) in refinement-only mode for the relevant subissues, then move the parent to Ready.
 

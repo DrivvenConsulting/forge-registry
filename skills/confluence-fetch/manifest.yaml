@@ -1,0 +1,7 @@
+version: "1.0.0"
+project_types:
+  - backend
+  - data
+  - infra
+  - frontend
+description: Retrieve product vision, standards, and guidelines from Confluence. Use when you need backend, infra, data, or UI standards or product context.

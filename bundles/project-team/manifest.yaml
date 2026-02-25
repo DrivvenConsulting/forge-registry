@@ -65,6 +65,28 @@ items:
   - kind: rule
     id: frontend-standards
   - kind: skill
+    id: github-issue-operations
+  - kind: skill
+    id: github-sub-issue-linking
+  - kind: skill
+    id: github-pr-operations
+  - kind: skill
+    id: github-project-board
+  - kind: skill
+    id: github-repo-search
+  - kind: skill
+    id: linear-issue-operations
+  - kind: skill
+    id: linear-issue-status
+  - kind: skill
+    id: linear-sub-issue-linking
+  - kind: skill
+    id: linear-pr-linking
+  - kind: skill
+    id: confluence-fetch
+  - kind: skill
+    id: aws-resource-discovery
+  - kind: skill
     id: backend-task-breakdown
   - kind: skill
     id: terraform-github-actions
@@ -86,9 +108,17 @@ items:
     id: idea-to-backlog
   - kind: workflow
     id: backlog-to-ready
+  - kind: workflow
+    id: idea-to-backlog-linear
+  - kind: workflow
+    id: backlog-to-ready-linear
   - kind: prompt
     id: run-workflow
   - kind: prompt
     id: workflows/idea-to-backlog
   - kind: prompt
     id: workflows/backlog-to-ready
+  - kind: prompt
+    id: workflows/idea-to-backlog-linear
+  - kind: prompt
+    id: workflows/backlog-to-ready-linear

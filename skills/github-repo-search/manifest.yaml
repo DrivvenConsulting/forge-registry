@@ -1,0 +1,7 @@
+version: "1.0.0"
+project_types:
+  - backend
+  - data
+  - infra
+  - frontend
+description: Search repos, issues, or code. Use when you need to discover related repositories or issues for context.

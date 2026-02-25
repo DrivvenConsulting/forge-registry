@@ -32,7 +32,8 @@ flowchart LR
 - **Prompts** trigger a workflow by id (plan mode + required inputs).
 - **Workflows** define multi-step sequences and invoke **agents** in order.
 - **Bundles** group agents, rules, and skills by project type; installing a bundle gives a project the right context for that type.
-- **Rules** and **skills** are applied when an agent runs (from an installed bundle or from `.cursor/rules` / `.cursor/skills`).
+- **Agents** are role-only: they define responsibility and **equip skills by context**; they do not reference specific tools or MCPs directly. All GitHub, Confluence, and AWS interactions (issues, PRs, project board, discovery) are performed **via skills**, not in agent logic.
+- **Rules** and **skills** are applied when an agent runs (from an installed bundle or from `.cursor/rules` / `.cursor/skills`). Agents refer to skills by id and use a "Skills to equip by context" section for guidance; the runner or environment provides the actual capabilities. See [docs/skill-conventions.md](docs/skill-conventions.md) for interaction vs domain skills and when to use.
 
 ---
 
@@ -40,10 +41,11 @@ flowchart LR
 
 ### Agents ([agents/](agents/))
 
-Single-role definitions: tech-lead, backend-engineer, devops-engineer, qa-tester, frontend-engineer, data-engineers, integration-tester, idea-shaper, requirements-refiner, channel-specialist-google-ads, feasibility-guide, qa-ac-reviewer. Each agent has `agent.md` (instructions and steps) and `manifest.yaml` (version, project types, description).
+Single-role definitions: tech-lead, backend-engineer, devops-engineer, qa-tester, frontend-engineer, data-engineers, integration-tester, idea-shaper, requirements-refiner, channel-specialist-google-ads, feasibility-guide, qa-ac-reviewer. Each agent has `agent.md` (instructions, steps, and **Skills to equip by context**) and `manifest.yaml` (version, project types, description).
 
+- **Role-only, no hardcoded tools:** Agents never reference MCP or tool names directly. All issue/PR/board/Confluence/AWS operations are done via **skills** (e.g. github-issue-operations, github-pr-operations, confluence-fetch, aws-resource-discovery).
 - **Invoked by workflows** in sequence (see [workflows/README.md](workflows/README.md)).
-- **Grouped by bundles** by project type (backend, frontend, data-engineering, devops).
+- **Grouped by bundles** by project type (backend, frontend, data-engineering, devops). Bundles include the interaction and domain skills agents need.
 
 ### Bundles ([bundles/](bundles/))
 
@@ -122,7 +124,7 @@ flowchart LR
 
 Implement backend (and infra if [ops]), then after deploy run integration-tester against deployed AWS services (Cognito, API Gateway, Lambda).
 
-**Assets:** devops-engineer, backend-engineer, integration-tester (skills: aws-cognito-integration-check, aws-api-gateway-integration-check, aws-lambda-integration-check).
+**Assets:** devops-engineer, backend-engineer, integration-tester. Agents use skills for all GitHub/Confluence/AWS interactions; ensure interaction skills (e.g. github-issue-operations, github-pr-operations) and integration-check skills (aws-cognito-integration-check, aws-api-gateway-integration-check, aws-lambda-integration-check) are available via bundle or install.
 
 **Inputs:** owner, repo, parent_issue_number, target_repo, region, environment; optional: ops_first, base_url.
 
@@ -212,7 +214,7 @@ flowchart LR
 
 Single step: run frontend-engineer with an approved issue and frontend spec to generate frontend via Lovable MCP and open a PR.
 
-**Assets:** frontend-engineer (uses Lovable MCP; skill: lovable-prompts from frontend bundle).
+**Assets:** frontend-engineer (skill: lovable-prompts; all issue/PR/Confluence interactions via skills).
 
 **Inputs:** issue_reference, frontend_specification, api_contracts; optional: target_repo.
 

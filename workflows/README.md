@@ -4,9 +4,9 @@ Workflows are multi-step, multi-agent sequences that standardize common processe
 
 ## Relation to agents and bundles
 
-- **Agents** define a single role (e.g. tech-lead, backend-engineer). Workflows **invoke** agents in sequence.
+- **Agents** define a single role (e.g. tech-lead, backend-engineer). Workflows **invoke** agents in sequence. Agents are role-only and use **skills** for all GitHub, Confluence, and AWS interactions (issues, PRs, project board, discovery); ensure the interaction skills used by each agent are available (e.g. via bundle or install).
 - **Bundles** group agents, rules, and skills by project type (backend, data-engineering, devops, frontend). Workflows **use** those agents; they do not replace bundles.
-- **Rules** and **skills** are applied when an agent runs (per agent definition); workflows only specify which agent runs at each step.
+- **Rules** and **skills** are applied when an agent runs (per agent definition); workflows only specify which agent runs at each step. Do not hardcode tool or MCP names in workflow docs.
 
 ## How to reference workflows in Cursor
 
@@ -36,4 +36,6 @@ No runner implementation lives in this registry; only declarative workflow defin
 | `data-engineering-delivery` | Implement data work; coordinate with backend/devops when same parent has [dev]/[ops]. |
 | `frontend-delivery` | Single-step: run frontend-engineer with issue and frontend spec to produce a PR via Lovable. |
 | `idea-to-backlog` | Pipeline from problem framing (idea_shaper) through requirements, channel validation, feasibility, implementation (backend/data/devops), and QA; work tracking via DrivvenConsulting/projects/6. |
+| `idea-to-backlog-linear` | Same as idea-to-backlog; work tracking via Linear (Backlog → Ready). |
 | `backlog-to-ready` | From Backlog: refine with tech-lead, create applicable subissues ([dev], [ops], [qa], [int], [data], [front]), refine each with specialist agents, move parent to Ready. |
+| `backlog-to-ready-linear` | Same as backlog-to-ready; work tracking via Linear (Agents labels, parent moved to Ready). |
