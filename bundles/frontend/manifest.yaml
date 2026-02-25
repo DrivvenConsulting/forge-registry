@@ -16,12 +16,6 @@ items:
   - kind: skill
     id: github-pr-operations
   - kind: skill
-    id: linear-issue-operations
-  - kind: skill
-    id: linear-issue-status
-  - kind: skill
-    id: linear-pr-linking
-  - kind: skill
     id: confluence-fetch
   - kind: skill
     id: lovable-prompts
