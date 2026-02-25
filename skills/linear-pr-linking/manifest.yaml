@@ -1,7 +1,0 @@
-version: "1.0.0"
-project_types:
-  - backend
-  - data
-  - infra
-  - frontend
-description: Attach PR link to a Linear issue when a PR is opened or merged. Use when you need to link a pull request to the work item (sub-issue) that implemented it.
