@@ -1,7 +1,0 @@
-version: "1.0.0"
-project_types:
-  - backend
-  - data
-  - infra
-  - frontend
-description: Create sub-issues with Agents labels and link them to a parent. Use when you need to create sub-issues under a parent, each assigned to an agent via Agents label.
