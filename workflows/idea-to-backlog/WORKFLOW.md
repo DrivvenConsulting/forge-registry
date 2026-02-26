@@ -1,6 +1,7 @@
 ---
 
 ## name: WORKFLOW
+
 model: inherit
 
 # Agent Workflow
@@ -32,7 +33,7 @@ flowchart LR
 
 - **Project:** [DrivvenConsulting/projects/6](https://github.com/orgs/DrivvenConsulting/projects/6)
 - **Designated repo for work items:** [DrivvenConsulting/adlyze](https://github.com/DrivvenConsulting/adlyze). Create all feature-tracking issues in this repo; do not create them in the current (product-context) repository.
-- When creating issues: use the github-issue-creation-standards skills to create the issue in **DrivvenConsulting/adlyze** and add it to project 6 so it appears on the board.
+- When creating issues: use the .cursor/skills/github-issue-creation-standards skills to create the issue in **DrivvenConsulting/adlyze** and add it to project 6 so it appears on the board.
 
 Project columns:
 
