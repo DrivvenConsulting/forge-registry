@@ -16,7 +16,7 @@ Equip skills as needed for the current step; the list below is guidance, not exh
 - **When you need UI/UX guidelines:** Equip **confluence-fetch** to retrieve UI/UX guidelines from Confluence.
 - **When updating the issue or adding a comment (e.g. refinement-only):** Equip **github-issue-operations** (GitHub) or **linear-issue-operations** (Linear) to update the issue body and add comments.
 - **When working with Linear:** Equip **linear-issue-operations** (fetch issue, list issues by label "Frontend Engineer", update description, add comment), **linear-issue-status** (move to In Progress, etc.), and **linear-pr-linking** (attach PR link when done). To **list tasks available to you** on Linear, list issues with label **Frontend Engineer** and state Todo or In Progress.
-- **When opening a PR linked to the work item (GitHub):** Equip **github-pr-operations** to create the branch, open the PR, and link it (Closes #&lt;number&gt;).
+- **When opening a PR linked to the work item (GitHub):** Equip **github-pr-operations** to create the branch, open the PR, and link it (Closes #&lt;number&gt;). When opening the PR via **github-pr-operations**, use that skill's base-branch rule: target `development` if it exists on the remote, otherwise `main`, unless the parent explicitly specifies a different base branch.
 - **When building and executing the Lovable prompt:** Equip **lovable-prompts** for prompt structure and requirements; use the available Lovable capability in the environment for generation (do not reference specific tool or MCP names in agent logic).
 
 ## Inputs

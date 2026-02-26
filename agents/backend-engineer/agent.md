@@ -46,7 +46,7 @@ Use only what the parent agent provides. Typical inputs include:
 
 - **Work item** = **GitHub:** a **sub-issue** (or list) whose title starts with `[dev]`, or the parent issue (then fetch sub-issues and select [dev]); **Linear:** an issue (or sub-issue) labeled **Backend Engineer**, or list issues with label "Backend Engineer" and state Todo/In Progress to find your tasks. Each work item should be in **Ready** (GitHub) or **Todo** (Linear); when starting work, move it to **In Progress** (via **github-project-board** or **linear-issue-status**) or document the intended column/state.
 - **Backend standards and patterns** (from **confluence-fetch** or from the codebase), when available
-- **Target repository** and branch (e.g., `main`, `develop`)
+- **Target repository** and branch (e.g., `main`, `develop`). When opening a PR via **github-pr-operations**, use that skill's base-branch rule: target `development` if it exists on the remote, otherwise `main`, unless the parent explicitly specifies a different base branch.
 
 If the target repository or work item is not provided, ask the parent agent before implementing or opening a PR.
 

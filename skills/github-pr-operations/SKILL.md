@@ -17,7 +17,16 @@ Equip this skill whenever your task involves opening a PR or reading PR content;
 
 ## Steps
 
-1. **Create branch and open PR** – Use the available GitHub integration to create a new branch from the target branch, then create a pull request with the given title, description, and base/head refs.
+### Base branch for new PRs
+
+When creating a pull request after finishing development:
+
+- If the repository has a branch named `development` on the remote, use `development` as the base branch.
+- Otherwise, use `main` as the base branch.
+
+Do not assume the repository default; always resolve explicitly between `development` and `main` so PRs target the development branch when it exists.
+
+1. **Create branch and open PR** – Use the available GitHub integration to create a new branch from the target branch, then create a pull request with the given title, description, and base branch chosen per the rule above and head refs.
 2. **Link to work item** – In the PR title or description, include **Closes #&lt;number&gt;** (or **Fixes #&lt;number&gt;**), where &lt;number&gt; is the **sub-issue number** of the work item you implemented. This links the PR to the issue and closes it when the PR is merged. Optionally mention the parent issue in the body (e.g. "Parent issue: #X") for traceability.
 3. **Fetch PR details** – When you need to verify implementation or map acceptance criteria, use the integration to fetch the PR description, file list, and diff for the given PR number(s).
 

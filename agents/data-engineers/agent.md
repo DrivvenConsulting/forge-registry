@@ -34,7 +34,7 @@ Use only what the parent agent provides. Typical inputs include:
 
 - **Work item** = **GitHub:** sub-issue whose title starts with `[data]`, or parent issue (then fetch sub-issues and select [data]); **Linear:** issue (or sub-issue) labeled **Data Engineer**, or list issues with label "Data Engineer" and state Todo/In Progress to find your tasks. Work item in **Ready** (GitHub) or **Todo** (Linear); when starting work, move to **In Progress** (via **github-project-board** or **linear-issue-status**) or document the intended column/state.
 - **Data architecture standards** from **confluence-fetch**, when available
-- **Target repository** and branch (e.g., `main`, `develop`)
+- **Target repository** and branch (e.g., `main`, `develop`). When opening a PR via **github-pr-operations**, use that skill's base-branch rule: target `development` if it exists on the remote, otherwise `main`, unless the parent explicitly specifies a different base branch.
 
 If the target repository or work item is not provided, ask the parent agent before implementing or opening a PR.
 
