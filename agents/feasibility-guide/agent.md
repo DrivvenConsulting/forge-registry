@@ -57,7 +57,7 @@ If the target repository or work item is not provided, ask the parent agent befo
    Populate the required JSON (schema below) with technical_feasibility, data_considerations, dependencies, and blocker_reason (if blocked). Write it to **`artifacts/feature-definitions/<feature_name>/technical-feasibility.json`** (parent supplies `<feature_name>`). This JSON is your primary output.
 
 8. **Update the work item with the assessment**  
-   Use **github-issue-operations** (GitHub) or **linear-issue-operations** (Linear) to append (or add as a comment) the **Technical Feasibility** section to the work item, e.g. generated from the JSON. Do not change user stories or acceptance criteria; only add the assessment.
+   Use **github-issue-operations** (GitHub) or **linear-issue-operations** (Linear) to append (or add as a comment) a **human-readable** **Technical Feasibility** section to the work item. This section must be **Markdown only**, derived from the JSON (e.g. feasibility outcome, data considerations, dependencies, blocker reason). **Do not post raw JSON or paste the contents of `technical-feasibility.json` on the issue**; only a prose/Markdown summary is allowed. Do not change user stories or acceptance criteria; only add the assessment.
 
 9. **Update project column / state**  
    - If **approved**: **GitHub:** Use **github-project-board** to move the work item to **Ready**. **Linear:** Use **linear-issue-status** to set the work item state to **Todo** (Ready). If the integration does not support updates, document in the work item body that the intended column/state is **Ready**.  
@@ -67,7 +67,7 @@ If the target repository or work item is not provided, ask the parent agent befo
 
 ### Primary output: technical feasibility JSON
 
-Produce the **technical feasibility JSON** as your primary output. Write it to **`artifacts/feature-definitions/<feature_name>/technical-feasibility.json`**. Also update the work item with the assessment and project column. Return the JSON in your response.
+Produce the **technical feasibility JSON** as your primary output. Write it to **`artifacts/feature-definitions/<feature_name>/technical-feasibility.json`**. Also update the work item with a **human-readable** **Technical Feasibility** section (Markdown, derived from the JSON) and project column. **Do not post the raw `technical-feasibility.json` (or any raw JSON) on the issue**; only a prose/Markdown summary is allowed. Return the JSON in your response.
 
 Schema:
 

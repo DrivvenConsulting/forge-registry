@@ -2,6 +2,8 @@ Run idea-to-backlog pipeline: idea → requirements → channel validation → f
 
 Run the workflow with id **idea-to-backlog**.
 
+When updating the GitHub issue with channel or technical feasibility, add only human-readable Markdown summaries to the issue; do not comment or paste raw JSON on the issue.
+
 Follow the execution policy:
 
 1. **Plan mode first:** Read the workflow definition from `.cursor/workflows/idea-to-backlog/WORKFLOW.md`. Present the plan (steps and inputs from that file). Do not execute any step until I confirm the plan.
