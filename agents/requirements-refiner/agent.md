@@ -14,7 +14,7 @@ The parent agent will pass the problem statement, **feature name** (snake_case s
 Equip skills as needed for the current step; the list below is guidance, not exhaustive.
 
 - **When you need existing product guidelines:** Equip **confluence-fetch** to retrieve relevant product guidelines when the parent agent has not already supplied them.
-- **When creating the work item (GitHub):** Equip **github-issue-operations** to create the issue and populate the body from the JSON; **github-project-board** to move the new issue to Backlog (or document in the work item body that the intended column is Backlog if the integration cannot update the board).
+- **When creating the work item (GitHub):** Equip **github-issue-creation-standards** in addition to **github-issue-operations** and **github-project-board** to create the issue and populate the body from the JSON; **github-project-board** to move the new issue to Backlog (or document in the work item body that the intended column is Backlog if the integration cannot update the board).
 - **When creating the work item (Linear):** Equip **linear-issue-operations** to create the issue in the team/project (e.g. Drivven, Adlyze) and populate the description from the JSON; **linear-issue-status** to set the new issue state to **Backlog** (or document in the work item body if the integration cannot update the state).
 
 ## Goal
@@ -53,7 +53,7 @@ If the target project or feature name is not provided, ask the parent agent befo
    Populate the issue definition JSON (schema below) with title, description, user stories, acceptance criteria, assumptions, and references. Write it to **`artifacts/feature-definitions/<feature_name>/github_issue.json`** (parent supplies `<feature_name>`).
 
 7. **Create the work item from the JSON**  
-   **GitHub:** Use **github-issue-operations** to create the work item in the designated repo (e.g. for DrivvenConsulting/projects/6). Populate the body from the JSON (description, user stories, acceptance criteria, assumptions, references). **Linear:** Use **linear-issue-operations** to create the work item in the designated team and project (e.g. Drivven, Adlyze). Populate the description from the JSON. If the repo or project uses a template, align with it; otherwise use the structure from the JSON.
+   **GitHub:** When creating the issue on GitHub, follow **github-issue-creation-standards**: use the five body sections (Description, User Stories, Acceptance Criteria, Assumptions, References), Issue type **Feature** (parent), no implementation labels for the parent, Milestone **MVP**, Status **Backlog**, Assignee **JnsFerreira**. Use **github-issue-operations** to create the work item in the designated repo (e.g. for DrivvenConsulting/projects/6) and populate the body from the JSON with those five sections (do not post raw JSON on the issue). Use the skill as the single source of truth; do **not** use title prefixes. If the integration cannot set project fields (Issue type, Status) or assignee, add a short note in the issue body (e.g. "Issue type: Feature; Status: Backlog; Assignee: JnsFerreira") so a human or script can set them. **Linear:** Use **linear-issue-operations** to create the work item in the designated team and project (e.g. Drivven, Adlyze). Populate the description from the JSON. If the repo or project uses a template, align with it; otherwise use the structure from the JSON.
 
 8. **Set project column / state**  
    **GitHub:** Use **github-project-board** to set the work item's column to **Backlog** when the integration supports it. **Linear:** Use **linear-issue-status** to set the work item's state to **Backlog** when the integration supports it. Otherwise document in the work item body or artifact that the intended column/state is **Backlog** so a human or parent agent can move it. **Next step in workflow:** channel validation (e.g. channel_specialist_google_ads), then technical feasibility (feasibility_guide).
@@ -89,3 +89,4 @@ Schema:
 - Acceptance criteria must be testable (someone can verify yes/no).
 - Do not add implementation or technical design unless the parent agent explicitly asks.
 - If the repo has a pull request or issue template, use or align with it and note any differences.
+- When creating a GitHub issue, the created issue must conform to **github-issue-creation-standards** (body sections, Issue type Feature, milestone, status, assignee, no title prefixes).
