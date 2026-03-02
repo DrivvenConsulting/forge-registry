@@ -4,4 +4,4 @@ project_types:
   - product
   - data
   - infra
-description: Produce a feedback report from a deployed feature: metrics vs success criteria, flagged issues, and improvement opportunities as raw ideas for Phase 1.
+description: Produce a feedback report from a deployed feature
