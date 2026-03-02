@@ -1,0 +1,8 @@
+version: "1.0.0"
+project_types:
+  - product
+  - backend
+  - frontend
+  - data
+  - infra
+description: Create and manage GitHub issues and subtasks for planning (Phase 2). Use github-issue-operations and github-issue-creation-standards when creating.

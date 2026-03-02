@@ -27,7 +27,7 @@ Follow in order. Use AWS APIs (e.g. GetRestApi, GetStage, GetMethod, TestInvokeM
 3. **Integration:** For each critical route, confirm integration target (Lambda ARN or URI); for Lambda proxy, ensure no conflicting response mapping.
 4. **Request validation:** If configured, verify required params/body and test with invalid request to get 400.
 5. **Auth (Cognito JWT):** If authorizer is attached, obtain a valid ID/access token from Cognito (e.g. from aws-cognito-integration-check output); call TestInvokeAuthorizer (REST) or send request with `Authorization` header and check 200 vs 401; validate claims (iss, aud, exp) match authorizer config.
-6. **Live request:** Execute real request (Postman MCP preferred if available, else HTTP client) to the stage URL; assert status, body, and headers; optionally compare with TestInvokeMethod result.
+6. **Live request:** Execute real request (Postman MCP preferred if available, else HTTP client) to the stage URL; assert status, body, and headers; optionally compare with TestInvokeMethod result. You can also use `scripts/api-gateway-smoke-test.sh` for basic listing and a simple `curl` against a chosen path.
 7. **CORS:** If documented, verify OPTIONS and expected CORS headers for browser use.
 
 ## Output
@@ -44,3 +44,4 @@ Report structured results per route/authorizer:
 - [Use the API Gateway console to test a REST API method](https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-test-method.html)
 - [Control access to HTTP APIs with JWT authorizers](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-jwt-authorizer.html)
 - [Troubleshooting JWT authorizers](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-troubleshooting-jwt.html)
+- Local helper script and core CLI commands: see `references/REFERENCE.md`

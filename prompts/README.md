@@ -18,6 +18,19 @@ Running a workflow means:
 
 ## Index
 
+### Spec-driven phase workflows (canonical)
+
+| Prompt | Workflow id | Description |
+|--------|-------------|-------------|
+| [workflows/discovery.md](workflows/discovery.md) | `discovery` | Phase 1: raw idea → spec. Plan mode + required inputs first. |
+| [workflows/planning.md](workflows/planning.md) | `planning` | Phase 2: spec → GitHub issues. Plan mode + required inputs first. |
+| [workflows/implementation.md](workflows/implementation.md) | `implementation` | Phase 3: issue(s) → code/infra. Plan mode + required inputs first. |
+| [workflows/testing-validation.md](workflows/testing-validation.md) | `testing-validation` | Phase 4: implementation + spec → QA report. Plan mode + required inputs first. |
+| [workflows/feedback-monitoring.md](workflows/feedback-monitoring.md) | `feedback-monitoring` | Phase 5: deployed feature → feedback report. Plan mode + required inputs first. |
+| [workflows/full-cycle.md](workflows/full-cycle.md) | `full-cycle` | Phases 1→5: idea → feedback report. Plan mode + required inputs first. |
+
+### Other workflows
+
 | Prompt | Workflow id | Description |
 |--------|-------------|-------------|
 | [run-workflow.md](run-workflow.md) | (template) | Generic: run any workflow by id; substitute WORKFLOW_ID. Plan mode + required inputs first. |

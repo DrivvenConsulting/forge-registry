@@ -1,14 +1,18 @@
 version: "1.0.0"
 project_types:
   - data
-description: Data pipelines and lakehouse — data-engineers agent, foundation, S3 (Delta), and DynamoDB.
+description: Data pipelines and lakehouse — data-engineer agent, foundation, S3 (Delta), and DynamoDB.
 items:
   - kind: agent
-    id: data-engineers
+    id: data-engineer
   - kind: agent
     id: devops-engineer
   - kind: agent
     id: qa-tester
+  - kind: agent
+    id: monitoring
+  - kind: agent
+    id: product-owner
   - kind: rule
     id: foundation-global-principles
   - kind: rule
@@ -39,6 +43,8 @@ items:
     id: aws-lambda
   - kind: rule
     id: aws-secrets-manager
+  - kind: rule
+    id: spec-driven-gap-handling
   - kind: skill
     id: github-issue-operations
   - kind: skill
@@ -51,13 +57,51 @@ items:
     id: delta-lake-patterns
   - kind: skill
     id: terraform-github-actions
+  - kind: skill
+    id: spec-writing
+  - kind: skill
+    id: problem-shaping
+  - kind: skill
+    id: feasibility-assessment
+  - kind: skill
+    id: aws-context
+  - kind: skill
+    id: aws-resource-discovery
+  - kind: skill
+    id: github-issue
+  - kind: skill
+    id: api-implementation
+  - kind: skill
+    id: terraform
+  - kind: skill
+    id: qa-validation
+  - kind: skill
+    id: aws-cli
+  - kind: skill
+    id: monitoring
   - kind: workflow
-    id: data-engineering-delivery
+    id: discovery
   - kind: workflow
-    id: idea-to-backlog
+    id: planning
+  - kind: workflow
+    id: implementation
+  - kind: workflow
+    id: testing-validation
+  - kind: workflow
+    id: feedback-monitoring
+  - kind: workflow
+    id: full-cycle
   - kind: prompt
     id: run-workflow
   - kind: prompt
-    id: workflows/data-engineering-delivery
+    id: workflows/discovery
   - kind: prompt
-    id: workflows/idea-to-backlog
+    id: workflows/planning
+  - kind: prompt
+    id: workflows/implementation
+  - kind: prompt
+    id: workflows/testing-validation
+  - kind: prompt
+    id: workflows/feedback-monitoring
+  - kind: prompt
+    id: workflows/full-cycle

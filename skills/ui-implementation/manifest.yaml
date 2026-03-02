@@ -1,0 +1,4 @@
+version: "1.0.0"
+project_types:
+  - frontend
+description: Build UI and frontend from specs using lovable-prompts and the environment's frontend-generation capability.

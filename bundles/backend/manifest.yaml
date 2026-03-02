@@ -9,6 +9,10 @@ items:
     id: devops-engineer
   - kind: agent
     id: qa-tester
+  - kind: agent
+    id: monitoring
+  - kind: agent
+    id: product-owner
   - kind: rule
     id: foundation-global-principles
   - kind: rule
@@ -41,6 +45,8 @@ items:
     id: infrastructure-terraform
   - kind: rule
     id: aws-ecs
+  - kind: rule
+    id: spec-driven-gap-handling
   - kind: skill
     id: github-issue-operations
   - kind: skill
@@ -53,21 +59,57 @@ items:
     id: backend-task-breakdown
   - kind: skill
     id: terraform-github-actions
+  - kind: skill
+    id: spec-writing
+  - kind: skill
+    id: problem-shaping
+  - kind: skill
+    id: feasibility-assessment
+  - kind: skill
+    id: aws-context
+  - kind: skill
+    id: aws-resource-discovery
+  - kind: skill
+    id: github-issue
+  - kind: skill
+    id: api-implementation
+  - kind: skill
+    id: terraform
+  - kind: skill
+    id: qa-validation
+  - kind: skill
+    id: aws-cli
+  - kind: skill
+    id: monitoring
+  - kind: skill
+    id: aws-cognito-integration-check
+  - kind: skill
+    id: aws-api-gateway-integration-check
+  - kind: skill
+    id: aws-lambda-integration-check
   - kind: workflow
-    id: backend-full-cycle
+    id: discovery
   - kind: workflow
-    id: backend-implement-and-integration-test
+    id: planning
   - kind: workflow
-    id: full-story-delivery
+    id: implementation
   - kind: workflow
-    id: idea-to-backlog
+    id: testing-validation
+  - kind: workflow
+    id: feedback-monitoring
+  - kind: workflow
+    id: full-cycle
   - kind: prompt
     id: run-workflow
   - kind: prompt
-    id: workflows/backend-full-cycle
+    id: workflows/discovery
   - kind: prompt
-    id: workflows/backend-implement-and-integration-test
+    id: workflows/planning
   - kind: prompt
-    id: workflows/full-story-delivery
+    id: workflows/implementation
   - kind: prompt
-    id: workflows/idea-to-backlog
+    id: workflows/testing-validation
+  - kind: prompt
+    id: workflows/feedback-monitoring
+  - kind: prompt
+    id: workflows/full-cycle

@@ -1,0 +1,8 @@
+version: "1.0.0"
+project_types:
+  - product
+  - backend
+  - frontend
+  - data
+  - infra
+description: Gap handling protocol and human review checkpoints for the AI Spec-Driven Development Framework (Phases 1–5).

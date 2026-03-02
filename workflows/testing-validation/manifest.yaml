@@ -1,0 +1,8 @@
+version: "1.0.0"
+project_types:
+  - backend
+  - frontend
+  - data
+  - infra
+  - product
+description: Phase 4. Issue(s) + implementation + spec → QA report; human sign-off before deployment.

@@ -1,0 +1,7 @@
+version: "1.0.0"
+project_types:
+  - backend
+  - data
+  - infra
+  - product
+description: Validate implementation against spec and acceptance criteria; produce pass/fail per criterion and a recommendation (Approve / Fix / Escalate).

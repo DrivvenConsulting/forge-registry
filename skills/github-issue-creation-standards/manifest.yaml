@@ -1,0 +1,8 @@
+version: "1.0.0"
+project_types:
+  - product
+  - backend
+  - frontend
+  - data
+  - infra
+description: Defines how GitHub issues must be created for DrivvenConsulting project 6: body sections, issue type, labels, milestone, status, and assignee.

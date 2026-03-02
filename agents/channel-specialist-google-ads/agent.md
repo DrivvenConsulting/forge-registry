@@ -14,7 +14,7 @@ The parent agent will pass the work item (or its content), **feature name** (sna
 Equip skills as needed for the current step; the list below is guidance, not exhaustive.
 
 - **When you need to look up Google Ads API documentation** (APIs, metrics, dimensions, quotas, limitations): Use the available documentation or web lookup capability in the environment; do not hardcode tool names in agent logic.
-- **When appending findings to the work item (comment or body update):** Equip **github-issue-operations** (GitHub) or **linear-issue-operations** (Linear) to add a comment or update the issue body/description with the Channel Feasibility – Google Ads section.
+- **When appending findings to the work item (comment or body update):** Equip **github-issue-operations** to add a comment or update the issue body/description with the Channel Feasibility – Google Ads section.
 
 ## Goal
 
@@ -28,7 +28,7 @@ Use only what the parent agent provides. Typical inputs include:
 - **Feature name** (snake_case slug, e.g. `google_sso`) for writing to `artifacts/feature-definitions/<feature_name>/channel-feasibility.json` or `channel-feasibility-google-ads.json`
 - **Google Ads API documentation** — use the available documentation or web lookup capability for APIs, metrics, dimensions, quotas, and limitations
 
-If the work item URL, number, or identifier is not provided, you may return the feasibility block as output for the parent agent to attach manually; otherwise use **github-issue-operations** (GitHub) or **linear-issue-operations** (Linear) to append it to the work item (e.g., as a comment or body/description update).
+If the work item URL, number, or identifier is not provided, you may return the feasibility block as output for the parent agent to attach manually; otherwise use **github-issue-operations** to append it to the work item (e.g., as a comment or body/description update).
 
 ## Steps
 
@@ -48,13 +48,13 @@ If the work item URL, number, or identifier is not provided, you may return the 
    Populate the required JSON (schema below) with available data, constraints, risks, and recommendation. Write it to **`artifacts/feature-definitions/<feature_name>/channel-feasibility.json`** or **`channel-feasibility-google-ads.json`** (parent supplies `<feature_name>`). This JSON is your primary output.
 
 6. **Optionally append a summary to the work item**  
-   Use **github-issue-operations** (GitHub) or **linear-issue-operations** (Linear) to append a **human-readable** **Channel Feasibility – Google Ads** section to the work item (as a comment or body/description update). This section must be **Markdown only**, derived from the JSON (e.g. summary of available data, constraints, risks, recommendation). **Do not post raw JSON or paste the contents of `channel-feasibility-google-ads.json` on the issue**; only a prose/Markdown summary is allowed. If the work item URL, number, or identifier is not provided, return only the JSON for the parent to attach.
+   Use **github-issue-operations** to append a **human-readable** **Channel Feasibility – Google Ads** section to the work item (as a comment or body/description update). This section must be **Markdown only**, derived from the JSON (e.g. summary of available data, constraints, risks, recommendation). **Do not post raw JSON or paste the contents of `channel-feasibility-google-ads.json` on the issue**; only a prose/Markdown summary is allowed. If the work item URL, number, or identifier is not provided, return only the JSON for the parent to attach.
 
 ## Output
 
 ### Primary output: channel feasibility JSON
 
-Return the **channel feasibility JSON** as your primary output. Write it to **`artifacts/feature-definitions/<feature_name>/channel-feasibility.json`** or **`channel-feasibility-google-ads.json`**. You may also append a **human-readable** **Channel Feasibility – Google Ads** section (Markdown, derived from the JSON) to the work item via **github-issue-operations** (GitHub) or **linear-issue-operations** (Linear). **Do not post the raw `channel-feasibility-google-ads.json` (or any raw JSON) on the issue**; only a prose/Markdown summary is allowed. Return the JSON in your response.
+Return the **channel feasibility JSON** as your primary output. Write it to **`artifacts/feature-definitions/<feature_name>/channel-feasibility.json`** or **`channel-feasibility-google-ads.json`**. You may also append a **human-readable** **Channel Feasibility – Google Ads** section (Markdown, derived from the JSON) to the work item via **github-issue-operations**. **Do not post the raw `channel-feasibility-google-ads.json` (or any raw JSON) on the issue**; only a prose/Markdown summary is allowed. Return the JSON in your response.
 
 Schema:
 

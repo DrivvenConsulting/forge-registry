@@ -9,7 +9,7 @@ Teaches implementer agents how to get **their** tasks from a parent issue by fil
 
 ## When to Use
 
-- You are an implementer agent (backend-engineer, frontend-engineer, data-engineers, devops-engineer, qa-tester, integration-tester, or internal) and need to list work items assigned to you.
+- You are an implementer agent (backend-engineer, frontend-engineer, data-engineer, devops-engineer, qa-tester, or internal) and need to list work items assigned to you.
 - You have a parent issue (owner, repo, issue number) and need to find which of its sub-issues are yours to implement.
 - The workflow uses labels (backend, frontend, data-engineering, devops, internal, quality-assurance) to assign tasks; do **not** rely on title prefixes like [dev] or [data].
 
@@ -27,10 +27,10 @@ Equip this skill together with **github-issue-operations** when your role is to 
 |---------------------|------------------------|
 | **backend**         | backend-engineer       |
 | **frontend**        | frontend-engineer      |
-| **data-engineering**| data-engineers         |
+| **data-engineering**| data-engineer         |
 | **devops**          | devops-engineer        |
 | **internal**        | internal / other       |
-| **quality-assurance** | qa-tester, integration-tester (when applicable) |
+| **quality-assurance** | qa-tester (AC or integration validation mode) |
 
 When you are the data engineer agent, filter for sub-issues with label **data-engineering**. When you are the backend engineer, filter for **backend**. Do not filter by title prefix.
 

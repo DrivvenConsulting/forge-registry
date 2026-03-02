@@ -1,0 +1,8 @@
+version: "1.0.0"
+project_types:
+  - product
+  - backend
+  - frontend
+  - data
+  - infra
+description: Turn a raw idea into a clear problem statement and context alignment (feature-definition.json). Use when only a problem statement is needed before full discovery or backlog refinement.

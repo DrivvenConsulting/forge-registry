@@ -21,11 +21,11 @@ Ensure Lambda is runnable and correctly integrated.
 
 Follow in order. Use AWS APIs (e.g. GetFunction, Invoke, GetPolicy), CLI, or SDK as available.
 
-1. **Existence and config:** Describe function (e.g. GetFunction); confirm runtime, handler, timeout, memory, env vars; note role ARN.
+1. **Existence and config:** Describe function (e.g. GetFunction); confirm runtime, handler, timeout, memory, env vars; note role ARN. You can use `scripts/lambda-validate.sh` in this skill to automate the `get-function` call and summarize key fields.
 2. **Permissions:** Confirm resource-based policy allows API Gateway (or other trigger) to invoke; confirm execution role has required permissions (e.g. CloudWatch, downstream services).
-3. **Direct invoke:** Invoke with a test event (e.g. API Gateway proxy event JSON); assert success and expected response shape (e.g. `statusCode`, `body` for proxy).
+3. **Direct invoke:** Invoke with a test event (e.g. API Gateway proxy event JSON); assert success and expected response shape (e.g. `statusCode`, `body` for proxy). `scripts/lambda-validate.sh` can invoke a function with `assets/lambda-test-event.json` or a custom payload.
 4. **Via API Gateway:** If applicable, call the deployed API endpoint and assert response; confirms integration + IAM end-to-end.
-5. **CloudWatch:** Optionally check recent log streams for the function to confirm execution and absence of runtime errors.
+5. **CloudWatch:** Optionally check recent log streams for the function to confirm execution and absence of runtime errors (also supported by `scripts/lambda-validate.sh` when `SHOW_LOGS=true`).
 
 ## Output
 
@@ -40,3 +40,4 @@ Report structured results for each check:
 
 - [How to test serverless functions and applications](https://docs.aws.amazon.com/lambda/latest/dg/testing-guide.html)
 - [Best practices for testing serverless applications](https://docs.aws.amazon.com/prescriptive-guidance/latest/serverless-application-testing/best-practices.html)
+- Local helper script and core CLI commands: see `references/REFERENCE.md`

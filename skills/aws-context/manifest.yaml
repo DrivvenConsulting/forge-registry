@@ -1,0 +1,7 @@
+version: "1.0.0"
+project_types:
+  - product
+  - backend
+  - data
+  - infra
+description: Validate infrastructure assumptions before creating subtasks. Read-only; use when planning work that involves AWS.
