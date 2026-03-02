@@ -5,4 +5,4 @@ project_types:
   - frontend
   - data
   - infra
-description: Produce the Phase 1 spec from a raw idea: functional requirements, technical constraints, edge cases, acceptance criteria, and success metrics.
+description: Produce the Phase 1 spec from a raw idea
