@@ -1,0 +1,7 @@
+version: "1.0.0"
+project_types:
+  - product
+  - backend
+  - data
+  - infra
+description: Phase 5 agent. Produces a feedback report from a deployed feature: metrics vs success criteria, flagged issues, and improvement opportunities as raw ideas for Phase 1.

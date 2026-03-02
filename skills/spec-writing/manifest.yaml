@@ -1,0 +1,8 @@
+version: "1.0.0"
+project_types:
+  - product
+  - backend
+  - frontend
+  - data
+  - infra
+description: Produce the Phase 1 spec from a raw idea: functional requirements, technical constraints, edge cases, acceptance criteria, and success metrics.

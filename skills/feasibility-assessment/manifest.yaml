@@ -1,0 +1,7 @@
+version: "1.0.0"
+project_types:
+  - product
+  - backend
+  - data
+  - infra
+description: Assess technical and data feasibility of a backlog work item against current architecture; produce technical-feasibility.json and update the work item with a Markdown summary; move to Ready or keep in Backlog.

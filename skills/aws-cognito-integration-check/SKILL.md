@@ -26,7 +26,7 @@ Follow in order. Use AWS APIs (e.g. DescribeUserPool, DescribeUserPoolClient, In
 2. **User Pool:** Describe User Pool; confirm status and policies (e.g. password policy, MFA if required).
 3. **App Client:** Describe App Client; verify ExplicitAuthFlows, supported identity providers, and (if OAuth) callback URLs and scopes.
 4. **Domain:** If applicable, confirm domain and JWKS URL (e.g. `https://cognito-idp.<region>.amazonaws.com/<userPoolId>/.well-known/jwks.json`) for JWT validation.
-5. **Auth smoke test:** Perform InitiateAuth (e.g. USER_PASSWORD_AUTH or USER_SRP_AUTH with test credentials); assert tokens in response (IdToken, AccessToken, RefreshToken); decode JWT and verify `iss`, `aud`/`client_id`, `exp` for use with API Gateway.
+5. **Auth smoke test:** Perform InitiateAuth (e.g. USER_PASSWORD_AUTH or USER_SRP_AUTH with test credentials); assert tokens in response (IdToken, AccessToken, RefreshToken); decode JWT and verify `iss`, `aud`/`client_id`, `exp` for use with API Gateway. You can use `scripts/cognito-validate.sh` to run a basic InitiateAuth flow when test credentials are available.
 6. **Token for API Gateway:** If API Gateway uses Cognito authorizer, use the IdToken (or AccessToken per authorizer config) in the next step of the integration-check flow (aws-api-gateway-integration-check); document token source (e.g. "Obtained via InitiateAuth for App Client X").
 
 ## Output
@@ -42,3 +42,4 @@ Report structured results:
 
 - [Authentication with Amazon Cognito user pools](https://docs.aws.amazon.com/cognito/latest/developerguide/authentication.html)
 - [Security best practices for Amazon Cognito user pools](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-security-best-practices.html)
+- Local helper script and core CLI commands: see `references/REFERENCE.md`

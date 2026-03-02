@@ -41,7 +41,11 @@ flowchart LR
 
 ### Agents ([agents/](agents/))
 
-Single-role definitions: tech-lead, backend-engineer, devops-engineer, qa-tester, frontend-engineer, data-engineers, integration-tester, idea-shaper, requirements-refiner, channel-specialist-google-ads, feasibility-guide, qa-ac-reviewer. Each agent has `agent.md` (instructions, steps, and **Skills to equip by context**) and `manifest.yaml` (version, project types, description).
+Single-role definitions: tech-lead, backend-engineer, devops-engineer, qa-tester, product-owner, frontend-engineer, data-engineer, requirements-refiner, channel-specialist-google-ads, and monitoring. Each agent has `agent.md` (instructions, steps, and **Skills to equip by context**) and `manifest.yaml` (version, project types, description).
+
+**Consolidated canonical roles:** QA and product responsibilities are consolidated into two role-only agents powered by skills:
+- **qa-tester** – Single QA role with three modes: AC validation (qa-validation), integration validation (aws-cli), and discovery-assisted (aws-resource-discovery). Use qa-tester for all Phase 4 verification and post-deploy integration checks.
+- **product-owner** – Single product role with three modes: problem shaping (problem-shaping), spec writing / Phase 1 (spec-writing), and feasibility assessment (feasibility-assessment). Use product-owner for Phase 1 discovery, idea shaping, and feasibility assessment.
 
 - **Role-only, no hardcoded tools:** Agents never reference MCP or tool names directly. All issue/PR/board/Confluence/AWS operations are done via **skills** (e.g. github-issue-operations, github-pr-operations, confluence-fetch, aws-resource-discovery).
 - **Invoked by workflows** in sequence (see [workflows/README.md](workflows/README.md)).
@@ -49,7 +53,7 @@ Single-role definitions: tech-lead, backend-engineer, devops-engineer, qa-tester
 
 ### Bundles ([bundles/](bundles/))
 
-Project-type presets: **backend**, **frontend**, **data-engineering**, **devops**, **product**, **project-team**. Each bundle’s `manifest.yaml` lists agents, rules, skills, workflows, and prompts by id. Installing a bundle gives a project the right agents, rules, and skills for that type; workflows then use those agents when run in that project. The **product** bundle is the single entry point for product-type projects: generate docs, refine issues, craft issues, and improve raw ideas (idea-shaper, requirements-refiner, feasibility-guide, qa-ac-reviewer, tech-lead, channel-specialist-google-ads, and supporting skills/workflows). The **project-team** bundle provides discovery and feasibility agents (idea-shaper, requirements-refiner, channel-specialist-google-ads, feasibility-guide, qa-ac-reviewer) and the idea-to-backlog workflow.
+Project-type presets: **backend**, **frontend**, **data-engineering**, **devops**, **product**, **project-team**. Each bundle’s `manifest.yaml` lists agents, rules, skills, workflows, and prompts by id. Installing a bundle gives a project the right agents, rules, and skills for that type; workflows then use those agents when run in that project. The **product** bundle is the single entry point for product-type projects: generate docs, refine issues, craft issues, and improve raw ideas (product-owner, requirements-refiner, qa-tester, tech-lead, channel-specialist-google-ads, and supporting skills/workflows). The **project-team** bundle provides product-owner, requirements-refiner, channel-specialist-google-ads, qa-tester, and the idea-to-backlog workflow.
 
 ### Prompts ([prompts/](prompts/))
 
@@ -59,9 +63,14 @@ Reusable prompts to run a workflow: a generic template ([run-workflow.md](prompt
 
 Coding and infrastructure standards (FastAPI, Terraform, AWS services, auth, Python quality, CI/CD, etc.). Each rule has `RULE.md` and a `manifest.yaml`. Rules are referenced by **bundles** (as `kind: rule`); when an agent runs, it follows the rules active in the project (e.g. from an installed bundle or `.cursor/rules/`).
 
+Key spec-driven rules:
+
+- **`foundation-global-principles`** – Always-on global engineering principles (simplicity, clarity, explicitness).
+- **`spec-driven-gap-handling`** – Gap-handling protocol and human checkpoints for Phases 1–5: never silently patch gaps; route spec gaps to Phase 1 and task gaps to Phase 2; enforce human sign-off in Phase 4 and human hotfix/new-feature decision in Phase 5.
+
 ### Workflows ([workflows/](workflows/))
 
-Multi-step definitions: each workflow has a `manifest.yaml` (inputs, outputs, plan mode) and `WORKFLOW.md` (steps, conditionals, how to run). Workflows list **which agents to run in order**; they do not reference bundles. All workflows use **plan mode first** and **required inputs before run**. See [workflows/README.md](workflows/README.md).
+Multi-step definitions: each workflow has a `manifest.yaml` (inputs, outputs, plan mode) and `WORKFLOW.md` (steps, conditionals, how to run). Workflows list **which agents to run in order**; they do not reference bundles. All workflows use **plan mode first** and **required inputs before run**. The **canonical spec-driven lifecycle** is one workflow per phase plus a full-cycle: `discovery` (Phase 1), `planning` (Phase 2), `implementation` (Phase 3), `testing-validation` (Phase 4), `feedback-monitoring` (Phase 5), and `full-cycle` (1→5). See [workflows/README.md](workflows/README.md) and [REFACTORING.md](REFACTORING.md).
 
 ---
 
@@ -69,9 +78,9 @@ Multi-step definitions: each workflow has a `manifest.yaml` (inputs, outputs, pl
 
 ### Path 1 – Prompt → Workflow → Agents
 
-1. User runs a prompt (e.g. copy-paste from `prompts/workflows/backend-full-cycle.md` or use an installed prompt).
-2. The prompt says: run workflow **backend-full-cycle** with plan mode and required inputs.
-3. The runner reads `.cursor/workflows/backend-full-cycle/WORKFLOW.md`, presents the plan (steps + inputs), and collects required inputs.
+1. User runs a prompt (e.g. copy-paste from `prompts/workflows/full-cycle.md` or use an installed prompt).
+2. The prompt says: run workflow **full-cycle** with plan mode and required inputs.
+3. The runner reads `.cursor/workflows/full-cycle/WORKFLOW.md`, presents the plan (steps + inputs), and collects required inputs.
 4. After the user confirms and inputs are provided, the runner executes the steps in order (e.g. devops-engineer if [ops] exist, then backend-engineer, then qa-tester).
 5. Each step invokes one agent. Rules and skills come from the project (e.g. from an installed bundle or `.cursor/rules` / `.cursor/skills`).
 
@@ -91,188 +100,159 @@ Multi-step definitions: each workflow has a `manifest.yaml` (inputs, outputs, pl
 
 ## Workflow diagrams
 
-For each workflow in [workflows/](workflows/), the diagram below shows the steps, agents, and conditionals. All workflows use **plan mode first** and **required inputs before run**.
+For each canonical workflow in [workflows/](workflows/), the diagrams below show the **agents**, **skills**, and **rules** involved. All of these workflows:
 
-### 1. `backend-full-cycle`
+- **Use plan mode first** and **require inputs before run**.
+- **Follow `spec-driven-gap-handling`** for gap routing and human checkpoints.
+- Are governed by **`foundation-global-principles`** plus any project-specific rules from installed bundles.
 
-Implement all [dev] (and [ops] if any) work for an already-refined parent issue and run QA verification.
+### 1. `discovery` (Phase 1)
 
-**Assets:** devops-engineer, backend-engineer, qa-tester.
+Turn a raw idea into a spec.
 
-**Inputs:** owner, repo, parent_issue_number, target_repo; optional: ops_first.
-
-**Conditionals:** Run devops-engineer first only when [ops] sub-issues exist and ops_first is true; otherwise start with backend-engineer.
+- **Agents:** `product-owner` (spec-writing mode)
+- **Key skills:** `spec-writing` (+ `confluence-fetch` optional)
+- **Key rules:** `foundation-global-principles`, `spec-driven-gap-handling`
 
 ```mermaid
 flowchart LR
-  Start([User: parent issue, target_repo])
-  Devops[devops-engineer]
-  Backend[backend-engineer]
-  QA[qa-tester]
-  Out([PRs for dev and ops, AC verification JSON])
+  Start([User: raw_idea + optional context])
+  PO[product-owner<br/>(spec-writing)]
+  Spec[Spec file<br/>(requirements + AC + success metrics)]
 
-  Start -->|"[ops] and ops_first"| Devops
-  Start -->|"no [ops]"| Backend
-  Devops --> Backend
-  Backend --> QA
-  QA --> Out
+  Start --> PO --> Spec
 ```
 
 ---
 
-### 2. `backend-implement-and-integration-test`
+### 2. `planning` (Phase 2)
 
-Implement backend (and infra if [ops]), then after deploy run integration-tester against deployed AWS services (Cognito, API Gateway, Lambda).
+Turn a spec into GitHub issues with subtasks mapped to acceptance criteria.
 
-**Assets:** devops-engineer, backend-engineer, integration-tester. Agents use skills for all GitHub/Confluence/AWS interactions; ensure interaction skills (e.g. github-issue-operations, github-pr-operations) and integration-check skills (aws-cognito-integration-check, aws-api-gateway-integration-check, aws-lambda-integration-check) are available via bundle or install.
-
-**Inputs:** owner, repo, parent_issue_number, target_repo, region, environment; optional: ops_first, base_url.
-
-**Conditional:** Run devops-engineer before backend-engineer when [ops] sub-issues exist.
+- **Agents:** Planning agent (e.g. `product-owner` or `requirements-refiner`)
+- **Key skills:** `github-issue`, `github-issue-operations`, `github-issue-creation-standards`, `github-sub-issue-linking`, `github-project-board`; `aws-context`, `aws-resource-discovery` (when infra is involved)
+- **Key rules:** `foundation-global-principles`, `spec-driven-gap-handling`
 
 ```mermaid
 flowchart LR
-  Start([User: parent issue, target_repo, region, environment])
-  Devops[devops-engineer]
-  Backend[backend-engineer]
-  Deploy[Deploy PRs]
-  Integration[integration-tester]
-  Out([PRs, integration test report])
+  Start([User: spec + owner/repo + optional project])
+  Infra{Spec involves infra/AWS?}
+  AWS[aws-context<br/>(aws-context + aws-resource-discovery)]
+  Planner[Planning agent<br/>(github-issue* skills)]
+  Issues[GitHub issues<br/>+ subtasks per AC]
 
-  Start -->|"[ops] exist"| Devops
-  Start -->|"no [ops]"| Backend
-  Devops --> Backend
-  Backend --> Deploy
-  Deploy --> Integration
-  Integration --> Out
+  Start --> Infra
+  Infra -- "yes" --> AWS --> Planner
+  Infra -- "no" --> Planner
+  Planner --> Issues
 ```
 
 ---
 
-### 3. `full-story-delivery`
+### 3. `implementation` (Phase 3)
 
-End-to-end: parent issue in Todo → refine → implement [ops] then [dev] → QA → optional post-deploy integration test.
+Implement one or more issues as code and infrastructure changes.
 
-**Assets:** tech-lead, devops-engineer, backend-engineer, qa-tester, integration-tester.
-
-**Inputs:** owner, repo, issue_number, target_repo; optional: run_integration_test.
-
-**Conditionals:** Skip devops-engineer if no [ops] sub-issues; skip integration-tester if run_integration_test is false.
+- **Agents:** Implementation agents (`backend-engineer`, `frontend-engineer`, `devops-engineer`)
+- **Key skills:** `api-implementation`, `ui-implementation`, `terraform`; `backend-task-breakdown`, `lovable-prompts`, `terraform-github-actions`; `github-issue-operations`, `github-pr-operations`
+- **Key rules:** `foundation-global-principles`, `spec-driven-gap-handling`
 
 ```mermaid
 flowchart LR
-  Start([User: owner, repo, issue_number, target_repo])
-  TechLead[tech-lead]
-  Devops[devops-engineer]
-  Backend[backend-engineer]
-  QA[qa-tester]
-  Integration[integration-tester]
-  Out([Sub-issues, PRs, AC verification, optional integration report])
+  Start([User: issue_ids + owner/repo + target_repo])
+  Scope[Fetch issues<br/>+ determine scope]
+  Impl[Implementation agents<br/>(backend/front/devops)]
+  Gap{Gap not covered<br/>by subtasks/spec?}
+  GapReport[[Gap report<br/>route back to Phase 1/2]]
+  PRs([PRs + infra changes<br/>linked to issues])
 
-  Start --> TechLead
-  TechLead -->|"[ops] exist"| Devops
-  TechLead -->|"no [ops]"| Backend
-  Devops --> Backend
-  Backend --> QA
-  QA -->|"run_integration_test"| Integration
-  QA -->|"no"| Out
-  Integration --> Out
+  Start --> Scope --> Impl --> Gap
+  Gap -- "yes" --> GapReport
+  Gap -- "no" --> PRs
 ```
 
 ---
 
-### 4. `data-engineering-delivery`
+### 4. `testing-validation` (Phase 4)
 
-Implement data work (pipelines, models, Delta Lake in S3); if the same parent has [dev] or [ops] sub-issues, coordinate with backend-engineer and/or devops-engineer per parent order.
+Validate implementation against the spec and produce a QA report.
 
-**Assets:** data-engineers; optionally backend-engineer, devops-engineer (documented coordination, not auto-invoked).
-
-**Inputs:** work_item_or_parent_issue, target_repo.
-
-**Conditionals:** Data-only: data-engineers only. Data + [dev]/[ops]: run data-engineers, then backend and/or devops in the order specified by the parent or team.
+- **Agents:** `qa-tester`
+- **Key skills:** `qa-validation`; `aws-cli`, `aws-cognito-integration-check`, `aws-api-gateway-integration-check`, `aws-lambda-integration-check`; `github-issue-operations`, `github-pr-operations`
+- **Key rules:** `foundation-global-principles`, `spec-driven-gap-handling` (including human sign-off before deployment)
 
 ```mermaid
 flowchart LR
-  Start([User: work item, target_repo])
-  DataEngineers[data-engineers]
-  Backend[backend-engineer]
-  Devops[devops-engineer]
-  OutData([PRs for data])
-  OutFull([PRs for data and optionally dev and ops])
+  Start([User: issue_ids + spec + implementation refs])
+  QASpec[qa-tester<br/>(qa-validation)]
+  QAInt[qa-tester<br/>(aws-cli integration checks)]
+  Report[QA report<br/>+ Approve / Fix / Escalate]
+  Human[Human sign-off<br/>before deployment]
 
-  Start --> DataEngineers
-  DataEngineers -->|"data only"| OutData
-  DataEngineers -->|"parent has [dev] or [ops]"| Backend
-  Backend -->|"per parent order"| Devops
-  Backend --> OutFull
-  Devops --> OutFull
+  Start --> QASpec --> QAInt --> Report --> Human
 ```
 
 ---
 
-### 5. `frontend-delivery`
+### 5. `feedback-monitoring` (Phase 5)
 
-Single step: run frontend-engineer with an approved issue and frontend spec to generate frontend via Lovable MCP and open a PR.
+Produce a feedback report from a deployed feature.
 
-**Assets:** frontend-engineer (skill: lovable-prompts; all issue/PR/Confluence interactions via skills).
-
-**Inputs:** issue_reference, frontend_specification, api_contracts; optional: target_repo.
+- **Agents:** `monitoring`
+- **Key skills:** `monitoring`
+- **Key rules:** `foundation-global-principles`, `spec-driven-gap-handling` (human decides hotfix vs new feature)
 
 ```mermaid
 flowchart LR
-  Start([User: issue, frontend spec, API contracts])
-  Frontend[frontend-engineer]
-  Out([PR with generated frontend])
+  Start([User: deployed_feature_ref<br/>+ acceptance_criteria + logs/metrics])
+  Monitor[monitoring agent<br/>(monitoring)]
+  Feedback[Feedback report<br/>metrics vs criteria + ideas]
+  Human[Human decides<br/>hotfix or new feature]
 
-  Start --> Frontend
-  Frontend --> Out
+  Start --> Monitor --> Feedback --> Human
 ```
 
 ---
 
-### 6. `idea-to-backlog`
+### 6. `full-cycle` (Phases 1→5)
 
-Pipeline from problem framing through requirements, channel validation (optional), technical feasibility, implementation (backend/data/devops), and QA. Work items live in DrivvenConsulting/projects/6; artifacts under `artifacts/feature-definitions/<feature_name>/`.
+Run the complete lifecycle from raw idea through deployment and feedback.
 
-**Assets:** idea-shaper, requirements-refiner, channel-specialist-google-ads, feasibility-guide, backend-engineer, data-engineer, devops-engineer, qa-ac-reviewer.
-
-**Inputs:** feature_name (required); optional: raw_idea, owner, repo, target_repo.
-
-**Conditionals:** Skip idea_shaper if starting from a problem statement; skip channel_specialist_google_ads if the feature does not touch an external channel.
+- **Agents:** `product-owner`, planning agent, implementation agents (`backend-engineer`, `frontend-engineer`, `devops-engineer`), `qa-tester`, `monitoring`
+- **Key skills:** All skills used in Phases 1–5 (`spec-writing`, `github-issue`, `aws-context`, `api-implementation`, `ui-implementation`, `terraform`, `qa-validation`, `aws-cli`, `monitoring`, plus delegated skills from their groups)
+- **Key rules:** `foundation-global-principles`, `spec-driven-gap-handling`
 
 ```mermaid
 flowchart LR
-  Idea[idea_shaper]
-  Refiner[requirements_refiner]
-  Channel[channel_specialist_google_ads]
-  Feasibility[feasibility_guide]
-  Backend[backend_engineer]
-  Data[data_engineer]
-  DevOps[devops_engineer]
-  QA[qa_ac_reviewer]
+  Idea([Raw idea])
+  Disc[discovery<br/>(Phase 1)]
+  Plan[planning<br/>(Phase 2)]
+  Impl[implementation<br/>(Phase 3)]
+  Test[testing-validation<br/>(Phase 4)]
+  Deploy[Deployment<br/>(team-specific)]
+  Feed[feedback-monitoring<br/>(Phase 5)]
+  Output([Feedback report<br/>+ next ideas])
 
-  Idea --> Refiner
-  Refiner --> Channel
-  Channel --> Feasibility
-  Feasibility -->|approved| Backend
-  Feasibility -->|approved| Data
-  Feasibility -->|approved| DevOps
-  Backend --> QA
-  Data --> QA
-  DevOps --> QA
+  Idea --> Disc --> Plan --> Impl --> Test --> Deploy --> Feed --> Output
+
+  Gap[[Spec/task gap?<br/>route back via spec-driven-gap-handling]]
+  Impl -. discovers gap .-> Gap
+  Plan -. discovers gap .-> Gap
+  Feed -. improvements .-> Disc
 ```
 
 ---
 
-## Quick reference – workflows
+## Quick reference – canonical workflows
 
-| Id | Description |
-|----|-------------|
-| `backend-full-cycle` | Implement [dev] (and [ops] if any) work and run QA verification. |
-| `backend-implement-and-integration-test` | Implement backend/infra, then run integration-tester on deployed AWS services. |
-| `full-story-delivery` | End-to-end: refine → implement [ops] then [dev] → QA → optional integration test. |
-| `data-engineering-delivery` | Implement data work; coordinate with backend/devops when same parent has [dev]/[ops]. |
-| `frontend-delivery` | Single-step: run frontend-engineer with issue and frontend spec to produce a PR via Lovable. |
-| `idea-to-backlog` | Pipeline from problem framing (idea_shaper) through requirements, channel validation, feasibility, implementation (backend/data/devops), and QA; work tracking via DrivvenConsulting/projects/6. |
+| Id | Phases | Description |
+|----|--------|-------------|
+| `discovery` | 1 | Raw idea → spec with acceptance criteria and success metrics. |
+| `planning` | 2 | Spec → GitHub issues with subtasks mapped to acceptance criteria. |
+| `implementation` | 3 | Issues → code/infra changes (PRs), with gap handling. |
+| `testing-validation` | 4 | Implementation + spec → QA report and human sign-off. |
+| `feedback-monitoring` | 5 | Deployed feature → feedback report and routing (hotfix vs new feature). |
+| `full-cycle` | 1→5 | Raw idea → Discovery → Planning → Implementation → Testing → deployment → Feedback & Monitoring. |
 
-For full workflow list, execution policy, and how to reference workflows in Cursor, see [workflows/README.md](workflows/README.md). For prompts that run each workflow, see [prompts/README.md](prompts/README.md).
+For the full workflow list (including legacy and domain-specific workflows), execution policy, and how to reference workflows in Cursor, see [workflows/README.md](workflows/README.md). For prompts that run each workflow, see [prompts/README.md](prompts/README.md).
+

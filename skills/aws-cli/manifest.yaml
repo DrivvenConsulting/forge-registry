@@ -1,0 +1,5 @@
+version: "1.0.0"
+project_types:
+  - backend
+  - infra
+description: Integration validation of deployed AWS services (Cognito, API Gateway, Lambda, etc.) via aws-*-integration-check skills and read-only CLI.

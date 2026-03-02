@@ -104,3 +104,10 @@ If the integration cannot set project fields (Issue type, Status) or assignee, a
 - Create a sub-issue without an implementation label or with more than one implementation label.
 - Omit any of the five body sections; use "TBD" or "None" only when appropriate.
 - Reference specific tool or MCP names in agent instructions; the skill defines the format only.
+
+## CLI helpers and templates
+
+- Use `assets/issue-template.md` as the canonical Markdown body template when creating issues manually or via scripts.
+- Use `scripts/gh-issue-create.sh` as a reference for how to create a standards-compliant issue with the GitHub CLI (`gh issue create`).
+- See `references/REFERENCE.md` for concrete `gh` command examples and links to the GitHub CLI manual.
+

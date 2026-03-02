@@ -1,0 +1,4 @@
+version: "1.0.0"
+project_types:
+  - backend
+description: Implement APIs and backend services using backend-task-breakdown and project rules (FastAPI, architecture-decoupling).
