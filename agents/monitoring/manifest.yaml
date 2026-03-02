@@ -1,3 +1,4 @@
+id: monitoring
 version: "1.0.0"
 project_types:
   - product
