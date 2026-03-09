@@ -6,6 +6,20 @@ Implement backend (and infra if needed) for a refined issue, then validate deplo
 
 - **Plan mode:** Start in plan mode. Present the plan (this workflow's steps and the inputs below). Do not execute any step until the user confirms the plan.
 - **Required inputs:** Before running, prompt the user for every **required** input listed in the Inputs table. Do not execute until all required inputs are provided. Optional inputs (marked "User (optional)" in the table) may use defaults or be prompted as needed.
+- **MCPs and CLIs:** Before running, validate that the required MCPs and CLIs are available (see section below). If any are missing, inform the user clearly and do not proceed until they are configured or the user explicitly confirms to continue.
+
+## Required MCPs and CLIs
+
+Before executing any step, the workflow **must** check that the following are available and **inform the user** of the result (available vs. missing):
+
+| Requirement | Type | Purpose |
+|-------------|------|---------|
+| **GitHub MCP** | MCP server | Access to GitHub (repos, issues, PRs) for backend-engineer and devops-engineer. |
+| **AWS CLI** | CLI | Validation and integration tests against deployed AWS services (Cognito, API Gateway, Lambda). |
+| **Terraform CLI** | CLI | Infrastructure changes when devops-engineer runs; plan/apply if [ops] sub-issues exist. |
+
+- **Validation:** At workflow start (after plan mode, before step 1), verify each item: MCPs by checking that the corresponding MCP server is enabled and reachable; CLIs by running the binary (e.g. `aws --version`, `terraform version`) or equivalent.
+- **User notification:** Report to the user which requirements are **available** and which are **missing**. If any are missing, warn that the workflow may fail or have limited functionality and ask the user to install/enable them or confirm to continue anyway.
 
 ## Inputs
 

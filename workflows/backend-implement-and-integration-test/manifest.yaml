@@ -1,4 +1,4 @@
-version: "1.0.0"
+version: "1.0.1"
 plan_mode_first: true
 prompt_for_inputs_before_run: true
 project_types:
