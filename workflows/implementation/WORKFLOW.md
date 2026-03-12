@@ -46,4 +46,4 @@ Implement one or more GitHub issues: produce code commits and infrastructure cha
 ## How to reference in Cursor
 
 - Install to `.cursor/workflows/implementation/`.
-- Run the workflow with id **implementation**. Use the prompt in `prompts/workflows/implementation.md` for plan mode and required inputs.
+- Run the workflow with id **implementation**. Use plan mode and required inputs per this file.

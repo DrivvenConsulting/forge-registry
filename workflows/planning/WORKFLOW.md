@@ -42,4 +42,4 @@ Turn a spec from Phase 1 into GitHub issues with subtasks, each referencing at l
 ## How to reference in Cursor
 
 - Install to `.cursor/workflows/planning/`.
-- Run the workflow with id **planning**. Use the prompt in `prompts/workflows/planning.md` for plan mode and required inputs.
+- Run the workflow with id **planning**. Use plan mode and required inputs per this file.

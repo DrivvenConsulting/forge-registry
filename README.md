@@ -1,16 +1,13 @@
 # Forge Registry
 
-A Cursor/Forge asset registry containing **agents**, **bundles**, **prompts**, **rules**, and **workflows**. Use it to install or copy assets into consuming projects for standardized roles, standards, and multi-step processes.
+A Cursor/Forge asset registry containing **agents**, **bundles**, **rules**, and **workflows**. Use it to install or copy assets into consuming projects for standardized roles, standards, and multi-step processes.
 
 ## Asset overview
 
-How the five asset types relate:
+How the four asset types relate:
 
 ```mermaid
 flowchart LR
-  subgraph userFacing [User-facing]
-    Prompts
-  end
   subgraph execution [Execution]
     Workflows
     Agents
@@ -20,7 +17,6 @@ flowchart LR
     Rules
     Skills
   end
-  Prompts -->|"run by id"| Workflows
   Workflows -->|"invoke steps"| Agents
   Bundles -->|"include"| Agents
   Bundles -->|"include"| Rules
@@ -29,7 +25,6 @@ flowchart LR
   Agents -.->|"use at runtime"| Skills
 ```
 
-- **Prompts** trigger a workflow by id (plan mode + required inputs).
 - **Workflows** define multi-step sequences and invoke **agents** in order.
 - **Bundles** group agents, rules, and skills by project type; installing a bundle gives a project the right context for that type.
 - **Agents** are role-only: they define responsibility and **equip skills by context**; they do not reference specific tools or MCPs directly. All GitHub, Confluence, and AWS interactions (issues, PRs, project board, discovery) are performed **via skills**, not in agent logic.
@@ -53,11 +48,7 @@ Single-role definitions: tech-lead, backend-engineer, devops-engineer, qa-tester
 
 ### Bundles ([bundles/](bundles/))
 
-Project-type presets: **backend**, **frontend**, **data-engineering**, **devops**, **product**, **project-team**. Each bundle’s `manifest.yaml` lists agents, rules, skills, workflows, and prompts by id. Installing a bundle gives a project the right agents, rules, and skills for that type; workflows then use those agents when run in that project. The **product** bundle is the single entry point for product-type projects: generate docs, refine issues, craft issues, and improve raw ideas (product-owner, requirements-refiner, qa-tester, tech-lead, channel-specialist-google-ads, and supporting skills/workflows). The **project-team** bundle provides product-owner, requirements-refiner, channel-specialist-google-ads, qa-tester, and the idea-to-backlog workflow.
-
-### Prompts ([prompts/](prompts/))
-
-Reusable prompts to run a workflow: a generic template ([run-workflow.md](prompts/run-workflow.md), substitute `WORKFLOW_ID`) and one prompt per workflow under [prompts/workflows/](prompts/workflows/). Each prompt instructs the runner to run the workflow with **plan mode first** and **required inputs before run**. See [prompts/README.md](prompts/README.md).
+Project-type presets: **backend**, **frontend**, **data-engineering**, **devops**, **product**, **project-team**. Each bundle’s `manifest.yaml` lists agents, rules, skills, workflows by id. Installing a bundle gives a project the right agents, rules, and skills for that type; workflows then use those agents when run in that project. The **product** bundle is the single entry point for product-type projects: generate docs, refine issues, craft issues, and improve raw ideas (product-owner, requirements-refiner, qa-tester, tech-lead, channel-specialist-google-ads, and supporting skills/workflows). The **project-team** bundle provides product-owner, requirements-refiner, channel-specialist-google-ads, qa-tester, and the idea-to-backlog workflow.
 
 ### Rules ([rules/](rules/))
 
@@ -76,13 +67,11 @@ Multi-step definitions: each workflow has a `manifest.yaml` (inputs, outputs, pl
 
 ## How each path works
 
-### Path 1 – Prompt → Workflow → Agents
+### Path 1 – Workflow → Agents
 
-1. User runs a prompt (e.g. copy-paste from `prompts/workflows/full-cycle.md` or use an installed prompt).
-2. The prompt says: run workflow **full-cycle** with plan mode and required inputs.
-3. The runner reads `.cursor/workflows/full-cycle/WORKFLOW.md`, presents the plan (steps + inputs), and collects required inputs.
-4. After the user confirms and inputs are provided, the runner executes the steps in order (e.g. devops-engineer if [ops] exist, then backend-engineer, then qa-tester).
-5. Each step invokes one agent. Rules and skills come from the project (e.g. from an installed bundle or `.cursor/rules` / `.cursor/skills`).
+1. User or orchestrator runs a workflow by id (e.g. **full-cycle**). Read `.cursor/workflows/<id>/WORKFLOW.md`, present the plan (steps + inputs), and collect required inputs.
+2. After the user confirms and inputs are provided, the runner executes the steps in order (e.g. devops-engineer if [ops] exist, then backend-engineer, then qa-tester).
+3. Each step invokes one agent. Rules and skills come from the project (e.g. from an installed bundle or `.cursor/rules` / `.cursor/skills`).
 
 ### Path 2 – Bundle (project type)
 
@@ -91,7 +80,7 @@ Multi-step definitions: each workflow has a `manifest.yaml` (inputs, outputs, pl
 3. User can run those agents manually or via workflows. When an agent runs, it uses the rules and skills from the bundle (or from the project’s `.cursor/rules` and `.cursor/skills`).
 4. Workflows do not install bundles; they assume the right context is already present.
 
-### Path 3 – Workflow without prompt
+### Path 3 – Workflow directly
 
 1. User or an orchestrator reads a workflow from `.cursor/workflows/<id>/WORKFLOW.md` (after the workflow is installed).
 2. Same execution policy: **plan mode first**, collect **required inputs**, then run the workflow steps in order, invoking each agent with the documented inputs and passing outputs as context to the next step.
@@ -254,5 +243,5 @@ flowchart LR
 | `feedback-monitoring` | 5 | Deployed feature → feedback report and routing (hotfix vs new feature). |
 | `full-cycle` | 1→5 | Raw idea → Discovery → Planning → Implementation → Testing → deployment → Feedback & Monitoring. |
 
-For the full workflow list (including legacy and domain-specific workflows), execution policy, and how to reference workflows in Cursor, see [workflows/README.md](workflows/README.md). For prompts that run each workflow, see [prompts/README.md](prompts/README.md).
+For the full workflow list (including legacy and domain-specific workflows), execution policy, and how to reference workflows in Cursor, see [workflows/README.md](workflows/README.md).
 

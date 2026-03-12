@@ -65,17 +65,3 @@ items:
     id: feedback-monitoring
   - kind: workflow
     id: full-cycle
-  - kind: prompt
-    id: run-workflow
-  - kind: prompt
-    id: workflows/discovery
-  - kind: prompt
-    id: workflows/planning
-  - kind: prompt
-    id: workflows/implementation
-  - kind: prompt
-    id: workflows/testing-validation
-  - kind: prompt
-    id: workflows/feedback-monitoring
-  - kind: prompt
-    id: workflows/full-cycle

@@ -43,4 +43,4 @@ Produce a feedback report from a deployed feature: metrics vs. success criteria,
 ## How to reference in Cursor
 
 - Install to `.cursor/workflows/feedback-monitoring/`.
-- Run the workflow with id **feedback-monitoring**. Use the prompt in `prompts/workflows/feedback-monitoring.md` for plan mode and required inputs.
+- Run the workflow with id **feedback-monitoring**. Use plan mode and required inputs per this file.

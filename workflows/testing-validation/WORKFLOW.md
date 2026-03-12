@@ -45,4 +45,4 @@ Validate implementation against the spec and subtasks: produce a QA report with 
 ## How to reference in Cursor
 
 - Install to `.cursor/workflows/testing-validation/`.
-- Run the workflow with id **testing-validation**. Use the prompt in `prompts/workflows/testing-validation.md` for plan mode and required inputs.
+- Run the workflow with id **testing-validation**. Use plan mode and required inputs per this file.

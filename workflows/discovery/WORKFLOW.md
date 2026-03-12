@@ -39,4 +39,4 @@ Turn a raw idea into a spec file with functional requirements, technical constra
 ## How to reference in Cursor
 
 - Install to `.cursor/workflows/discovery/`.
-- Run the workflow with id **discovery**. Use the prompt in `prompts/workflows/discovery.md` for plan mode and required inputs.
+- Run the workflow with id **discovery**. Use plan mode and required inputs per this file.

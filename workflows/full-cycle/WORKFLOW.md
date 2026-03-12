@@ -53,4 +53,4 @@ Run the complete AI Spec-Driven Development lifecycle from raw idea through depl
 ## How to reference in Cursor
 
 - Install to `.cursor/workflows/full-cycle/`.
-- Run the workflow with id **full-cycle**. Use the prompt in `prompts/workflows/full-cycle.md` for plan mode and required inputs.
+- Run the workflow with id **full-cycle**. Use plan mode and required inputs per this file.
