@@ -1,3 +1,4 @@
+id: github-issue-creation-standards
 version: "1.0.0"
 project_types:
   - product
@@ -5,4 +6,4 @@ project_types:
   - frontend
   - data
   - infra
-description: Defines how GitHub issues must be created for DrivvenConsulting project 6: body sections, issue type, labels, milestone, status, and assignee.
+description: Defines how GitHub issues must be created for DrivvenConsulting project 6
