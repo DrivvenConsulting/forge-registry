@@ -25,7 +25,7 @@ Equip this skill when your role is DevOps or infrastructure. Follow **infrastruc
 ## Do
 
 - Use backend config and var files per environment (e.g. `backend/{environment}/`, `environments/{environment}/terraform.tfvars`).
-- Run terraform fmt and validate on PRs.
+- Always run `terraform fmt` locally after creating or editing any Terraform file, and ensure fmt and validate run on PRs.
 
 ## Do Not
 
