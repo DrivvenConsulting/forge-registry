@@ -64,8 +64,8 @@ Runners and bundles should equip the following registry skills when running the 
 
 | Id | Description |
 |----|-------------|
-| `discovery` | Phase 1: raw idea → spec. |
-| `planning` | Phase 2: spec → GitHub issues. |
+| `discovery` | Phase 1: raw idea → spec (and, when configured with a feature name, optional feasibility artifacts). Discovery **never** creates GitHub issues. |
+| `planning` | Phase 2: spec → GitHub issues. All parent issues and subissues are created here, following `github-issue` standards. |
 | `implementation` | Phase 3: issue(s) → code/infra. |
 | `testing-validation` | Phase 4: implementation + spec → QA report. |
 | `feedback-monitoring` | Phase 5: deployed feature → feedback report. |
@@ -78,4 +78,6 @@ Runners and bundles should equip the following registry skills when running the 
 | `idea-to-backlog` | Pipeline from problem framing (idea_shaper) through requirements, channel validation, feasibility, implementation (backend/data/devops), and QA; work tracking via DrivvenConsulting/projects/6. |
 | `idea-to-backlog-linear` | Deprecated alias of `idea-to-backlog`; work tracking is standardized on GitHub (DrivvenConsulting/projects/6). |
 | `backlog-to-ready` | From Backlog: refine with tech-lead, create applicable subissues ([dev], [ops], [qa], [int], [data], [front]), refine each with specialist agents, move parent to Ready. |
+
+For details on how `DrivvenConsulting/adlyze` wires these workflows together for Workflow V2 runs, see `[references/WORKFLOW_V2_NOTES.md](references/WORKFLOW_V2_NOTES.md)`.
 | `backlog-to-ready-linear` | Deprecated alias of `backlog-to-ready`; work tracking is standardized on GitHub (DrivvenConsulting/projects/6). |

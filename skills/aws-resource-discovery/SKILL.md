@@ -13,7 +13,7 @@ Discover existing AWS resources in an account using read-only operations. List o
 - You need to document existing resources and how they relate to an issue (e.g. endpoints, ARNs, environment).
 - You need to derive endpoints or resource identifiers (e.g. API ID, function names, User Pool ID) for verification or for updating an issue body.
 
-Equip this skill when your role includes read-only AWS discovery; do not hardcode tool or MCP names in agent logic.
+Equip this skill when your role includes read-only AWS discovery; do not hardcode tool or MCP names in agent logic. **If the required AWS CLI or MCP integration is not available or not authenticated for the target account/region in the current environment, stop execution, explain what is missing, and ask the user to either authorize a suitable environment or run the discovery commands themselves. Do not attempt to create new credentials or modify AWS configuration silently.**
 
 ## Steps
 

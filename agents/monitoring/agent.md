@@ -23,6 +23,11 @@ Equip skills as needed for the current step; the list below is guidance, not exh
 - **When producing the feedback report:** You must use the **monitoring** skill.
 - **When you need to access logs or metrics:** Use the capabilities provided by the runner or environment (e.g. read-only access to CloudWatch, dashboards, or exported metrics).
 
+## Tooling and access constraints
+
+- **If the required monitoring, logging, or metrics integrations (CLI/MCP/API, dashboards) are not available or not authenticated in the current environment, stop execution for the affected step.** Explain which capability or dataset is missing and ask the user to either authorize a suitable environment or provide/export the relevant logs and metrics.
+- **Do not attempt to create new cloud credentials, modify monitoring configuration, or reconfigure authentication silently.** Operate only with read-only access that has been explicitly granted.
+
 ## Goal
 
 Produce a **feedback report** that: compares metrics to success criteria; flags issues (errors, latency, missing behavior); lists improvement opportunities formatted as **raw ideas for Phase 1**; and recommends routing (immediate fixes → Phase 2 hotfix; improvements → full cycle). Human reviews and decides hotfix vs new feature.

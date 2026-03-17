@@ -25,7 +25,18 @@ Equip this skill when your role includes creating or defining work items for Dri
 
 - Descriptive and concise; avoid run-on or vague titles.
 - No fixed character limit; prefer clarity over brevity.
-- Do **not** use title prefixes such as `[dev]`, `[ops]`, `[data]`, `[front]`, `[qa]`, `[int]`—use **labels** instead.
+- Do **not** use implementation title prefixes such as `[dev]`, `[ops]`, `[data]`, `[front]`, `[qa]`, `[int]`—use **labels** instead.
+
+### Parent prefix convention for subissues
+
+Subissues (tasks) may include a **parent issue prefix** in the title so it is easy to see which feature they belong to:
+
+- Format: `[#<parent_number>] <Subissue title>`
+  - Example: `[#57] Implement backend ingestion pipeline`
+- This prefix:
+  - Is **optional** for parents (Feature issues) and **recommended** for subissues (Task issues) created by planning workflows.
+  - Is purely for parent identification and **does not** encode implementation type (backend/frontend/etc.).
+  - May be added automatically by skills such as `github-sub-issue-linking` when creating subissues.
 
 ## Issue Body Sections
 
@@ -88,7 +99,7 @@ Apply to **every** new issue (parent and sub-issues), unless a different rule is
 | **Status**    | **Backlog** (new issues start in Backlog). |
 | **Assignee**  | **JnsFerreira** |
 
-If the integration cannot set project fields (Issue type, Status) or assignee, add a short note in the issue body or a comment (e.g. "Issue type: Task; Status: Backlog; Assignee: JnsFerreira") so a human or script can set them.
+If the integration cannot set project fields (Issue type, Status) or assignee, add a short note in the issue body or a comment (e.g. "Issue type: Task; Status: Backlog; Assignee: JnsFerreira") so a human or script can set them. When you later need to move an issue between Status values on the project (e.g. Backlog → Ready, In Progress), use **github-project-board** and **github-project-status** (or its helper script) to perform the Status change in a consistent way.
 
 ## Do
 

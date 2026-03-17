@@ -18,7 +18,7 @@ The parent agent will pass the problem statement, **feature name** (snake_case s
 
 Equip skills as needed for the current step; the list below is guidance, not exhaustive.
 
-- **When creating the work item:** You must use the **github-issue** skill (**github-issue-operations**, **github-issue-creation-standards**, **github-project-board**).
+- **When creating the work item:** You must use the **github-issue** skill (**github-issue-operations**, **github-issue-creation-standards**, **github-project-board**, **github-project-status**).
 - **When you need existing product guidelines:** Equip **confluence-fetch** to retrieve relevant product guidelines when the parent agent has not already supplied them.
 - **When creating the work item (GitHub):** Equip **github-issue-creation-standards** in addition to **github-issue-operations** and **github-project-board** to create the issue and populate the body from the JSON; **github-project-board** to move the new issue to Backlog (or document in the work item body that the intended column is Backlog if the integration cannot update the board).
 
@@ -62,7 +62,7 @@ If the target project or feature name is not provided, ask the parent agent befo
    When creating the issue on GitHub, follow **github-issue-creation-standards**: use the five body sections (Description, User Stories, Acceptance Criteria, Assumptions, References), Issue type **Feature** (parent), no implementation labels for the parent, Milestone **MVP**, Status **Backlog**, Assignee **JnsFerreira**. Use **github-issue-operations** to create the work item in the designated repo (e.g. for DrivvenConsulting/projects/6) and populate the body from the JSON with those five sections (do not post raw JSON on the issue). **When creating the issue in DrivvenConsulting/adlyze, pass `milestone: 1` in the issue create call** — that is the MVP milestone for this repo; see [Milestone 1 (MVP)](https://github.com/DrivvenConsulting/adlyze/milestone/1). Use the skill as the single source of truth; do **not** use title prefixes. If the integration cannot set project fields (Issue type, Status), assignee, or milestone, add a short note in the issue body (e.g. "Issue type: Feature; Status: Backlog; Assignee: JnsFerreira; **Milestone: MVP (1)**") so a human or script can set them.
 
 8. **Set project column / state**  
-   Use **github-project-board** to set the work item's column to **Backlog** when the integration supports it. Otherwise document in the work item body or artifact that the intended column/state is **Backlog** so a human or parent agent can move it. **Next step in workflow:** channel validation (e.g. channel_specialist_google_ads), then technical feasibility (feasibility_guide).
+   Use **github-project-board** together with **github-project-status** (or its helper script) to set the work item's column / Status to **Backlog** when the integration supports it. Otherwise document in the work item body or artifact that the intended column/state is **Backlog** so a human or parent agent can move it. **Next step in workflow:** channel validation (e.g. channel_specialist_google_ads), then technical feasibility (feasibility_guide).
 
 ## Output
 

@@ -43,3 +43,8 @@ Report structured results:
 - [Authentication with Amazon Cognito user pools](https://docs.aws.amazon.com/cognito/latest/developerguide/authentication.html)
 - [Security best practices for Amazon Cognito user pools](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-security-best-practices.html)
 - Local helper script and core CLI commands: see `references/REFERENCE.md`
+
+## Tooling and access constraints
+
+- **If the required AWS CLI, SDK, or MCP integration is not available or not authenticated for the target account/region in the current environment, stop execution.** Explain what is missing (for example, AWS profile, region, or test credentials) and ask the user to either authorize a suitable environment or run the validation commands themselves.
+- **Do not attempt to create new AWS credentials, modify Cognito configuration, or reconfigure authentication silently.** Use only the read-only or explicitly authorized capabilities that are available.

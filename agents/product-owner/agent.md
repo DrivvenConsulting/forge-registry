@@ -41,7 +41,9 @@ If critical context is missing, ask only the clarifying questions needed; do not
 
 ## How this feeds workflows
 
-- **Discovery workflow (Phase 1):** Invoke product-owner in **spec writing** mode. Output is the spec for the planning workflow.
+- **Discovery workflow (Phase 1):**
+  - Invokes product-owner in **spec writing** mode to produce the Phase 1 spec.
+  - May also invoke product-owner in **feasibility assessment** mode (Phase 1b) when a `feature_name` is available and a technical feasibility pass is required before planning; this writes `artifacts/feature-definitions/<feature_name>/technical-feasibility.json` and updates the work item with a Markdown Technical Feasibility section.
 - **Idea-to-backlog / similar:** May invoke product-owner in **problem shaping** mode (then requirements-refiner or similar), then **feasibility assessment** mode before moving to Ready.
 - **Planning workflow (Phase 2):** Uses the spec produced by product-owner (spec writing mode); tech-lead and requirements-refiner create issues and subtasks.
 

@@ -5,19 +5,19 @@ description: Create and manage GitHub issues and subtasks for planning (Phase 2)
 
 # GitHub Issue (Planning)
 
-When creating or updating GitHub issues and subtasks in Phase 2 (Planning), use this skill. It is satisfied by **github-issue-operations** (fetch, list, create, update, comment) and **github-issue-creation-standards** when creating new issues (body sections, issue type, milestone, status). Each issue or subtask must reference at least one acceptance criterion from the spec.
+When creating or updating GitHub issues and subtasks in Phase 2 (Planning), use this skill. It is satisfied by **github-issue-operations** (fetch, list, create, update, comment) and **github-issue-creation-standards** when creating new issues (body sections, issue type, milestone, status). For moving issues between Status values (e.g. Backlog → Ready, In Progress), use **github-project-board** together with **github-project-status**. Each issue or subtask must reference at least one acceptance criterion from the spec.
 
 ## When to Use
 
 - You are in Phase 2 (Planning) and need to create issues or subtasks from a spec.
 - You need to fetch, update, or comment on issues in a repository.
 
-Equip this skill when your role includes planning or issue creation. The runner or environment should provide **github-issue-operations** and, for creation, **github-issue-creation-standards** (and **github-project-board** if adding issues to a project).
+Equip this skill when your role includes planning or issue creation. The runner or environment should provide **github-issue-operations** and, for creation, **github-issue-creation-standards** (and **github-project-board** / **github-project-status** if adding issues to a project or moving them between Status values).
 
 ## Steps
 
 1. **From spec to issues** – Map acceptance criteria to issues or subtasks; each subtask should reference at least one acceptance criterion.
-2. **Create or update issues** – Use **github-issue-operations** to create or update issues. When creating, follow **github-issue-creation-standards** (body sections: Description, User Stories, Acceptance Criteria, Assumptions, References; issue type, milestone, status as per project).
+2. **Create or update issues** – Use **github-issue-operations** to create or update issues. When creating, follow **github-issue-creation-standards** (body sections: Description, User Stories, Acceptance Criteria, Assumptions, References; issue type, milestone, status as per project). For subissues, prefer the parent-prefix convention (e.g. `[#<parent_number>] <Subissue title>`) when the parent issue number is known.
 3. **Link subtasks** – Use **github-sub-issue-linking** to attach sub-issues to a parent when applicable.
 4. **Project board** – Use **github-project-board** to add issues to a project or move columns when the integration supports it.
 

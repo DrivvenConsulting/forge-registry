@@ -39,6 +39,11 @@ Equip skills as needed for the current step; the list below is guidance, not exh
 - **When opening a PR linked to the work item (GitHub):** Equip **github-pr-operations** to create the branch, open the PR, and link it (Closes #&lt;sub-issue number&gt;).
 - **When breaking down user stories into backend tasks:** Equip **backend-task-breakdown** for task decomposition aligned with project rules.
 
+## Tooling and access constraints
+
+- **If the required GitHub or backend tooling/integrations (CLI/MCP/API, test runners, linters) are not available or not authenticated in the current environment, stop execution for the affected step.** Explain which capability is missing and ask the user to either authorize a suitable environment or run the external commands themselves.
+- **Do not attempt to create new credentials or reconfigure repository or CI authentication silently.** Keep changes scoped to application code and tests; document any manual Git or CI steps needed.
+
 In **refinement-only mode:** Use **github-issue-operations** to update the subissue/issue body and add the comment "This issue was refined by backend_engineer."
 
 ## Goal

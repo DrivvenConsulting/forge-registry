@@ -5,7 +5,7 @@ description: Create sub-issues (tasks) and link them to a parent. Use when you n
 
 # GitHub Sub-Issue Linking
 
-Create new sub-issues in a repository and link each one to a parent issue so they appear as child issues in the project. Sub-issues follow **github-issue-creation-standards**: they are **Task**-type issues with exactly one implementation label and the standard body sections; do **not** use title prefixes.
+Create new sub-issues in a repository and link each one to a parent issue so they appear as child issues in the project. Sub-issues follow **github-issue-creation-standards**: they are **Task**-type issues with exactly one implementation label and the standard body sections; do **not** use implementation title prefixes (e.g. `[dev]`, `[ops]`, `[data]`, `[front]`, `[qa]`, `[int]`). Sub-issues **may** include the parent issue prefix defined in `github-issue-creation-standards` (e.g. `[#57] <Subissue title>`).
 
 ## When to Use
 
@@ -16,7 +16,7 @@ Equip this skill when your role includes breaking a parent issue into tasks for 
 
 ## Steps
 
-1. **Create each sub-issue** – Use the available GitHub integration to create an issue in the same owner and repo. Follow **github-issue-creation-standards**: descriptive title (no prefixes), five body sections (Description, User Stories, Acceptance Criteria, Assumptions, References), Issue type **Task**, exactly one implementation label (backend, frontend, data-engineering, devops, internal, quality-assurance), and metadata (Milestone MVP, Status Backlog, Assignee). Obtain the created issue's identifier (ID) from the response—use the ID returned by the create operation, not the issue number, for linking.
+1. **Create each sub-issue** – Use the available GitHub integration to create an issue in the same owner and repo. Follow **github-issue-creation-standards**: descriptive title, five body sections (Description, User Stories, Acceptance Criteria, Assumptions, References), Issue type **Task**, exactly one implementation label (backend, frontend, data-engineering, devops, internal, quality-assurance), and metadata (Milestone MVP, Status Backlog, Assignee). When the parent issue number is known, prepend the parent prefix `[#<parent_number>] ` to the subissue title (e.g. `[#57] Implement backend ingestion pipeline`). Obtain the created issue's identifier (ID) from the response—use the ID returned by the create operation, not the issue number, for linking.
 2. **Link to parent** – For each created sub-issue, use the integration to add it as a sub-issue of the parent (parent issue number and sub-issue ID). This establishes the parent-child relationship on the project board.
 3. **Confirm** – After all sub-issues are created and linked, you can list sub-issues via **github-issue-operations** if you need to verify or pass references to downstream steps.
 
@@ -29,7 +29,7 @@ Equip this skill when your role includes breaking a parent issue into tasks for 
 
 ## Do Not
 
-- Use title prefixes (e.g. [dev], [ops], [data], [front], [qa], [int]); use labels instead.
+- Use implementation title prefixes (e.g. [dev], [ops], [data], [front], [qa], [int]); use labels instead.
 - Create a sub-issue without an implementation label or with more than one implementation label.
 - Use this skill to only read or update existing issues; use **github-issue-operations** for that.
 - Reference specific tool or MCP names in agent instructions; the skill encapsulates the mechanism.

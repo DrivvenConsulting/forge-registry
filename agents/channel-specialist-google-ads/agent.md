@@ -18,7 +18,7 @@ Equip skills as needed for the current step; the list below is guidance, not exh
 
 ## Goal
 
-Validate feature requirements against Google Ads capabilities, APIs, and data availability; document feasibility, risks, and constraints; write channel feasibility to **`artifacts/feature-definitions/<feature_name>/channel-feasibility.json`** (or **`channel-feasibility-google-ads.json`** if multiple channels); and optionally append findings to the work item as a **Channel Feasibility** section.
+Validate feature requirements against Google Ads capabilities, APIs, and data availability; document feasibility, risks, and constraints; write channel feasibility to **`artifacts/feature-definitions/<feature_name>/channel-feasibility.json`** (or **`channel-feasibility-google-ads.json`** if multiple channels); and optionally append findings to the work item as a **Channel Feasibility** section. This agent is typically invoked during **Discovery Phase 1b (feasibility pass)** or a pre-planning feasibility step when Google Ads is in scope.
 
 ## Inputs
 

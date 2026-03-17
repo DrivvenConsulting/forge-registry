@@ -45,3 +45,8 @@ Report structured results per route/authorizer:
 - [Control access to HTTP APIs with JWT authorizers](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-jwt-authorizer.html)
 - [Troubleshooting JWT authorizers](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-troubleshooting-jwt.html)
 - Local helper script and core CLI commands: see `references/REFERENCE.md`
+
+## Tooling and access constraints
+
+- **If the required AWS CLI, SDK, HTTP client, or MCP integration is not available or not authenticated for the target account/region in the current environment, stop execution.** Explain what is missing (for example, AWS profile, network access, or HTTP tooling) and ask the user to either authorize a suitable environment or run the validation commands themselves.
+- **Do not attempt to create new AWS credentials, relax security policies, or reconfigure authentication silently.** Use only the read-only or test capabilities that are explicitly available.

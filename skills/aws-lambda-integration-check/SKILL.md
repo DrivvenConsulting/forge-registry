@@ -41,3 +41,8 @@ Report structured results for each check:
 - [How to test serverless functions and applications](https://docs.aws.amazon.com/lambda/latest/dg/testing-guide.html)
 - [Best practices for testing serverless applications](https://docs.aws.amazon.com/prescriptive-guidance/latest/serverless-application-testing/best-practices.html)
 - Local helper script and core CLI commands: see `references/REFERENCE.md`
+
+## Tooling and access constraints
+
+- **If the required AWS CLI, SDK, or MCP integration is not available or not authenticated for the target account/region in the current environment, stop execution.** Explain what is missing (for example, AWS profile, permissions, or network access) and ask the user to either authorize a suitable environment or run the Lambda validation commands themselves.
+- **Do not attempt to create new AWS credentials, deploy code, or modify Lambda configuration silently.** Use only the read-only or explicitly authorized capabilities that are available for integration checks.

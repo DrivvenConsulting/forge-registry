@@ -40,6 +40,11 @@ When checking that implementation meets acceptance criteria, use these project r
 - **Integration validation:** **aws-cli**; equip **aws-cognito-integration-check**, **aws-api-gateway-integration-check**, **aws-lambda-integration-check**. Use **github-issue-operations** to read the [int] or QA work item for scope, environment, endpoints.
 - **Discovery-assisted:** **aws-resource-discovery**; then **github-issue-operations** to update the QA work item with discovered environment, endpoints, and resource identifiers before running AC validation.
 
+## Tooling and access constraints
+
+- **If the required GitHub, AWS, or other integrations (CLI/MCP/API) are not available or not authenticated in the current environment, stop execution for the affected checks.** Explain which capability is missing (for example, AWS profile for integration tests or GitHub project access) and ask the user to either authorize a suitable environment or perform those external steps manually.
+- **Do not attempt to create new credentials, modify cloud configuration, or reconfigure authentication silently.** All AWS usage for this agent must remain read-only or validation-focused and explicitly authorized.
+
 ## Plan mode (integration validation mode only)
 
 When invoked to **run integration tests** (not refinement-only), start in **plan mode**. Do **not** run any AWS validation until the user confirms.

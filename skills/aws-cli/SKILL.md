@@ -13,7 +13,7 @@ When performing integration validation in Phase 4 (Testing & Validation), use th
 - The spec or QA scope includes integration checks (Cognito, API Gateway, Lambda, etc.).
 - The **qa-tester** agent uses this skill in **integration validation mode** (post-deploy AWS validation).
 
-Equip this skill when your role is integration testing. Use the aws-*-integration-check skills for structured validation; use read-only AWS CLI for additional checks. **Human must review and sign off before deployment.**
+Equip this skill when your role is integration testing. Use the aws-*-integration-check skills for structured validation; use read-only AWS CLI for additional checks. **Human must review and sign off before deployment.** **If the required AWS CLI or MCP integration is not available or not authenticated for the target account/region in the current environment, stop execution, explain what is missing (for example, AWS profile or permissions), and ask the user to either authorize a suitable environment or run the commands themselves. Do not attempt to create new credentials or modify AWS configuration silently.**
 
 ## Steps
 

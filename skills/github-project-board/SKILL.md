@@ -5,7 +5,7 @@ description: Move issue or card to a project column (e.g. Backlog to Ready, In P
 
 # GitHub Project Board
 
-Move an issue (or its project card) to a specified column on a GitHub project board, e.g. Backlog → Ready, or to In Progress.
+Move an issue (or its project card) to a specified column on a GitHub project board, e.g. Backlog → Ready, or to In Progress. When you need to update the **Status** field on a GitHub Project (Projects v2) via the GitHub CLI, use **github-project-status** (and its helper script) to perform the underlying Status change.
 
 ## When to Use
 
@@ -13,12 +13,12 @@ Move an issue (or its project card) to a specified column on a GitHub project bo
 - You need to move a work item to **In Progress** when starting work on it.
 - You need to move a work item to **In Review** or another column as required by the team workflow.
 
-Equip this skill when your role includes updating the project board state of an issue; do not hardcode tool names in agent logic.
+Equip this skill when your role includes updating the project board state of an issue; do not hardcode tool names in agent logic. **If the required GitHub integration (CLI, MCP, or API) is not available or not authenticated in the current environment, stop execution, explain what is missing, and ask the user to either authorize a suitable environment or move the card manually. Do not attempt to reconfigure authentication silently.**
 
 ## Steps
 
-1. **Identify issue and target column** – Know the issue number (or owner, repo, issue number) and the target column name (e.g. Ready, In Progress, In Review) for the project (e.g. project 6 in the org).
-2. **Move the card** – Use the available GitHub integration to update the issue's project card to the target column. If the integration does not support moving cards, add a prominent comment on the issue (e.g. "Refinement complete – **move this issue to Ready**") and note in your summary that the issue must be moved manually.
+1. **Identify issue and target column** – Know the issue number (or owner, repo, issue number) and the target column or Status name (e.g. Ready, In Progress, In Review) for the project (e.g. project 6 in the org).
+2. **Move the card / Status** – Use the available GitHub integration to update the issue's project card to the target column. When you are using the GitHub CLI with Projects v2, follow **github-project-status** (or its helper script `skills/github-project-status/scripts/gh-project-set-status.sh`) to update the Status field to the desired value.
 3. **Confirm or document** – If the move succeeded, state so in your output; if not, document that a human or parent agent should move the card and include the requested column.
 
 ## Do

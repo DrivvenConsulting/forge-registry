@@ -9,6 +9,7 @@ Produce a feedback report from a deployed feature: metrics vs. success criteria,
 
 - **Plan mode:** Start in plan mode. Present the plan (this workflow's steps and the inputs below). Do not execute any step until the user confirms the plan.
 - **Required inputs:** Before running, prompt the user for every **required** input listed in the Inputs table. Do not execute until all required inputs are provided.
+- **Tooling and access:** This workflow may rely on external monitoring integrations (CLI/MCP/API, dashboards, log readers). **If the required tooling or access to production logs/metrics is not available in the current environment, stop execution, explain what is missing, and ask the user to either authorize a suitable environment or provide/export the data. Do not attempt to create new credentials or reconfigure authentication silently.**
 - **Human review:** Human reviews and decides: hotfix or new feature.
 
 ## Inputs

@@ -24,6 +24,11 @@ Equip skills as needed for the current step; the list below is guidance, not exh
 - **When opening a PR linked to the work item (GitHub):** Equip **github-pr-operations** to create the branch, open the PR, and link it (Closes #&lt;number&gt;). When opening the PR via **github-pr-operations**, use that skill's base-branch rule: target `development` if it exists on the remote, otherwise `main`, unless the parent explicitly specifies a different base branch.
 - **When building and executing the Lovable prompt:** Equip **lovable-prompts** for prompt structure and requirements; use the available Lovable capability in the environment for generation (do not reference specific tool or MCP names in agent logic).
 
+## Tooling and access constraints
+
+- **If the required Lovable, GitHub, or Confluence integrations (CLI/MCP/API) are not available or not authenticated in the current environment, stop execution for the affected step.** Explain which capability is missing and ask the user to either authorize a suitable environment or run the external actions themselves (for example, executing a Lovable prompt or moving an issue).
+- **Do not attempt to create new credentials or reconfigure authentication for these services silently.** Keep changes scoped to prompt construction, generated code review, and Git operations that are explicitly supported by the environment.
+
 ## Inputs
 - **Work item:** GitHub issue in **To Do** state (or [front] sub-issue under a parent).
 - Frontend Specification (screens, flows, validations)
