@@ -1,0 +1,8 @@
+version: "1.0.0"
+project_types:
+  - backend
+  - frontend
+  - data
+  - infra
+  - product
+description: Phase 1. Raw idea → spec (requirements, acceptance criteria, success metrics).

@@ -5,6 +5,8 @@ description: Frontend work — agent, foundation rules, and frontend standards.
 items:
   - kind: agent
     id: frontend-engineer
+  - kind: agent
+    id: product-owner
   - kind: rule
     id: foundation-global-principles
   - kind: rule
@@ -19,7 +21,37 @@ items:
     id: confluence-fetch
   - kind: skill
     id: lovable-prompts
+  - kind: skill
+    id: ui-implementation
+  - kind: skill
+    id: spec-writing
+  - kind: skill
+    id: aws-context
+  - kind: skill
+    id: github-issue
+  - kind: skill
+    id: api-implementation
+  - kind: skill
+    id: terraform
+  - kind: skill
+    id: qa-validation
+  - kind: skill
+    id: aws-cli
+  - kind: skill
+    id: monitoring
+  - kind: skill
+    id: problem-shaping
+  - kind: skill
+    id: feasibility-assessment
   - kind: workflow
-    id: frontend-delivery
-  - kind: prompt
-    id: run-workflow
+    id: discovery
+  - kind: workflow
+    id: planning
+  - kind: workflow
+    id: implementation
+  - kind: workflow
+    id: testing-validation
+  - kind: workflow
+    id: feedback-monitoring
+  - kind: workflow
+    id: full-cycle

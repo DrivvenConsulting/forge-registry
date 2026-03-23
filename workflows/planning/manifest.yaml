@@ -1,0 +1,8 @@
+version: "1.0.0"
+project_types:
+  - backend
+  - frontend
+  - data
+  - infra
+  - product
+description: Phase 2. Spec → GitHub issues with subtasks mapped to acceptance criteria.

@@ -1,0 +1,6 @@
+version: "1.0.0"
+project_types:
+  - infra
+  - backend
+  - data
+description: Provision and update infrastructure using Terraform; use terraform-github-actions and rules infrastructure-terraform, ci-cd-terraform-integration.

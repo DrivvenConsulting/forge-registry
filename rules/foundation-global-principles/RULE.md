@@ -15,6 +15,10 @@ Provide foundational principles that apply to all code, architecture, and decisi
 - Explicit is better than implicit
 - Simple is better than complex
 
+## Spec-driven development
+
+When using the AI Spec-Driven Development Framework (Phases 1–5), follow the **spec-driven-gap-handling** rule: never silently patch gaps; route spec gaps to Phase 1 and task gaps to Phase 2; enforce human sign-off before deployment (Phase 4) and human decision on hotfix vs new feature (Phase 5). See [REFACTORING.md](../../REFACTORING.md) and the **spec-driven-gap-handling** rule for the full protocol.
+
 ## Do
 - Keep implementations straightforward
 - Prefer clarity over cleverness

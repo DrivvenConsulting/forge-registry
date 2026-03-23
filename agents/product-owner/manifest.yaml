@@ -1,0 +1,8 @@
+version: "1.0.0"
+project_types:
+  - product
+  - backend
+  - frontend
+  - data
+  - infra
+description: Product owner for the spec-driven lifecycle (Phases 1–2). Three modes—problem shaping, spec writing (Phase 1), and feasibility assessment—powered by problem-shaping, spec-writing, and feasibility-assessment skills.

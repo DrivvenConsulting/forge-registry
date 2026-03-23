@@ -13,12 +13,12 @@ Discover existing AWS resources in an account using read-only operations. List o
 - You need to document existing resources and how they relate to an issue (e.g. endpoints, ARNs, environment).
 - You need to derive endpoints or resource identifiers (e.g. API ID, function names, User Pool ID) for verification or for updating an issue body.
 
-Equip this skill when your role includes read-only AWS discovery; do not hardcode tool or MCP names in agent logic.
+Equip this skill when your role includes read-only AWS discovery; do not hardcode tool or MCP names in agent logic. **If the required AWS CLI or MCP integration is not available or not authenticated for the target account/region in the current environment, stop execution, explain what is missing, and ask the user to either authorize a suitable environment or run the discovery commands themselves. Do not attempt to create new credentials or modify AWS configuration silently.**
 
 ## Steps
 
 1. **Choose resources to discover** – From the issue or task, identify which resource types are relevant (e.g. Cognito, DynamoDB, Lambda, S3, SNS, API Gateway). Use read-only commands only (e.g. list-user-pools, list-tables, list-functions, ls, list-topics, get-rest-apis).
-2. **Run discovery** – Use the available AWS integration to execute the read-only commands in the appropriate region and account. Do not create, update, or delete any resources.
+2. **Run discovery** – Use the available AWS integration to execute the read-only commands in the appropriate region and account. You can also run the local helper script `skills/aws-cli/scripts/aws-discover-resources.sh` to get a quick overview. Do not create, update, or delete any resources.
 3. **Document findings** – Record which resources exist, their identifiers (IDs, ARNs, names), and how they relate to the issue. For APIs, record base URLs or endpoint patterns (e.g. environment, API Gateway base URL).
 4. **Report gaps** – If expected resources do not exist, state that explicitly (e.g. "Resource does not exist; to be created by Terraform" or "Endpoints to be discovered by QA after implementation").
 
@@ -32,3 +32,8 @@ Equip this skill when your role includes read-only AWS discovery; do not hardcod
 
 - Create or modify any AWS resources from this skill.
 - Reference specific tool or MCP names in agent instructions; the skill encapsulates the mechanism.
+
+## References
+
+- AWS discovery commands and examples: see `references/REFERENCE.md`
+

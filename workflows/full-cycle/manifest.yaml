@@ -1,0 +1,8 @@
+version: "1.0.0"
+project_types:
+  - backend
+  - frontend
+  - data
+  - infra
+  - product
+description: Phases 1→5. Raw idea through deployment and monitoring to feedback report.
