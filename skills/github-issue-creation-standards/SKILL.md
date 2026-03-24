@@ -61,8 +61,17 @@ Every issue body must include these five sections as markdown headings. Populate
 
 ## References
 
-[Links to docs, tickets, or other relevant material. Use "None" if none.]
+[Links to docs, tickets, or other relevant material. For specs from Phase 1, follow **Canonical spec reference (planning / Phase 2)** below. Use "None" if none.]
 ```
+
+## Canonical spec reference (planning / Phase 2)
+
+When issues are created from a Phase 1 spec (Phase 2 planning):
+
+- **References** must include at least one line that identifies the spec as **`OWNER/REPO/<repo-relative-path>`**, where `<repo-relative-path>` is the path from the repository root to the spec file (for example `docs/specs/export-reports.md`).
+- Use the **`OWNER/REPO`** for the repository where the spec lives (usually the same repository where the issue is created). If the spec lives in a different repository, use that repository's owner and name.
+- **Do not** use a bare filename alone (for example `spec.md` or `export-reports.md`) as the only pointer to the spec.
+- **Optional:** Add a second line with a markdown link to `https://github.com/OWNER/REPO/blob/<default-branch>/<repo-relative-path>` when the default branch is known.
 
 ## Parent vs Subissue (Task)
 
@@ -108,6 +117,7 @@ If the integration cannot set project fields (Issue type, Status) or assignee, a
 - Assign exactly one implementation label per sub-issue (backend, frontend, data-engineering, devops, internal, quality-assurance).
 - Set Milestone to MVP, Status to Backlog, and Assignee to JnsFerreira for new issues.
 - Use descriptive titles without prefixes.
+- For planning-sourced issues tied to a Phase 1 spec in a repository, include the canonical spec line **`OWNER/REPO/<repo-relative-path>`** in **References**.
 
 ## Do Not
 
@@ -115,6 +125,7 @@ If the integration cannot set project fields (Issue type, Status) or assignee, a
 - Create a sub-issue without an implementation label or with more than one implementation label.
 - Omit any of the five body sections; use "TBD" or "None" only when appropriate.
 - Reference specific tool or MCP names in agent instructions; the skill defines the format only.
+- List only a spec **filename** without **`OWNER/REPO/`** and a repo-relative path when the work is tied to a Phase 1 spec file in a Git repository.
 
 ## CLI helpers and templates
 

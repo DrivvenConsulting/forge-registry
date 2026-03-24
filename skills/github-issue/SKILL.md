@@ -17,7 +17,7 @@ Equip this skill when your role includes planning or issue creation. The runner 
 ## Steps
 
 1. **From spec to issues** – Map acceptance criteria to issues or subtasks; each subtask should reference at least one acceptance criterion.
-2. **Create or update issues** – Use **github-issue-operations** to create or update issues. When creating, follow **github-issue-creation-standards** (body sections: Description, User Stories, Acceptance Criteria, Assumptions, References; issue type, milestone, status as per project). For subissues, prefer the parent-prefix convention (e.g. `[#<parent_number>] <Subissue title>`) when the parent issue number is known.
+2. **Create or update issues** – Use **github-issue-operations** to create or update issues. When creating, follow **github-issue-creation-standards** (body sections: Description, User Stories, Acceptance Criteria, Assumptions, References; issue type, milestone, status as per project). When the work comes from a Phase 1 spec file in a repository, populate **References** with the canonical form **`OWNER/REPO/<repo-relative-path>`** defined in **github-issue-creation-standards** (planning / Phase 2). For subissues, prefer the parent-prefix convention (e.g. `[#<parent_number>] <Subissue title>`) when the parent issue number is known.
 3. **Link subtasks** – Use **github-sub-issue-linking** to attach sub-issues to a parent when applicable.
 4. **Project board** – Use **github-project-board** to add issues to a project or move columns when the integration supports it.
 
@@ -25,6 +25,7 @@ Equip this skill when your role includes planning or issue creation. The runner 
 
 - Map every subtask to at least one acceptance criterion.
 - Preserve issue structure and formatting when updating bodies.
+- For spec-sourced planning issues, include **`OWNER/REPO/<repo-relative-path>`** in **References** per **github-issue-creation-standards** (not a bare spec filename).
 
 ## Do Not
 

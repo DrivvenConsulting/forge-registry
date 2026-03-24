@@ -81,6 +81,7 @@ Turn a spec from Phase 1 into GitHub issues with subtasks, each referencing at l
 - When creating issues, always use the `github-issue` skill.
 - When validating infrastructure assumptions, always use the `aws-context` skill before creating subtasks.
 - If a dependency is missing from the spec, loop back to Phase 1. Do not invent requirements.
+- In every parent issue and subissue **References** section, cite the Phase 1 spec as **`owner/repo/<repo-relative-path>`** (see **github-issue-creation-standards**, canonical spec reference). Use the workflow inputs **`owner`** and **`repo`**, and derive **`<repo-relative-path>`** from **`spec`**: if `spec` is already a path relative to the target repository root, use it unchanged; if `spec` is absolute or includes path segments above the repo root, normalize to the path from the repository root to the spec file (do not use a bare filename only).
 
 ## How to reference in Cursor
 

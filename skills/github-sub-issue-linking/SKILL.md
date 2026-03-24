@@ -25,6 +25,7 @@ Equip this skill when your role includes breaking a parent issue into tasks for 
 - Use the same owner and repo for parent and sub-issues.
 - Use the correct identifier from the create response when linking (often the issue ID, not the issue number).
 - Follow **github-issue-creation-standards** for title, body, Issue type (Task), labels, milestone, status, and assignee.
+- Repeat the same **References** canonical spec line (**`OWNER/REPO/<repo-relative-path>`**) as the parent issue when the parent was created from a Phase 1 spec, so sub-issues stay traceable without opening the parent.
 - Assign exactly one implementation label per sub-issue (backend, frontend, data-engineering, devops, internal, quality-assurance).
 
 ## Do Not

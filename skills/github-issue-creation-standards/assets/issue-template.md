@@ -17,5 +17,6 @@
 
 ## References
 
-- [Links to docs, tickets, or other relevant material. Use "None" if none.]
+- Spec: `OWNER/REPO/path/from/repo/root/spec.md` (replace with your org, repo, and repo-relative path to the Phase 1 spec; see **github-issue-creation-standards** — canonical spec reference).
+- [Other links to docs, tickets, or relevant material. Use "None" if none besides the spec line above.]
 
