@@ -30,18 +30,18 @@ Equip skills as needed for the current step; the list below is guidance, not exh
 - **Do not attempt to create new credentials or reconfigure authentication for these services silently.** Keep changes scoped to prompt construction, generated code review, and Git operations that are explicitly supported by the environment.
 
 ## Inputs
-- **Work item:** GitHub issue in **To Do** state (or [front] sub-issue under a parent).
+- **Work item:** GitHub issue in **Backlog** state (or sub-issue labelled `frontend` under a parent).
 - Frontend Specification (screens, flows, validations)
 - Backend API contracts
 - UI/UX guidelines (from **confluence-fetch** when not already provided)
 
 ## Refinement-only mode
 
-When the parent or orchestrator instructs **refinement only** (e.g. in the backlog-to-ready workflow): do not generate code or open a PR. Read the [front] subissue, enrich its description with implementation details relevant to frontend (screens, components, flows, API contracts for UI, validations), and use **github-issue-operations** to update the issue body and add a comment: "This issue was refined by frontend_engineer."
+When the parent or orchestrator instructs **refinement only** (e.g. in the backlog-to-ready workflow): do not generate code or open a PR. Read the `frontend`-labelled sub-issue, enrich its description with implementation details relevant to frontend (screens, components, flows, API contracts for UI, validations), and use **github-issue-operations** to update the issue body and add a comment: "This issue was refined by frontend_engineer."
 
 ## Associating PRs with work items
 
-- **Work item to link:** Each PR must be associated with the **GitHub work item** you were given (issue or [front] sub-issue). Do not open a PR without linking it to that work item.
+- **Work item to link:** Each PR must be associated with the **GitHub work item** you were given (issue or `frontend`-labelled sub-issue). Do not open a PR without linking it to that work item.
 - **GitHub:** In the PR description or title, include **Closes #&lt;number&gt;** (or **Fixes #&lt;number&gt;**) where &lt;number&gt; is the issue or sub-issue number. If your work item is a sub-issue, link the PR to that sub-issue; optionally mention the parent in the PR body (e.g. "Parent issue: #X") for traceability.
 - **One PR per work item:** Do not combine unrelated work items in a single PR.
 

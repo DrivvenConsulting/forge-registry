@@ -108,7 +108,7 @@ Apply to **every** new issue (parent and sub-issues), unless a different rule is
 | **Status**    | **Backlog** (new issues start in Backlog). |
 | **Assignee**  | **JnsFerreira** |
 
-If the integration cannot set project fields (Issue type, Status) or assignee, add a short note in the issue body or a comment (e.g. "Issue type: Task; Status: Backlog; Assignee: JnsFerreira") so a human or script can set them. When you later need to move an issue between Status values on the project (e.g. Backlog → Ready, In Progress), use **github-project-board** and **github-project-status** (or its helper script) to perform the Status change in a consistent way.
+If the integration cannot set project fields (Issue type, Status) or assignee, add a short note in the issue body or a comment (e.g. "Issue type: Task; Status: Backlog; Assignee: JnsFerreira") so a human or script can set them. When you later need to move an issue between Status values on the project (e.g. Backlog → In progress, Ready for testing), use **github-project-board** and **github-project-status** (or its helper script) to perform the Status change in a consistent way.
 
 ## Do
 

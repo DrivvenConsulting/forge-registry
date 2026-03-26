@@ -44,20 +44,24 @@ Implement one or more GitHub issues: produce code commits and infrastructure cha
      - If meaningful drift or gaps are found, stop implementation work, mark the decision as `re-plan`, and create a gap report attached to the parent issue (or project notes) so Phase 2 can update the spec and tasks before implementation resumes.
 
 1. **Fetch issue(s)** – Load the specified issues and their subtasks. Confirm scope (backend, frontend, devops, data) from labels or body.
-2. **Run the appropriate implementation agent(s):**
+2. **Move issue(s) to In progress** – Use the **github-project-board** skill to move the parent issue and all relevant sub-issues to **In progress** before starting work. If the board integration is unavailable, document the intended state in a comment on each issue.
+3. **Run the appropriate implementation agent(s):**
    - **Backend/APIs:** Use the **api-implementation** skill.
    - **Frontend/UI:** Use the **ui-implementation** skill.
    - **Infrastructure/DevOps:** Use the **terraform** skill.
-3. **Gap handling:** If a gap is discovered not covered by any subtask (including from the repo alignment review), stop, document the gap, and route back to Phase 2. Do not patch silently.
+4. **Move issue(s) to Ready for testing on PR close** – When an implementation PR linked to an issue is merged (closed), use the **github-project-board** skill to move that issue and its related sub-issues to **Ready for testing**. If the board integration is unavailable, add a comment noting that the issue should be moved to **Ready for testing**.
+5. **Gap handling:** If a gap is discovered not covered by any subtask (including from the repo alignment review), stop, document the gap, and route back to Phase 2. Do not patch silently.
 
 ## Agent rules (Phase 3)
 
 - Backend: when implementing APIs, always use the `api-implementation` skill.
 - Frontend: when building UI, always use the `ui-implementation` skill.
 - DevOps: when touching infrastructure, always use the `terraform` skill.
+- All agents: move issue(s) to **In progress** via **github-project-board** when starting work on them.
+- All agents: move issue(s) to **Ready for testing** via **github-project-board** when the linked PR is merged (closed).
 - All agents: if a gap is discovered not covered by any subtask, stop, create a gap report, and route back to Phase 2. Never patch silently.
 - All agents: when opening or updating a PR for work tracked by a sub-issue, always link the PR directly to that specific implementation sub-issue (Task issue) in GitHub (and, when relevant, also to the parent feature issue) so the board reflects the relationship.
-- All agents: when working on a sub-issue that has a parent feature issue, ensure the sub-issue title is prefixed with the parent issue identifier in the form `[Parent #<parent-issue-number>]`. For example, `[#123] Implement API for feature X` becomes `[Parent #45] [#123] Implement API for feature X` if `#45` is the parent feature issue. Keep the rest of the sub-issue title intact.
+- All agents: identify your tasks by filtering sub-issues of the parent by your implementation label (backend, devops, data-engineering, frontend, quality-assurance) using **github-fetch-my-subissues** — do not rely on title prefixes.
 
 ## How to reference in Cursor
 

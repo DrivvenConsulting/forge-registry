@@ -37,9 +37,13 @@ Validate implementation against the spec and subtasks: produce a QA report with 
      - Locate the canonical spec (acceptance criteria) linked from the issue(s) (for example, spec files, Phase 1 artifacts, or in-issue spec sections).
      - Collect implementation references (linked PRs, commits, deployment notes, or environment links) associated with the issue(s).
    - Treat the resolved spec and implementation refs as the canonical inputs for this phase. If they cannot be resolved from the issue(s), stop and request human clarification or updates to the backlog before proceeding.
+   - Confirm the issue(s) are in **Ready for testing** status. If not, use **github-project-board** to move them there before proceeding.
 2. **Spec validation:** Run the **qa-validation** skill against the resolved spec and implementation refs. Map each test to an acceptance criterion.
 3. **Integration validation (if applicable):** Run the **aws-cli** skill for integration checks on deployed or target services.
 4. **Produce QA report** – Per-criterion pass/fail with evidence, plus recommendation (Approve / Fix / Escalate). Human must review and sign off before deployment.
+5. **Update board status based on outcome:**
+   - **If recommendation is Approve (all ACs pass):** Use **github-project-board** to move the issue(s) and their sub-issues to **Reviewed/Tested**.
+   - **If recommendation is Fix or Escalate (any AC fails):** Use **github-project-board** to move the issue(s) and their sub-issues back to **In progress** so implementation can address the failures.
 
 ## Agent rules (Phase 4)
 
@@ -47,6 +51,8 @@ Validate implementation against the spec and subtasks: produce a QA report with 
 - Integration validation: always use the `aws-cli` skill.
 - Every test must map to an acceptance criterion or a real integration point. No superficial tests.
 - **Human must review and sign off before deployment.**
+- On Approve: move issue(s) to **Reviewed/Tested** via **github-project-board**.
+- On Fix/Escalate: move issue(s) back to **In progress** via **github-project-board**.
 
 ## How to reference in Cursor
 
