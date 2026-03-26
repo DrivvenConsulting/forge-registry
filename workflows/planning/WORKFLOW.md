@@ -23,7 +23,7 @@ Turn a spec from Phase 1 into GitHub issues with subtasks, each referencing at l
 ## Outputs
 
 - **GitHub issues** – With subtasks, each referencing at least one acceptance criterion. If the spec mentions infrastructure, validate assumptions using aws-context before creating subtasks.
-- **Parent + subissue structure** – All parent issues and subissues for the feature are created **only** in this phase, never in discovery or implementation. When a GitHub project is provided, all created issues must be added to the project and **explicitly moved to the correct Status (e.g. Backlog, Ready)** using `github-project-status`.
+- **Parent + subissue structure** – All parent issues and subissues for the feature are created **only** in this phase, never in discovery or implementation. When a GitHub project is provided, all created issues must be added to the project and **explicitly set to Status Backlog** using `github-project-status`.
 
 ## Implementing skills
 
@@ -74,7 +74,7 @@ Turn a spec from Phase 1 into GitHub issues with subtasks, each referencing at l
        --single-select-option-id "$BACKLOG_OPTION_ID"
      ```
 
-4. **Move issues to the target working status:** After planning is complete, use the **github-project-board** and **github-project-status** skills (or the helper script from `github-project-status`) to move the parent issue and all subissues created in this phase from **Backlog** to **Ready** (or another team-defined status) when they are fully planned and ready for implementation, **including the required `[ops]` sub-issue for GitHub workflows for each planned project.**
+4. **Confirm all issues are in Backlog:** After planning is complete, verify that the parent issue and all sub-issues created in this phase (including the required `[ops]` sub-issue for GitHub workflows for each planned project) are set to **Backlog**. No status change is made here — the implementation workflow will move them to **In progress** when work begins.
 
 ## Agent rules (Phase 2)
 
