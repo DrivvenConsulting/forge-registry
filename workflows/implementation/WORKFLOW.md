@@ -27,7 +27,7 @@ Implement one or more GitHub issues: produce code commits and infrastructure cha
 
 ## Implementing skills
 
-**Registry skill ids:** api-implementation, ui-implementation, terraform; backend-task-breakdown, lovable-prompts, terraform-github-actions; github-issue-operations, github-pr-operations (for fetching issues and opening PRs).
+**Registry skill ids:** api-implementation, postman-collection-sync, ui-implementation, terraform; backend-task-breakdown, lovable-prompts, terraform-github-actions; github-issue-operations, github-pr-operations (for fetching issues and opening PRs).
 
 ## Steps
 
@@ -46,7 +46,7 @@ Implement one or more GitHub issues: produce code commits and infrastructure cha
 1. **Fetch issue(s)** – Load the specified issues and their subtasks. Confirm scope (backend, frontend, devops, data) from labels or body.
 2. **Move issue(s) to In progress** – Use the **github-project-board** skill to move the parent issue and all relevant sub-issues to **In progress** before starting work. If the board integration is unavailable, document the intended state in a comment on each issue.
 3. **Run the appropriate implementation agent(s):**
-   - **Backend/APIs:** Use the **api-implementation** skill.
+   - **Backend/APIs:** Use the **api-implementation** skill. After tests pass, use the **postman-collection-sync** skill to update the Adlyze workspace for all new or modified endpoints (per the **postman-api-documentation** rule).
    - **Frontend/UI:** Use the **ui-implementation** skill.
    - **Infrastructure/DevOps:** Use the **terraform** skill.
 4. **Move issue(s) to Ready for testing on PR close** – When an implementation PR linked to an issue is merged (closed), use the **github-project-board** skill to move that issue and its related sub-issues to **Ready for testing**. If the board integration is unavailable, add a comment noting that the issue should be moved to **Ready for testing**.
@@ -62,6 +62,7 @@ Implement one or more GitHub issues: produce code commits and infrastructure cha
 - All agents: if a gap is discovered not covered by any subtask, stop, create a gap report, and route back to Phase 2. Never patch silently.
 - All agents: when opening or updating a PR for work tracked by a sub-issue, always link the PR directly to that specific implementation sub-issue (Task issue) in GitHub (and, when relevant, also to the parent feature issue) so the board reflects the relationship.
 - All agents: identify your tasks by filtering sub-issues of the parent by your implementation label (backend, devops, data-engineering, frontend, quality-assurance) using **github-fetch-my-subissues** — do not rely on title prefixes.
+- Backend: after tests pass, use the `postman-collection-sync` skill to sync all new or modified endpoints to the Adlyze workspace before opening or updating the PR.
 
 ## How to reference in Cursor
 

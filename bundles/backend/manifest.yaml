@@ -47,6 +47,8 @@ items:
     id: aws-ecs
   - kind: rule
     id: spec-driven-gap-handling
+  - kind: rule
+    id: postman-api-documentation
   - kind: skill
     id: github-issue-operations
   - kind: skill
@@ -73,6 +75,8 @@ items:
     id: github-issue
   - kind: skill
     id: api-implementation
+  - kind: skill
+    id: postman-collection-sync
   - kind: skill
     id: terraform
   - kind: skill

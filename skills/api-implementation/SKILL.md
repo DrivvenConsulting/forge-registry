@@ -1,11 +1,11 @@
 ---
 name: api-implementation
-description: Implement APIs and backend services using backend-task-breakdown and project rules (FastAPI, architecture-decoupling).
+description: Implement APIs and backend services using backend-task-breakdown and project rules (FastAPI, architecture-decoupling, postman-api-documentation).
 ---
 
 # API Implementation (Phase 3)
 
-When implementing backend APIs and services, use this skill to ensure consistent structure: thin endpoints, service-layer business logic, and project rules (e.g. **framework-fastapi**, **architecture-decoupling**). This skill delegates to **backend-task-breakdown** for task decomposition and relies on project rules for patterns.
+When implementing backend APIs and services, use this skill to ensure consistent structure: thin endpoints, service-layer business logic, and project rules (e.g. **framework-fastapi**, **architecture-decoupling**). This skill delegates to **backend-task-breakdown** for task decomposition, relies on project rules for patterns, and uses **postman-collection-sync** to keep the Adlyze workspace current after each implementation.
 
 ## When to Use
 
@@ -21,12 +21,14 @@ Equip this skill when your role is backend implementation. Use **backend-task-br
 3. **Auth and validation** – Apply authentication (e.g. JWT, Cognito) and authorization on protected routes; validate inputs with Pydantic.
 4. **Integrate data layer** – Use repositories or abstractions; do not put data access directly in endpoints.
 5. **Tests** – Add or extend tests (e.g. pytest) for new or changed behavior; mirror source layout in `tests/`.
-6. **Gap handling** – If a gap is discovered not covered by any subtask, stop, create a gap report, and route back to Phase 2. Never patch silently.
+6. **Sync to Postman** – After tests pass, equip the **postman-collection-sync** skill to update the Adlyze workspace: locate or create the collection for this service, add or update every new or modified endpoint (request definition, response examples, auth), and confirm the sync. Include confirmation in the PR description per the **postman-api-documentation** rule.
+7. **Gap handling** – If a gap is discovered not covered by any subtask, stop, create a gap report, and route back to Phase 2. Never patch silently.
 
 ## Do
 
 - Follow project backend and security rules.
 - Map each acceptance criterion to implementation in the PR description.
+- After tests pass, sync all new or modified endpoints to the Postman Adlyze workspace using the **postman-collection-sync** skill.
 
 ## Do Not
 

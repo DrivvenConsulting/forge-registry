@@ -1,0 +1,4 @@
+version: "1.0.0"
+project_types:
+  - backend
+description: Sync new or modified API endpoints to the Postman Adlyze workspace. Use when an API endpoint is created or modified to keep the collection current.
