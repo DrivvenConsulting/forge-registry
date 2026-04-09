@@ -1,0 +1,6 @@
+version: "1.0.0"
+description: Auto-format Terraform files with terraform fmt --recursive after writing.
+project_types:
+  - infra
+  - backend
+  - devops
