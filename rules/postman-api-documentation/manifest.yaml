@@ -1,0 +1,4 @@
+version: "1.0.0"
+project_types:
+  - backend
+description: All new or modified API endpoints must be documented in the Postman Adlyze workspace before a PR can be considered complete.
