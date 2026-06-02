@@ -1,0 +1,3 @@
+version: "1.0.0"
+project_types: [backend, frontend, data, infra, product]
+description: "Trigger a Claude managed agent session to implement an issue when @claude is mentioned"

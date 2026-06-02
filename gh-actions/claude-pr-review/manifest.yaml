@@ -1,0 +1,3 @@
+version: "1.0.0"
+project_types: [backend, frontend, data, infra, product]
+description: "Trigger a Claude managed agent session to review pull requests opened against main or development"

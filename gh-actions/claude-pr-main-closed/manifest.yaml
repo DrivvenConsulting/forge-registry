@@ -1,0 +1,3 @@
+version: "1.0.0"
+project_types: [backend, frontend, data, infra, product]
+description: "Notify a Claude managed agent when a PR targeting main is closed or merged; extracts linked issue"

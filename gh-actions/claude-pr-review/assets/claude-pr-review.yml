@@ -1,0 +1,102 @@
+name: Claude PR Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - main
+      - development
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: read
+
+    steps:
+      - name: Install Anthropic SDK
+        run: pip install anthropic
+
+      - name: Run Claude PR review session
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_BASE_BRANCH: ${{ github.event.pull_request.base.ref }}
+          PR_HEAD_BRANCH: ${{ github.event.pull_request.head.ref }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          CLAUDE_AGENT_ID: ${{ vars.CLAUDE_AGENT_REVIEW_ID }}
+          CLAUDE_ENV_ID: ${{ vars.CLAUDE_ENV_ID }}
+          CLAUDE_VAULT_ID: ${{ vars.CLAUDE_VAULT_ID }}
+        run: |
+          python3 <<'EOF'
+          import anthropic
+          import os
+
+          token = os.environ.get("GH_PAT") or os.environ.get("GITHUB_TOKEN", "")
+          repo_slug = os.environ["GITHUB_REPOSITORY"]
+
+          repo_url = f"https://github.com/{repo_slug}"
+          resource = {"type": "github_repository", "url": repo_url}
+          if token:
+              resource["authorization_token"] = token
+
+          memory_store = {
+            "type": "memory_store",
+            "memory_store_id": "memstore_01SJhHHPxn3FtN28sTz67kLa",
+            "access": "read_write",
+            "instructions": "Look first at index.md in order to understand the folder structure and content organization"
+          }
+            
+          resources = [resource, memory_store]
+
+          pr_number = os.environ["PR_NUMBER"]
+          pr_title = os.environ["PR_TITLE"]
+          pr_body = os.environ.get("PR_BODY", "") or ""
+          pr_url = os.environ["PR_URL"]
+          pr_base = os.environ["PR_BASE_BRANCH"]
+          pr_head = os.environ["PR_HEAD_BRANCH"]
+          pr_author = os.environ["PR_AUTHOR"]
+
+          message = f"""Please review this pull request:
+
+          PR #{pr_number}: {pr_title}
+          URL: {pr_url}
+          Author: {pr_author}
+          Base branch: {pr_base}
+          Head branch: {pr_head}
+
+          Description:
+          {pr_body}
+
+          Please review the code changes in this PR and provide feedback."""
+
+          print(f"Mounting repo: {repo_url}")
+
+          client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+
+          session = client.beta.sessions.create(
+              agent="agent_011CakAkvAkYBUXdgJU8LssE",
+              environment_id="env_01LSust4r4VsAJ6Zkwk16zUZ",
+              resources=resources,
+              vault_ids=["vlt_011CaYnfcnzDqEVksZrhdT4a"],
+          )
+          print(f"Session created: {session.id}")
+
+          client.beta.sessions.events.send(
+              session.id,
+              events=[{
+                  "type": "user.message",
+                  "content": [{"type": "text", "text": message}],
+              }],
+          )
+          print(f"Review requested for PR #{pr_number}, session: {session.id}")
+          EOF
