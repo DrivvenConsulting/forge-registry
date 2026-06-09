@@ -9,6 +9,5 @@ on:
 
 jobs:
   review:
-    timeout-minutes: 10
     uses: DrivvenConsulting/github-actions-templates/.github/workflows/claude-pr-review.yml@main
     secrets: inherit
